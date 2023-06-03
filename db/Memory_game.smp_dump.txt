@@ -1,0 +1,190 @@
+
+State Machine - |sim_beta|protocol_tx:inst2|state
+Name state.pr_set_TX state.pr_w3 state.pr_s3 state.pr_check_data state.pr_w2 state.pr_s2 state.pr_w1 state.pr_s1 state.pr_dt state.pr_done state.pr_rdy state.pr_wait 
+state.pr_wait 0 0 0 0 0 0 0 0 0 0 0 0 
+state.pr_rdy 0 0 0 0 0 0 0 0 0 0 1 1 
+state.pr_done 0 0 0 0 0 0 0 0 0 1 0 1 
+state.pr_dt 0 0 0 0 0 0 0 0 1 0 0 1 
+state.pr_s1 0 0 0 0 0 0 0 1 0 0 0 1 
+state.pr_w1 0 0 0 0 0 0 1 0 0 0 0 1 
+state.pr_s2 0 0 0 0 0 1 0 0 0 0 0 1 
+state.pr_w2 0 0 0 0 1 0 0 0 0 0 0 1 
+state.pr_check_data 0 0 0 1 0 0 0 0 0 0 0 1 
+state.pr_s3 0 0 1 0 0 0 0 0 0 0 0 1 
+state.pr_w3 0 1 0 0 0 0 0 0 0 0 0 1 
+state.pr_set_TX 1 0 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |sim_beta|tx_module:inst17|state
+Name state.tx_stop state.tx_shift state.tx_start state.tx_idle 
+state.tx_idle 0 0 0 0 
+state.tx_start 0 0 1 1 
+state.tx_shift 0 1 0 1 
+state.tx_stop 1 0 0 1 
+
+State Machine - |sim_beta|gestor_game:inst6|state
+Name state.after_delay state.end_round state.before_end_round state.compare_result state.check_result state.in_game state.start_game state.init 
+state.init 0 0 0 0 0 0 0 0 
+state.start_game 0 0 0 0 0 0 1 1 
+state.in_game 0 0 0 0 0 1 0 1 
+state.check_result 0 0 0 0 1 0 0 1 
+state.compare_result 0 0 0 1 0 0 0 1 
+state.before_end_round 0 0 1 0 0 0 0 1 
+state.end_round 0 1 0 0 0 0 0 1 
+state.after_delay 1 0 0 0 0 0 0 1 
+
+State Machine - |sim_beta|rx_module2:inst19|state
+Name state.rx_stop state.rx_shift state.rx_start state.rx_idle 
+state.rx_idle 0 0 0 0 
+state.rx_start 0 0 1 1 
+state.rx_shift 0 1 0 1 
+state.rx_stop 1 0 0 1 
+
+State Machine - |sim_beta|protocol_rx:inst20|state
+Name state.pr_s_dt state.pr_r3 state.pr_w3 state.pr_s_done state.pr_s_rdy state.pr_f_type state.pr_r2 state.pr_w2 state.pr_r1 state.pr_w1 state.pr_ini 
+state.pr_ini 0 0 0 0 0 0 0 0 0 0 0 
+state.pr_w1 0 0 0 0 0 0 0 0 0 1 1 
+state.pr_r1 0 0 0 0 0 0 0 0 1 0 1 
+state.pr_w2 0 0 0 0 0 0 0 1 0 0 1 
+state.pr_r2 0 0 0 0 0 0 1 0 0 0 1 
+state.pr_f_type 0 0 0 0 0 1 0 0 0 0 1 
+state.pr_s_rdy 0 0 0 0 1 0 0 0 0 0 1 
+state.pr_s_done 0 0 0 1 0 0 0 0 0 0 1 
+state.pr_w3 0 0 1 0 0 0 0 0 0 0 1 
+state.pr_r3 0 1 0 0 0 0 0 0 0 0 1 
+state.pr_s_dt 1 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |sim_beta|start_game:inst22|state
+Name state.results state.play_game state.play_game_init state.delay_state state.wait_hash state.after_confirmation state.confirmation state.situation2 state.situation1 state.waiting state.init 
+state.init 0 0 0 0 0 0 0 0 0 0 0 
+state.waiting 0 0 0 0 0 0 0 0 0 1 1 
+state.situation1 0 0 0 0 0 0 0 0 1 0 1 
+state.situation2 0 0 0 0 0 0 0 1 0 0 1 
+state.confirmation 0 0 0 0 0 0 1 0 0 0 1 
+state.after_confirmation 0 0 0 0 0 1 0 0 0 0 1 
+state.wait_hash 0 0 0 0 1 0 0 0 0 0 1 
+state.delay_state 0 0 0 1 0 0 0 0 0 0 1 
+state.play_game_init 0 0 1 0 0 0 0 0 0 0 1 
+state.play_game 0 1 0 0 0 0 0 0 0 0 1 
+state.results 1 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |sim_beta|keypad_50_v2:inst8|current_state
+Name current_state.check1 current_state.wait1 current_state.skey current_state.srow_4st current_state.srow_3st current_state.srow_2st current_state.srow_1st current_state.check_All0 current_state.wait0 
+current_state.wait0 0 0 0 0 0 0 0 0 0 
+current_state.check_All0 0 0 0 0 0 0 0 1 1 
+current_state.srow_1st 0 0 0 0 0 0 1 0 1 
+current_state.srow_2st 0 0 0 0 0 1 0 0 1 
+current_state.srow_3st 0 0 0 0 1 0 0 0 1 
+current_state.srow_4st 0 0 0 1 0 0 0 0 1 
+current_state.skey 0 0 1 0 0 0 0 0 1 
+current_state.wait1 0 1 0 0 0 0 0 0 1 
+current_state.check1 1 0 0 0 0 0 0 0 1 
+
+State Machine - |sim_beta|register_bank:inst12|state
+Name state.s6_store_keycode state.s5_wait_asterisk3 state.s4_update_col state.s4_get_col state.s3_wait_asterisk2 state.s2_update_fil state.s2_store_fil state.s2_get_fil state.s1_wait_asterisk1 state.s0_wait 
+state.s0_wait 0 0 0 0 0 0 0 0 0 0 
+state.s1_wait_asterisk1 0 0 0 0 0 0 0 0 1 1 
+state.s2_get_fil 0 0 0 0 0 0 0 1 0 1 
+state.s2_store_fil 0 0 0 0 0 0 1 0 0 1 
+state.s2_update_fil 0 0 0 0 0 1 0 0 0 1 
+state.s3_wait_asterisk2 0 0 0 0 1 0 0 0 0 1 
+state.s4_get_col 0 0 0 1 0 0 0 0 0 1 
+state.s4_update_col 0 0 1 0 0 0 0 0 0 1 
+state.s5_wait_asterisk3 0 1 0 0 0 0 0 0 0 1 
+state.s6_store_keycode 1 0 0 0 0 0 0 0 0 1 
+
+State Machine - |sim_beta|sim_logica_game:inst|Board_status_Memory:inst4|current_state
+Name current_state.reset_internal current_state.s_assign_sync current_state.delay_state current_state.check_success current_state.update_sync current_state.card2_received current_state.card1_received current_state.wait_for_card1 current_state.init 
+current_state.init 0 0 0 0 0 0 0 0 0 
+current_state.wait_for_card1 0 0 0 0 0 0 0 1 1 
+current_state.card1_received 0 0 0 0 0 0 1 0 1 
+current_state.card2_received 0 0 0 0 0 1 0 0 1 
+current_state.update_sync 0 0 0 0 1 0 0 0 1 
+current_state.check_success 0 0 0 1 0 0 0 0 1 
+current_state.delay_state 0 0 1 0 0 0 0 0 1 
+current_state.s_assign_sync 0 1 0 0 0 0 0 0 1 
+current_state.reset_internal 1 0 0 0 0 0 0 0 1 
+
+State Machine - |sim_beta|sim_logica_game:inst|Boards_Memory:inst8|current_state
+Name current_state.wait_new_move current_state.reset current_state.retrieve_second_card current_state.read_second_card current_state.retrieve_first_card current_state.read_first_card current_state.init 
+current_state.init 0 0 0 0 0 0 0 
+current_state.read_first_card 0 0 0 0 0 1 1 
+current_state.retrieve_first_card 0 0 0 0 1 0 1 
+current_state.read_second_card 0 0 0 1 0 0 1 
+current_state.retrieve_second_card 0 0 1 0 0 0 1 
+current_state.reset 0 1 0 0 0 0 1 
+current_state.wait_new_move 1 0 0 0 0 0 1 
+
+State Machine - |sim_beta|sim_logica_game:inst|Game_Module:inst2|current_state
+Name current_state.match current_state.hide_cards current_state.second_sweep current_state.compare_cards current_state.wait_for_second_card current_state.consult_second current_state.second_card current_state.consult_first current_state.first_card current_state.init 
+current_state.init 0 0 0 0 0 0 0 0 0 0 
+current_state.first_card 0 0 0 0 0 0 0 0 1 1 
+current_state.consult_first 0 0 0 0 0 0 0 1 0 1 
+current_state.second_card 0 0 0 0 0 0 1 0 0 1 
+current_state.consult_second 0 0 0 0 0 1 0 0 0 1 
+current_state.wait_for_second_card 0 0 0 0 1 0 0 0 0 1 
+current_state.compare_cards 0 0 0 1 0 0 0 0 0 1 
+current_state.second_sweep 0 0 1 0 0 0 0 0 0 1 
+current_state.hide_cards 0 1 0 0 0 0 0 0 0 1 
+current_state.match 1 0 0 0 0 0 0 0 0 1 
+
+State Machine - |sim_beta|square:inst1|st_square
+Name st_square.sLG15c st_square.sLG15b st_square.sLG15a st_square.sLG14c st_square.sLG14b st_square.sLG14a st_square.sLG13c st_square.sLG13b st_square.sLG13a st_square.sLG12c st_square.sLG12b st_square.sLG12a st_square.sLG11c st_square.sLG11b st_square.sLG11a st_square.sLG10c st_square.sLG10b st_square.sLG10a st_square.sLG9c st_square.sLG9b st_square.sLG9a st_square.sLG8c st_square.sLG8b st_square.sLG8a st_square.sLG7c st_square.sLG7b st_square.sLG7a st_square.sLG6c st_square.sLG6b st_square.sLG6a st_square.sLG5c st_square.sLG5b st_square.sLG5a st_square.sLG4c st_square.sLG4b st_square.sLG4a st_square.sLG3c st_square.sLG3b st_square.sLG3a st_square.sLG2c st_square.sLG2b st_square.sLG2a st_square.sLG1c st_square.sLG1b st_square.sLG1a st_square.sLG0c st_square.sLG0b st_square.s_aux st_square.sLG0a 
+st_square.sLG0a 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+st_square.s_aux 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+st_square.sLG0b 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+st_square.sLG0c 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+st_square.sLG1a 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+st_square.sLG1b 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+st_square.sLG1c 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+st_square.sLG2a 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+st_square.sLG2b 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+st_square.sLG2c 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+st_square.sLG3a 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+st_square.sLG3b 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+st_square.sLG3c 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+st_square.sLG4a 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
+st_square.sLG4b 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+st_square.sLG4c 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+st_square.sLG5a 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+st_square.sLG5b 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+st_square.sLG5c 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+st_square.sLG6a 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+st_square.sLG6b 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+st_square.sLG6c 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+st_square.sLG7a 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+st_square.sLG7b 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+st_square.sLG7c 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+st_square.sLG8a 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+st_square.sLG8b 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+st_square.sLG8c 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+st_square.sLG9a 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+st_square.sLG9b 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+st_square.sLG9c 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+st_square.sLG10a 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+st_square.sLG10b 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+st_square.sLG10c 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+st_square.sLG11a 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+st_square.sLG11b 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+st_square.sLG11c 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+st_square.sLG12a 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+st_square.sLG12b 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+st_square.sLG12c 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+st_square.sLG13a 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+st_square.sLG13b 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+st_square.sLG13c 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+st_square.sLG14a 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+st_square.sLG14b 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+st_square.sLG14c 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+st_square.sLG15a 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+st_square.sLG15b 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+st_square.sLG15c 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |sim_beta|wr_memory:inst15|st_write
+Name st_write.s6 st_write.s5 st_write.s4 st_write.s3 st_write.s2 st_write.s1 st_write.s0 
+st_write.s0 0 0 0 0 0 0 0 
+st_write.s1 0 0 0 0 0 1 1 
+st_write.s2 0 0 0 0 1 0 1 
+st_write.s3 0 0 0 1 0 0 1 
+st_write.s4 0 0 1 0 0 0 1 
+st_write.s5 0 1 0 0 0 0 1 
+st_write.s6 1 0 0 0 0 0 1 

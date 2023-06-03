@@ -1,0 +1,138 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity gestor_game is
+    port (
+        clk        : in std_logic;
+        nrst       : in std_logic;
+        init_game  : in std_logic;
+        correct    : in std_logic;
+        DT_RECEIVED: in std_logic;
+        num_pairs_in : in std_logic_vector(2 downto 0);
+        DONE_RECEIVED : in std_logic;
+        ninety_sec     : in std_logic;
+        
+        counter_taulell_in: in std_logic_vector(2 downto 0);
+        counter_taulell_out: out std_logic_vector(2 downto 0);
+        new_game   : out std_logic;
+        stop_timer : out std_logic;
+        TX_DT      : out std_logic;
+        TX_done    : out std_logic;
+        acknow     : out std_logic;
+        num_pairs_out : out std_logic_vector(2 downto 0);
+        match_result : out std_logic_vector(2 downto 0); -- 1: Win, 2: Loss, 3: Tie
+        end_game   : out std_logic;
+        TIE, WIN, LOSE   : out std_logic
+    );
+end gestor_game;
+
+architecture behavior of gestor_game is
+    type state_type is (init, start_game, in_game, check_result, compare_result,before_end_round, end_round, after_delay);
+    signal state: state_type;
+    signal num_pairs: std_logic_vector(2 downto 0) := (others => '0');
+    signal num_pairs_in_fetch: std_logic_vector(2 downto 0) := (others => '0');
+    --signal delay_counter : integer range 0 to 10;
+    signal delay_counter : integer range 0 to 250000000; --- 5seconds
+    signal counter_taulell_fetch: std_logic_vector(2 downto 0) := (others => '0');
+    signal prev_correct: std_logic := '0';
+    begin
+    process (clk, nrst)
+    begin
+        if nrst = '0' then
+            state <= init;
+        elsif clk'event and clk = '1' then
+            case state is
+                when init =>
+					stop_timer <= '0';
+                    counter_taulell_fetch <= (others => '0');
+                    TX_done <= '0';
+                    acknow <= '0';
+                    LOSE <= '0';
+                    WIN <= '0';
+                    TIE <= '0';
+                    match_result <= (others => '0');
+                    num_pairs <= (others => '0');
+                    delay_counter <= 0;
+                    
+                    if init_game = '1' then
+                        state <= start_game;
+                    end if;
+                when start_game =>
+					counter_taulell_fetch <= counter_taulell_in;
+                    state <= in_game;
+                when in_game =>
+					
+					if correct = '1' and prev_correct='0' then
+						num_pairs <= std_logic_vector(unsigned(num_pairs) + 1);
+						if num_pairs = "111" then
+							stop_timer <= '1';
+							TX_done <= '1';
+							match_result <= "001"; -- win
+							WIN <= '1';---------------------------LED COLOR GREEN WIN
+							state <= before_end_round;     
+						end if;      
+                                       
+					elsif ninety_sec = '1' then
+						TX_DT <= '1';
+						state <= check_result;
+					elsif DONE_RECEIVED = '1' then
+						acknow <= '1';
+						match_result <= "010"; -- loss
+						LOSE <= '1';------------------------------LED COLOR RED LOSE
+						state <= before_end_round;
+						
+				end if;
+
+                when check_result =>
+					TX_DT <= '0';
+                    if DT_RECEIVED = '1'  then
+						num_pairs_in_fetch <= num_pairs_in;
+						state <= compare_result;                         
+                    end if;
+                when compare_result =>
+					acknow <= '0';
+					if num_pairs_in_fetch > num_pairs then
+                            match_result <= "010"; -- loss
+                            acknow <= '1';
+                            state <= end_round;
+                            LOSE <= '1';
+                            ---------------------------------------LED COLOR RED LOSE
+                    elsif num_pairs_in_fetch < num_pairs then
+                            match_result <= "001"; -- win
+                            acknow <= '1';
+                            state <= end_round;
+                            WIN <= '1';
+                            ---------------------------------------LED COLOR GREEN WIN
+                    elsif num_pairs_in_fetch = num_pairs then
+                            match_result <= "011"; -- tie
+                            acknow <= '1';
+                            state <= end_round;
+                            TIE <= '1';
+                            ---------------------------------------LED COLOR BLUE TIE
+                    end if;
+                when before_end_round =>
+					state <= end_round;
+                when end_round =>
+					acknow <= '0';
+                    -- delay  10 seconds here
+                    if delay_counter < 250000000 then
+						delay_counter <= delay_counter + 1;
+						state <= end_round;
+					else
+						delay_counter <= 0;
+						state <= after_delay;
+					end if;
+                when after_delay =>
+                    state <= init;
+
+            end case;
+            prev_correct <= correct;
+        end if;
+    end process;
+    new_game <= '1' when state = start_game else '0';
+    end_game <= '1' when state = compare_result or state = before_end_round or state = after_delay else '0';
+    num_pairs_out <= num_pairs;
+    counter_taulell_out <= counter_taulell_fetch;
+    
+end behavior;

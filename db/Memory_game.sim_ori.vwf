@@ -1,0 +1,8576 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+
+/*
+Copyright (C) 1991-2010 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+*/
+
+HEADER
+{
+	VERSION = 1;
+	TIME_UNIT = ns;
+	PRINT_OPTIONS = "Print_options_version 6\
+range_start 0ps\
+range_end 10.0us\
+width 1\
+names_percentage 25\
+comments 1\
+grid_lines 1\
+time_bars 1\
+name_every_page 0\
+expand_groups 0\
+print_all 1\
+print_row_height 100";
+	DATA_OFFSET = 0.0;
+	DATA_DURATION = 40000.0;
+	SIMULATION_TIME = 40000.0;
+	GRID_PHASE = 0.0;
+	GRID_PERIOD = 10.0;
+	GRID_DUTY_CYCLE = 50;
+}
+
+USER_TYPE("__square:inst1|st_square")
+{
+	VALUES = "Undefined", "st_square.sLG0a", "st_square.sLG0b", "st_square.sLG0c", "st_square.s_init", "st_square.sLG1a", "st_square.sLG1b", "st_square.sLG1c", "st_square.sLG2a", "st_square.sLG2b", "st_square.sLG2c", "st_square.sLG3a", "st_square.sLG3b", "st_square.sLG3c", "st_square.sLG4a", "st_square.sLG4b", "st_square.sLG4c", "st_square.sLG5a", "st_square.sLG5b", "st_square.sLG5c", "st_square.sLG6a", "st_square.sLG6b", "st_square.sLG6c", "st_square.sLG7a", "st_square.sLG7b", "st_square.sLG7c", "st_square.sLG8a", "st_square.sLG8b", "st_square.sLG8c", "st_square.sLG9a", "st_square.sLG9b", "st_square.sLG9c", "st_square.sLG10a", "st_square.sLG10b", "st_square.sLG10c", "st_square.sLG11a", "st_square.sLG11b", "st_square.sLG11c", "st_square.sLG12a", "st_square.sLG12b", "st_square.sLG12c", "st_square.sLG13a", "st_square.sLG13b", "st_square.sLG13c", "st_square.sLG14a", "st_square.sLG14b", "st_square.sLG14c", "st_square.sLG15a", "st_square.sLG15b", "st_square.sLG15c", "st_square.s_aux";
+}
+
+USER_TYPE("__sim_logica_game:inst|Board_status_Memory:inst|current_state")
+{
+	VALUES = "Undefined", "current_state.init", "current_state.wait_for_card1";
+}
+
+USER_TYPE("__sim_logica_game:inst|Game_Module:inst1|current_state")
+{
+	VALUES = "Undefined", "current_state.init", "current_state.consult_first";
+}
+
+USER_TYPE("__sim_logica_game:inst|Boards_Memory:inst8|current_state")
+{
+	VALUES = "Undefined", "current_state.init", "current_state.read_first_card";
+}
+
+USER_TYPE("__Game_Module:inst2|current_state")
+{
+	VALUES = "Undefined", "current_state.init", "current_state.consult_first", "current_state.second_card", "current_state.consult_second", "current_state.wait_for_second_card", "current_state.compare_cards", "current_state.hide_cards", "current_state.match", "current_state.second_sweep";
+}
+
+USER_TYPE("__Board_status_Memory:inst4|current_state")
+{
+	VALUES = "Undefined", "current_state.init", "current_state.wait_for_card1", "current_state.card1_received", "current_state.update_sync", "current_state.card2_received", "current_state.s_assign_sync", "current_state.delay_state", "current_state.check_success", "current_state.reset_internal";
+}
+
+USER_TYPE("__Boards_Memory:inst8|current_state")
+{
+	VALUES = "Undefined", "current_state.init", "current_state.read_first_card", "current_state.retrieve_first_card", "current_state.reset", "current_state.read_second_card", "current_state.retrieve_second_card", "current_state.wait_new_move";
+}
+
+USER_TYPE("__sim_square|square:inst1|st_square")
+{
+	VALUES = "Undefined";
+}
+
+SIGNAL("SYNC")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = BUS;
+	WIDTH = 16;
+	LSB_INDEX = 0;
+	DIRECTION = OUTPUT;
+	PARENT = "";
+}
+
+SIGNAL("SYNC[15]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "SYNC";
+}
+
+SIGNAL("SYNC[14]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "SYNC";
+}
+
+SIGNAL("SYNC[13]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "SYNC";
+}
+
+SIGNAL("SYNC[12]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "SYNC";
+}
+
+SIGNAL("SYNC[11]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "SYNC";
+}
+
+SIGNAL("SYNC[10]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "SYNC";
+}
+
+SIGNAL("SYNC[9]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "SYNC";
+}
+
+SIGNAL("SYNC[8]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "SYNC";
+}
+
+SIGNAL("SYNC[7]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "SYNC";
+}
+
+SIGNAL("SYNC[6]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "SYNC";
+}
+
+SIGNAL("SYNC[5]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "SYNC";
+}
+
+SIGNAL("SYNC[4]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "SYNC";
+}
+
+SIGNAL("SYNC[3]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "SYNC";
+}
+
+SIGNAL("SYNC[2]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "SYNC";
+}
+
+SIGNAL("SYNC[1]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "SYNC";
+}
+
+SIGNAL("SYNC[0]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "SYNC";
+}
+
+SIGNAL("SYNC_value_c1")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = BUS;
+	WIDTH = 3;
+	LSB_INDEX = 0;
+	DIRECTION = OUTPUT;
+	PARENT = "";
+}
+
+SIGNAL("SYNC_value_c1[2]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "SYNC_value_c1";
+}
+
+SIGNAL("SYNC_value_c1[1]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "SYNC_value_c1";
+}
+
+SIGNAL("SYNC_value_c1[0]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "SYNC_value_c1";
+}
+
+SIGNAL("SYNC_value_c2")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = BUS;
+	WIDTH = 3;
+	LSB_INDEX = 0;
+	DIRECTION = OUTPUT;
+	PARENT = "";
+}
+
+SIGNAL("SYNC_value_c2[2]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "SYNC_value_c2";
+}
+
+SIGNAL("SYNC_value_c2[1]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "SYNC_value_c2";
+}
+
+SIGNAL("SYNC_value_c2[0]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "SYNC_value_c2";
+}
+
+SIGNAL("clk")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "";
+}
+
+SIGNAL("nrst")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "";
+}
+
+SIGNAL("correct")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "";
+}
+
+SIGNAL("keycode")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = BUS;
+	WIDTH = 8;
+	LSB_INDEX = 0;
+	DIRECTION = INPUT;
+	PARENT = "";
+}
+
+SIGNAL("keycode[7]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "keycode";
+}
+
+SIGNAL("keycode[6]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "keycode";
+}
+
+SIGNAL("keycode[5]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "keycode";
+}
+
+SIGNAL("keycode[4]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "keycode";
+}
+
+SIGNAL("keycode[3]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "keycode";
+}
+
+SIGNAL("keycode[2]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "keycode";
+}
+
+SIGNAL("keycode[1]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "keycode";
+}
+
+SIGNAL("keycode[0]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "keycode";
+}
+
+SIGNAL("Incorrect")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "";
+}
+
+SIGNAL("sweep")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "";
+}
+
+SIGNAL("card[2]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "";
+}
+
+SIGNAL("card[1]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "";
+}
+
+SIGNAL("card[0]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "";
+}
+
+SIGNAL("color_t[3]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "";
+}
+
+SIGNAL("color_t[2]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "";
+}
+
+SIGNAL("color_t[1]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "";
+}
+
+SIGNAL("color_t[0]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "";
+}
+
+SIGNAL("new_card[2]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "";
+}
+
+SIGNAL("new_card[1]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "";
+}
+
+SIGNAL("new_card[0]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "";
+}
+
+SIGNAL("Boards_Memory:inst8|current_state")
+{
+	VALUE_TYPE = ENUM;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = MACHINE;
+	PARENT = "";
+	ENUM_NAME = "__Boards_Memory:inst8|current_state";
+}
+
+SIGNAL("Board_status_Memory:inst4|current_state")
+{
+	VALUE_TYPE = ENUM;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = MACHINE;
+	PARENT = "";
+	ENUM_NAME = "__Board_status_Memory:inst4|current_state";
+}
+
+SIGNAL("Game_Module:inst2|current_state")
+{
+	VALUE_TYPE = ENUM;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = MACHINE;
+	PARENT = "";
+	ENUM_NAME = "__Game_Module:inst2|current_state";
+}
+
+SIGNAL("done")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "";
+}
+
+SIGNAL("counter_taulell")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = BUS;
+	WIDTH = 3;
+	LSB_INDEX = 0;
+	DIRECTION = INPUT;
+	PARENT = "";
+}
+
+SIGNAL("counter_taulell[2]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "counter_taulell";
+}
+
+SIGNAL("counter_taulell[1]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "counter_taulell";
+}
+
+SIGNAL("counter_taulell[0]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "counter_taulell";
+}
+
+SIGNAL("square:inst1|LG0_INT")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = BUS;
+	WIDTH = 4;
+	LSB_INDEX = 0;
+	DIRECTION = BURIED;
+	PARENT = "";
+}
+
+SIGNAL("square:inst1|LG0_INT[3]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG0_INT";
+}
+
+SIGNAL("square:inst1|LG0_INT[2]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG0_INT";
+}
+
+SIGNAL("square:inst1|LG0_INT[1]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG0_INT";
+}
+
+SIGNAL("square:inst1|LG0_INT[0]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG0_INT";
+}
+
+SIGNAL("square:inst1|LG1_INT")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = BUS;
+	WIDTH = 4;
+	LSB_INDEX = 0;
+	DIRECTION = BURIED;
+	PARENT = "";
+}
+
+SIGNAL("square:inst1|LG1_INT[3]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG1_INT";
+}
+
+SIGNAL("square:inst1|LG1_INT[2]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG1_INT";
+}
+
+SIGNAL("square:inst1|LG1_INT[1]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG1_INT";
+}
+
+SIGNAL("square:inst1|LG1_INT[0]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG1_INT";
+}
+
+SIGNAL("square:inst1|LG2_INT")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = BUS;
+	WIDTH = 4;
+	LSB_INDEX = 0;
+	DIRECTION = BURIED;
+	PARENT = "";
+}
+
+SIGNAL("square:inst1|LG2_INT[3]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG2_INT";
+}
+
+SIGNAL("square:inst1|LG2_INT[2]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG2_INT";
+}
+
+SIGNAL("square:inst1|LG2_INT[1]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG2_INT";
+}
+
+SIGNAL("square:inst1|LG2_INT[0]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG2_INT";
+}
+
+SIGNAL("square:inst1|LG3_INT")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = BUS;
+	WIDTH = 4;
+	LSB_INDEX = 0;
+	DIRECTION = BURIED;
+	PARENT = "";
+}
+
+SIGNAL("square:inst1|LG3_INT[3]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG3_INT";
+}
+
+SIGNAL("square:inst1|LG3_INT[2]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG3_INT";
+}
+
+SIGNAL("square:inst1|LG3_INT[1]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG3_INT";
+}
+
+SIGNAL("square:inst1|LG3_INT[0]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG3_INT";
+}
+
+SIGNAL("square:inst1|LG4_INT")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = BUS;
+	WIDTH = 4;
+	LSB_INDEX = 0;
+	DIRECTION = BURIED;
+	PARENT = "";
+}
+
+SIGNAL("square:inst1|LG4_INT[3]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG4_INT";
+}
+
+SIGNAL("square:inst1|LG4_INT[2]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG4_INT";
+}
+
+SIGNAL("square:inst1|LG4_INT[1]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG4_INT";
+}
+
+SIGNAL("square:inst1|LG4_INT[0]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG4_INT";
+}
+
+SIGNAL("square:inst1|LG5_INT")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = BUS;
+	WIDTH = 4;
+	LSB_INDEX = 0;
+	DIRECTION = BURIED;
+	PARENT = "";
+}
+
+SIGNAL("square:inst1|LG5_INT[3]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG5_INT";
+}
+
+SIGNAL("square:inst1|LG5_INT[2]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG5_INT";
+}
+
+SIGNAL("square:inst1|LG5_INT[1]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG5_INT";
+}
+
+SIGNAL("square:inst1|LG5_INT[0]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG5_INT";
+}
+
+SIGNAL("square:inst1|LG6_INT")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = BUS;
+	WIDTH = 4;
+	LSB_INDEX = 0;
+	DIRECTION = BURIED;
+	PARENT = "";
+}
+
+SIGNAL("square:inst1|LG6_INT[3]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG6_INT";
+}
+
+SIGNAL("square:inst1|LG6_INT[2]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG6_INT";
+}
+
+SIGNAL("square:inst1|LG6_INT[1]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG6_INT";
+}
+
+SIGNAL("square:inst1|LG6_INT[0]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG6_INT";
+}
+
+SIGNAL("square:inst1|LG7_INT")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = BUS;
+	WIDTH = 4;
+	LSB_INDEX = 0;
+	DIRECTION = BURIED;
+	PARENT = "";
+}
+
+SIGNAL("square:inst1|LG7_INT[3]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG7_INT";
+}
+
+SIGNAL("square:inst1|LG7_INT[2]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG7_INT";
+}
+
+SIGNAL("square:inst1|LG7_INT[1]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG7_INT";
+}
+
+SIGNAL("square:inst1|LG7_INT[0]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG7_INT";
+}
+
+SIGNAL("square:inst1|LG8_INT")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = BUS;
+	WIDTH = 4;
+	LSB_INDEX = 0;
+	DIRECTION = BURIED;
+	PARENT = "";
+}
+
+SIGNAL("square:inst1|LG8_INT[3]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG8_INT";
+}
+
+SIGNAL("square:inst1|LG8_INT[2]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG8_INT";
+}
+
+SIGNAL("square:inst1|LG8_INT[1]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG8_INT";
+}
+
+SIGNAL("square:inst1|LG8_INT[0]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG8_INT";
+}
+
+SIGNAL("square:inst1|LG9_INT")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = BUS;
+	WIDTH = 4;
+	LSB_INDEX = 0;
+	DIRECTION = BURIED;
+	PARENT = "";
+}
+
+SIGNAL("square:inst1|LG9_INT[3]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG9_INT";
+}
+
+SIGNAL("square:inst1|LG9_INT[2]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG9_INT";
+}
+
+SIGNAL("square:inst1|LG9_INT[1]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG9_INT";
+}
+
+SIGNAL("square:inst1|LG9_INT[0]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG9_INT";
+}
+
+SIGNAL("square:inst1|LG10_INT")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = BUS;
+	WIDTH = 4;
+	LSB_INDEX = 0;
+	DIRECTION = BURIED;
+	PARENT = "";
+}
+
+SIGNAL("square:inst1|LG10_INT[3]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG10_INT";
+}
+
+SIGNAL("square:inst1|LG10_INT[2]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG10_INT";
+}
+
+SIGNAL("square:inst1|LG10_INT[1]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG10_INT";
+}
+
+SIGNAL("square:inst1|LG10_INT[0]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG10_INT";
+}
+
+SIGNAL("square:inst1|LG11_INT")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = BUS;
+	WIDTH = 4;
+	LSB_INDEX = 0;
+	DIRECTION = BURIED;
+	PARENT = "";
+}
+
+SIGNAL("square:inst1|LG11_INT[3]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG11_INT";
+}
+
+SIGNAL("square:inst1|LG11_INT[2]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG11_INT";
+}
+
+SIGNAL("square:inst1|LG11_INT[1]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG11_INT";
+}
+
+SIGNAL("square:inst1|LG11_INT[0]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG11_INT";
+}
+
+SIGNAL("square:inst1|LG12_INT")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = BUS;
+	WIDTH = 4;
+	LSB_INDEX = 0;
+	DIRECTION = BURIED;
+	PARENT = "";
+}
+
+SIGNAL("square:inst1|LG12_INT[3]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG12_INT";
+}
+
+SIGNAL("square:inst1|LG12_INT[2]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG12_INT";
+}
+
+SIGNAL("square:inst1|LG12_INT[1]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG12_INT";
+}
+
+SIGNAL("square:inst1|LG12_INT[0]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG12_INT";
+}
+
+SIGNAL("square:inst1|LG13_INT")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = BUS;
+	WIDTH = 4;
+	LSB_INDEX = 0;
+	DIRECTION = BURIED;
+	PARENT = "";
+}
+
+SIGNAL("square:inst1|LG13_INT[3]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG13_INT";
+}
+
+SIGNAL("square:inst1|LG13_INT[2]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG13_INT";
+}
+
+SIGNAL("square:inst1|LG13_INT[1]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG13_INT";
+}
+
+SIGNAL("square:inst1|LG13_INT[0]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG13_INT";
+}
+
+SIGNAL("square:inst1|LG14_INT")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = BUS;
+	WIDTH = 4;
+	LSB_INDEX = 0;
+	DIRECTION = BURIED;
+	PARENT = "";
+}
+
+SIGNAL("square:inst1|LG14_INT[3]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG14_INT";
+}
+
+SIGNAL("square:inst1|LG14_INT[2]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG14_INT";
+}
+
+SIGNAL("square:inst1|LG14_INT[1]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG14_INT";
+}
+
+SIGNAL("square:inst1|LG14_INT[0]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG14_INT";
+}
+
+SIGNAL("square:inst1|LG15_INT")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = BUS;
+	WIDTH = 4;
+	LSB_INDEX = 0;
+	DIRECTION = BURIED;
+	PARENT = "";
+}
+
+SIGNAL("square:inst1|LG15_INT[3]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG15_INT";
+}
+
+SIGNAL("square:inst1|LG15_INT[2]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG15_INT";
+}
+
+SIGNAL("square:inst1|LG15_INT[1]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG15_INT";
+}
+
+SIGNAL("square:inst1|LG15_INT[0]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "square:inst1|LG15_INT";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_2_bit_position")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = BUS;
+	WIDTH = 4;
+	LSB_INDEX = 0;
+	DIRECTION = BURIED;
+	PARENT = "";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_2_bit_position[3]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Board_status_Memory:inst4|Card_2_bit_position";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_2_bit_position[2]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Board_status_Memory:inst4|Card_2_bit_position";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_2_bit_position[1]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Board_status_Memory:inst4|Card_2_bit_position";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_2_bit_position[0]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Board_status_Memory:inst4|Card_2_bit_position";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_1_bit_position")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = BUS;
+	WIDTH = 5;
+	LSB_INDEX = 0;
+	DIRECTION = BURIED;
+	PARENT = "";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_1_bit_position[4]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Board_status_Memory:inst4|Card_1_bit_position";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_1_bit_position[3]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Board_status_Memory:inst4|Card_1_bit_position";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_1_bit_position[2]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Board_status_Memory:inst4|Card_1_bit_position";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_1_bit_position[1]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Board_status_Memory:inst4|Card_1_bit_position";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_1_bit_position[0]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Board_status_Memory:inst4|Card_1_bit_position";
+}
+
+SIGNAL("Board_status_Memory:inst4|delay_done")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "";
+}
+
+SIGNAL("Board_status_Memory:inst4|hide_int")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "";
+}
+
+SIGNAL("Game_Module:inst2|Hide")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_1_number")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = BUS;
+	WIDTH = 16;
+	LSB_INDEX = 0;
+	DIRECTION = BURIED;
+	PARENT = "";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_1_number[15]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Board_status_Memory:inst4|Card_1_number";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_1_number[14]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Board_status_Memory:inst4|Card_1_number";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_1_number[13]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Board_status_Memory:inst4|Card_1_number";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_1_number[12]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Board_status_Memory:inst4|Card_1_number";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_1_number[11]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Board_status_Memory:inst4|Card_1_number";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_1_number[10]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Board_status_Memory:inst4|Card_1_number";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_1_number[9]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Board_status_Memory:inst4|Card_1_number";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_1_number[8]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Board_status_Memory:inst4|Card_1_number";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_1_number[7]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Board_status_Memory:inst4|Card_1_number";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_1_number[6]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Board_status_Memory:inst4|Card_1_number";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_1_number[5]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Board_status_Memory:inst4|Card_1_number";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_1_number[4]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Board_status_Memory:inst4|Card_1_number";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_1_number[3]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Board_status_Memory:inst4|Card_1_number";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_1_number[2]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Board_status_Memory:inst4|Card_1_number";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_1_number[1]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Board_status_Memory:inst4|Card_1_number";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_1_number[0]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Board_status_Memory:inst4|Card_1_number";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_2_number")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = BUS;
+	WIDTH = 16;
+	LSB_INDEX = 0;
+	DIRECTION = BURIED;
+	PARENT = "";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_2_number[15]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Board_status_Memory:inst4|Card_2_number";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_2_number[14]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Board_status_Memory:inst4|Card_2_number";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_2_number[13]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Board_status_Memory:inst4|Card_2_number";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_2_number[12]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Board_status_Memory:inst4|Card_2_number";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_2_number[11]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Board_status_Memory:inst4|Card_2_number";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_2_number[10]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Board_status_Memory:inst4|Card_2_number";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_2_number[9]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Board_status_Memory:inst4|Card_2_number";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_2_number[8]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Board_status_Memory:inst4|Card_2_number";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_2_number[7]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Board_status_Memory:inst4|Card_2_number";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_2_number[6]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Board_status_Memory:inst4|Card_2_number";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_2_number[5]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Board_status_Memory:inst4|Card_2_number";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_2_number[4]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Board_status_Memory:inst4|Card_2_number";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_2_number[3]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Board_status_Memory:inst4|Card_2_number";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_2_number[2]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Board_status_Memory:inst4|Card_2_number";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_2_number[1]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Board_status_Memory:inst4|Card_2_number";
+}
+
+SIGNAL("Board_status_Memory:inst4|Card_2_number[0]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "Board_status_Memory:inst4|Card_2_number";
+}
+
+SIGNAL("Game_Module:inst2|Card_1_sent")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "";
+}
+
+SIGNAL("Game_Module:inst2|Card_2_sent")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = BURIED;
+	PARENT = "";
+}
+
+SIGNAL("square:inst1|st_square")
+{
+	VALUE_TYPE = ENUM;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = MACHINE;
+	PARENT = "";
+	ENUM_NAME = "__square:inst1|st_square";
+}
+
+GROUP("color_t")
+{
+	MEMBERS = "color_t[3]", "color_t[2]", "color_t[1]", "color_t[0]";
+}
+
+GROUP("new_card")
+{
+	MEMBERS = "new_card[2]", "new_card[1]", "new_card[0]";
+}
+
+GROUP("card")
+{
+	MEMBERS = "card[2]", "card[1]", "card[0]";
+}
+
+TRANSITION_LIST("SYNC[15]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 1157.677;
+		LEVEL 1 FOR 2840.0;
+		LEVEL 0 FOR 9660.0;
+		LEVEL 1 FOR 26342.323;
+	}
+}
+
+TRANSITION_LIST("SYNC[14]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 11077.182;
+		LEVEL 1 FOR 28922.818;
+	}
+}
+
+TRANSITION_LIST("SYNC[13]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("SYNC[12]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("SYNC[11]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 22457.254;
+		LEVEL 1 FOR 17542.746;
+	}
+}
+
+TRANSITION_LIST("SYNC[10]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("SYNC[9]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("SYNC[8]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("SYNC[7]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("SYNC[6]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 2936.661;
+		LEVEL 1 FOR 1060.0;
+		LEVEL 0 FOR 36003.339;
+	}
+}
+
+TRANSITION_LIST("SYNC[5]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("SYNC[4]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 18917.443;
+		LEVEL 1 FOR 21082.557;
+	}
+}
+
+TRANSITION_LIST("SYNC[3]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 28478.17;
+		LEVEL 1 FOR 11521.83;
+	}
+}
+
+TRANSITION_LIST("SYNC[2]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("SYNC[1]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("SYNC[0]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("SYNC_value_c1[2]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 1157.371;
+		LEVEL 1 FOR 2840.0;
+		LEVEL 0 FOR 7080.0;
+		LEVEL 1 FOR 3660.0;
+		LEVEL 0 FOR 25262.629;
+	}
+}
+
+TRANSITION_LIST("SYNC_value_c1[1]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 1157.614;
+		LEVEL 1 FOR 2840.0;
+		LEVEL 0 FOR 7080.0;
+		LEVEL 1 FOR 3660.0;
+		LEVEL 0 FOR 4180.0;
+		LEVEL 1 FOR 9480.0;
+		LEVEL 0 FOR 11602.386;
+	}
+}
+
+TRANSITION_LIST("SYNC_value_c1[0]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 1157.521;
+		LEVEL 1 FOR 2840.0;
+		LEVEL 0 FOR 7080.0;
+		LEVEL 1 FOR 3660.0;
+		LEVEL 0 FOR 13740.0;
+		LEVEL 1 FOR 11522.479;
+	}
+}
+
+TRANSITION_LIST("SYNC_value_c2[2]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 13657.606;
+		LEVEL 1 FOR 1080.0;
+		LEVEL 0 FOR 7720.0;
+		LEVEL 1 FOR 5940.0;
+		LEVEL 0 FOR 5100.0;
+		LEVEL 1 FOR 6502.394;
+	}
+}
+
+TRANSITION_LIST("SYNC_value_c2[1]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 2937.299;
+		LEVEL 1 FOR 1060.0;
+		LEVEL 0 FOR 9660.0;
+		LEVEL 1 FOR 1080.0;
+		LEVEL 0 FOR 25262.701;
+	}
+}
+
+TRANSITION_LIST("SYNC_value_c2[0]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 2937.154;
+		LEVEL 1 FOR 1060.0;
+		LEVEL 0 FOR 9660.0;
+		LEVEL 1 FOR 1080.0;
+		LEVEL 0 FOR 7720.0;
+		LEVEL 1 FOR 5940.0;
+		LEVEL 0 FOR 5100.0;
+		LEVEL 1 FOR 6502.846;
+	}
+}
+
+TRANSITION_LIST("clk")
+{
+	NODE
+	{
+		REPEAT = 1;
+		NODE
+		{
+			REPEAT = 2000;
+			LEVEL 0 FOR 10.0;
+			LEVEL 1 FOR 10.0;
+		}
+	}
+}
+
+TRANSITION_LIST("nrst")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 20.0;
+		LEVEL 1 FOR 39980.0;
+	}
+}
+
+TRANSITION_LIST("correct")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 13656.858;
+		LEVEL 1 FOR 1120.0;
+		LEVEL 0 FOR 13600.0;
+		LEVEL 1 FOR 20.0;
+		LEVEL 0 FOR 11603.142;
+	}
+}
+
+TRANSITION_LIST("keycode[7]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("keycode[6]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 320.0;
+		LEVEL 1 FOR 960.0;
+		LEVEL 0 FOR 9600.0;
+		LEVEL 1 FOR 320.0;
+		LEVEL 0 FOR 2240.0;
+		LEVEL 1 FOR 480.0;
+		LEVEL 0 FOR 26080.0;
+	}
+}
+
+TRANSITION_LIST("keycode[5]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 2640.0;
+		LEVEL 1 FOR 320.0;
+		LEVEL 0 FOR 4000.0;
+		LEVEL 1 FOR 160.0;
+		LEVEL 0 FOR 11440.0;
+		LEVEL 1 FOR 1920.0;
+		LEVEL 0 FOR 1760.0;
+		LEVEL 1 FOR 480.0;
+		LEVEL 0 FOR 10560.0;
+		LEVEL 1 FOR 1920.0;
+		LEVEL 0 FOR 1920.0;
+		LEVEL 1 FOR 1280.0;
+		LEVEL 0 FOR 1600.0;
+	}
+}
+
+TRANSITION_LIST("keycode[4]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 4880.0;
+		LEVEL 1 FOR 320.0;
+		LEVEL 0 FOR 17040.0;
+		LEVEL 1 FOR 480.0;
+		LEVEL 0 FOR 2880.0;
+		LEVEL 1 FOR 640.0;
+		LEVEL 0 FOR 1920.0;
+		LEVEL 1 FOR 640.0;
+		LEVEL 0 FOR 4480.0;
+		LEVEL 1 FOR 1920.0;
+		LEVEL 0 FOR 4800.0;
+	}
+}
+
+TRANSITION_LIST("keycode[3]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("keycode[2]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 320.0;
+		LEVEL 1 FOR 960.0;
+		LEVEL 0 FOR 3600.0;
+		LEVEL 1 FOR 320.0;
+		LEVEL 0 FOR 8240.0;
+		LEVEL 1 FOR 480.0;
+		LEVEL 0 FOR 8320.0;
+		LEVEL 1 FOR 480.0;
+		LEVEL 0 FOR 5440.0;
+		LEVEL 1 FOR 640.0;
+		LEVEL 0 FOR 4480.0;
+		LEVEL 1 FOR 1920.0;
+		LEVEL 0 FOR 4800.0;
+	}
+}
+
+TRANSITION_LIST("keycode[1]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 2640.0;
+		LEVEL 1 FOR 320.0;
+		LEVEL 0 FOR 7920.0;
+		LEVEL 1 FOR 320.0;
+		LEVEL 0 FOR 14400.0;
+		LEVEL 1 FOR 640.0;
+		LEVEL 0 FOR 10880.0;
+		LEVEL 1 FOR 1280.0;
+		LEVEL 0 FOR 1600.0;
+	}
+}
+
+TRANSITION_LIST("keycode[0]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 2640.0;
+		LEVEL 1 FOR 320.0;
+		LEVEL 0 FOR 4000.0;
+		LEVEL 1 FOR 160.0;
+		LEVEL 0 FOR 3760.0;
+		LEVEL 1 FOR 320.0;
+		LEVEL 0 FOR 7360.0;
+		LEVEL 1 FOR 1920.0;
+		LEVEL 0 FOR 5120.0;
+		LEVEL 1 FOR 640.0;
+		LEVEL 0 FOR 10880.0;
+		LEVEL 1 FOR 1280.0;
+		LEVEL 0 FOR 1600.0;
+	}
+}
+
+TRANSITION_LIST("Incorrect")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 3956.873;
+		LEVEL 1 FOR 80.0;
+		LEVEL 0 FOR 19520.0;
+		LEVEL 1 FOR 20.0;
+		LEVEL 0 FOR 11740.0;
+		LEVEL 1 FOR 20.0;
+		LEVEL 0 FOR 4663.127;
+	}
+}
+
+TRANSITION_LIST("sweep")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 976.877;
+		NODE
+		{
+			REPEAT = 39;
+			LEVEL 1 FOR 20.0;
+			LEVEL 0 FOR 960.0;
+		}
+		LEVEL 1 FOR 20.0;
+		LEVEL 0 FOR 783.123;
+	}
+}
+
+TRANSITION_LIST("card[2]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 1076.356;
+		LEVEL 1 FOR 2920.0;
+		LEVEL 0 FOR 7000.0;
+		LEVEL 1 FOR 2700.0;
+		LEVEL 0 FOR 26303.644;
+	}
+}
+
+TRANSITION_LIST("card[1]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 1076.354;
+		LEVEL 1 FOR 2920.0;
+		LEVEL 0 FOR 7000.0;
+		LEVEL 1 FOR 2700.0;
+		LEVEL 0 FOR 5140.0;
+		LEVEL 1 FOR 4760.0;
+		LEVEL 0 FOR 13640.0;
+		LEVEL 1 FOR 2763.646;
+	}
+}
+
+TRANSITION_LIST("card[0]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 1076.385;
+		LEVEL 1 FOR 2920.0;
+		LEVEL 0 FOR 7000.0;
+		LEVEL 1 FOR 2700.0;
+		LEVEL 0 FOR 12020.0;
+		LEVEL 1 FOR 2700.0;
+		LEVEL 0 FOR 80.0;
+		LEVEL 1 FOR 6860.0;
+		LEVEL 0 FOR 1880.0;
+		LEVEL 1 FOR 2763.615;
+	}
+}
+
+TRANSITION_LIST("color_t[3]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 1016.398;
+		LEVEL 1 FOR 1880.0;
+		LEVEL 0 FOR 80.0;
+		LEVEL 1 FOR 900.0;
+		LEVEL 0 FOR 80.0;
+		LEVEL 1 FOR 360.0;
+		LEVEL 0 FOR 60.0;
+		LEVEL 1 FOR 480.0;
+		LEVEL 0 FOR 80.0;
+		LEVEL 1 FOR 7700.0;
+		NODE
+		{
+			REPEAT = 2;
+			LEVEL 0 FOR 60.0;
+			LEVEL 1 FOR 920.0;
+		}
+		NODE
+		{
+			REPEAT = 6;
+			LEVEL 0 FOR 140.0;
+			LEVEL 1 FOR 840.0;
+		}
+		NODE
+		{
+			REPEAT = 3;
+			LEVEL 0 FOR 140.0;
+			LEVEL 1 FOR 240.0;
+			LEVEL 0 FOR 60.0;
+			LEVEL 1 FOR 540.0;
+		}
+		NODE
+		{
+			REPEAT = 6;
+			LEVEL 0 FOR 140.0;
+			LEVEL 1 FOR 240.0;
+			LEVEL 0 FOR 60.0;
+			LEVEL 1 FOR 360.0;
+			LEVEL 0 FOR 60.0;
+			LEVEL 1 FOR 120.0;
+		}
+		NODE
+		{
+			REPEAT = 10;
+			LEVEL 0 FOR 140.0;
+			LEVEL 1 FOR 180.0;
+			LEVEL 0 FOR 120.0;
+			LEVEL 1 FOR 360.0;
+			LEVEL 0 FOR 60.0;
+			LEVEL 1 FOR 120.0;
+		}
+		LEVEL 0 FOR 140.0;
+		LEVEL 1 FOR 180.0;
+		LEVEL 0 FOR 120.0;
+		LEVEL 1 FOR 360.0;
+		LEVEL 0 FOR 60.0;
+		LEVEL 1 FOR 43.602;
+	}
+}
+
+TRANSITION_LIST("color_t[2]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 2896.372;
+		NODE
+		{
+			REPEAT = 2;
+			LEVEL 1 FOR 80.0;
+			LEVEL 0 FOR 900.0;
+		}
+		LEVEL 1 FOR 80.0;
+		LEVEL 0 FOR 7700.0;
+		NODE
+		{
+			REPEAT = 2;
+			LEVEL 1 FOR 60.0;
+			LEVEL 0 FOR 920.0;
+		}
+		NODE
+		{
+			REPEAT = 9;
+			LEVEL 1 FOR 140.0;
+			LEVEL 0 FOR 840.0;
+		}
+		NODE
+		{
+			REPEAT = 16;
+			LEVEL 1 FOR 140.0;
+			LEVEL 0 FOR 660.0;
+			LEVEL 1 FOR 60.0;
+			LEVEL 0 FOR 120.0;
+		}
+		LEVEL 1 FOR 140.0;
+		LEVEL 0 FOR 660.0;
+		LEVEL 1 FOR 60.0;
+		LEVEL 0 FOR 43.628;
+	}
+}
+
+TRANSITION_LIST("color_t[1]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 2896.411;
+		LEVEL 1 FOR 80.0;
+		LEVEL 0 FOR 900.0;
+		LEVEL 1 FOR 80.0;
+		LEVEL 0 FOR 360.0;
+		LEVEL 1 FOR 60.0;
+		LEVEL 0 FOR 480.0;
+		LEVEL 1 FOR 80.0;
+		LEVEL 0 FOR 7700.0;
+		NODE
+		{
+			REPEAT = 2;
+			LEVEL 1 FOR 60.0;
+			LEVEL 0 FOR 920.0;
+		}
+		NODE
+		{
+			REPEAT = 6;
+			LEVEL 1 FOR 140.0;
+			LEVEL 0 FOR 840.0;
+		}
+		NODE
+		{
+			REPEAT = 19;
+			LEVEL 1 FOR 140.0;
+			LEVEL 0 FOR 240.0;
+			LEVEL 1 FOR 60.0;
+			LEVEL 0 FOR 540.0;
+		}
+		LEVEL 1 FOR 140.0;
+		LEVEL 0 FOR 240.0;
+		LEVEL 1 FOR 60.0;
+		LEVEL 0 FOR 463.589;
+	}
+}
+
+TRANSITION_LIST("color_t[0]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 2896.401;
+		LEVEL 1 FOR 80.0;
+		LEVEL 0 FOR 900.0;
+		LEVEL 1 FOR 80.0;
+		LEVEL 0 FOR 360.0;
+		LEVEL 1 FOR 60.0;
+		LEVEL 0 FOR 480.0;
+		LEVEL 1 FOR 80.0;
+		LEVEL 0 FOR 7700.0;
+		NODE
+		{
+			REPEAT = 2;
+			LEVEL 1 FOR 60.0;
+			LEVEL 0 FOR 920.0;
+		}
+		NODE
+		{
+			REPEAT = 9;
+			LEVEL 1 FOR 140.0;
+			LEVEL 0 FOR 840.0;
+		}
+		NODE
+		{
+			REPEAT = 6;
+			LEVEL 1 FOR 140.0;
+			LEVEL 0 FOR 660.0;
+			LEVEL 1 FOR 60.0;
+			LEVEL 0 FOR 120.0;
+		}
+		NODE
+		{
+			REPEAT = 10;
+			LEVEL 1 FOR 140.0;
+			LEVEL 0 FOR 180.0;
+			LEVEL 1 FOR 60.0;
+			LEVEL 0 FOR 420.0;
+			LEVEL 1 FOR 60.0;
+			LEVEL 0 FOR 120.0;
+		}
+		LEVEL 1 FOR 140.0;
+		LEVEL 0 FOR 180.0;
+		LEVEL 1 FOR 60.0;
+		LEVEL 0 FOR 420.0;
+		LEVEL 1 FOR 60.0;
+		LEVEL 0 FOR 43.599;
+	}
+}
+
+TRANSITION_LIST("new_card[2]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 13576.36;
+		LEVEL 1 FOR 120.0;
+		LEVEL 0 FOR 8680.0;
+		LEVEL 1 FOR 1220.0;
+		LEVEL 0 FOR 9820.0;
+		LEVEL 1 FOR 1940.0;
+		LEVEL 0 FOR 4643.64;
+	}
+}
+
+TRANSITION_LIST("new_card[1]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 2856.906;
+		LEVEL 1 FOR 1140.0;
+		LEVEL 0 FOR 9580.0;
+		LEVEL 1 FOR 120.0;
+		LEVEL 0 FOR 26303.094;
+	}
+}
+
+TRANSITION_LIST("new_card[0]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 2856.4;
+		LEVEL 1 FOR 1140.0;
+		LEVEL 0 FOR 9580.0;
+		LEVEL 1 FOR 120.0;
+		LEVEL 0 FOR 8680.0;
+		LEVEL 1 FOR 1220.0;
+		LEVEL 0 FOR 4700.0;
+		LEVEL 1 FOR 120.0;
+		LEVEL 0 FOR 5000.0;
+		LEVEL 1 FOR 1940.0;
+		LEVEL 0 FOR 4643.6;
+	}
+}
+
+TRANSITION_LIST("Boards_Memory:inst8|current_state")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL current_state.init FOR 992.93;
+		LEVEL Undefined FOR 0.001;
+		LEVEL current_state.read_first_card FOR 59.99;
+		LEVEL Undefined FOR 0.01;
+		LEVEL current_state.retrieve_first_card FOR 1699.99;
+		LEVEL Undefined FOR 0.009;
+		LEVEL current_state.reset FOR 20.0;
+		LEVEL current_state.read_second_card FOR 59.991;
+		LEVEL Undefined FOR 0.009;
+		LEVEL current_state.retrieve_second_card FOR 99.991;
+		LEVEL Undefined FOR 0.009;
+		LEVEL current_state.wait_new_move FOR 1040.0;
+		LEVEL current_state.init FOR 6940.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL current_state.read_first_card FOR 59.99;
+		LEVEL Undefined FOR 0.01;
+		LEVEL current_state.retrieve_first_card FOR 2499.99;
+		LEVEL Undefined FOR 0.009;
+		LEVEL current_state.reset FOR 20.0;
+		LEVEL current_state.read_second_card FOR 59.991;
+		LEVEL Undefined FOR 0.009;
+		LEVEL current_state.retrieve_second_card FOR 99.991;
+		LEVEL Undefined FOR 0.009;
+		LEVEL current_state.wait_new_move FOR 20.0;
+		LEVEL current_state.init FOR 5080.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL current_state.read_first_card FOR 59.99;
+		LEVEL Undefined FOR 0.01;
+		LEVEL current_state.retrieve_first_card FOR 3459.99;
+		LEVEL Undefined FOR 0.009;
+		LEVEL current_state.reset FOR 20.0;
+		LEVEL current_state.read_second_card FOR 59.991;
+		LEVEL Undefined FOR 0.009;
+		LEVEL current_state.retrieve_second_card FOR 99.991;
+		LEVEL Undefined FOR 0.009;
+		LEVEL current_state.wait_new_move FOR 1120.0;
+		LEVEL current_state.init FOR 2060.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL current_state.read_first_card FOR 59.99;
+		LEVEL Undefined FOR 0.01;
+		LEVEL current_state.retrieve_first_card FOR 2499.99;
+		LEVEL Undefined FOR 0.009;
+		LEVEL current_state.reset FOR 20.0;
+		LEVEL current_state.read_second_card FOR 59.991;
+		LEVEL Undefined FOR 0.009;
+		LEVEL current_state.retrieve_second_card FOR 99.991;
+		LEVEL Undefined FOR 0.009;
+		LEVEL current_state.wait_new_move FOR 20.0;
+		LEVEL current_state.init FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL current_state.read_first_card FOR 59.99;
+		LEVEL Undefined FOR 0.01;
+		LEVEL current_state.retrieve_first_card FOR 4839.99;
+		LEVEL Undefined FOR 0.009;
+		LEVEL current_state.reset FOR 20.0;
+		LEVEL current_state.read_second_card FOR 59.991;
+		LEVEL Undefined FOR 0.009;
+		LEVEL current_state.retrieve_second_card FOR 99.991;
+		LEVEL Undefined FOR 0.009;
+		LEVEL current_state.wait_new_move FOR 1840.0;
+		LEVEL current_state.init FOR 1820.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL current_state.read_first_card FOR 59.99;
+		LEVEL Undefined FOR 0.01;
+		LEVEL current_state.retrieve_first_card FOR 2787.069;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|current_state")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL current_state.init FOR 32.93;
+		LEVEL current_state.wait_for_card1 FOR 1080.0;
+		LEVEL current_state.card1_received FOR 20.0;
+		LEVEL current_state.update_sync FOR 40.0;
+		LEVEL current_state.wait_for_card1 FOR 1720.0;
+		LEVEL current_state.card2_received FOR 20.0;
+		LEVEL current_state.update_sync FOR 19.981;
+		LEVEL Undefined FOR 0.019;
+		LEVEL current_state.s_assign_sync FOR 19.963;
+		LEVEL Undefined FOR 0.018;
+		LEVEL current_state.delay_state FOR 1019.982;
+		LEVEL current_state.check_success FOR 20.0;
+		LEVEL Undefined FOR 0.037;
+		LEVEL current_state.reset_internal FOR 20.0;
+		LEVEL current_state.wait_for_card1 FOR 7020.0;
+		LEVEL current_state.card1_received FOR 20.0;
+		LEVEL current_state.update_sync FOR 40.0;
+		LEVEL current_state.wait_for_card1 FOR 2520.0;
+		LEVEL current_state.card2_received FOR 20.0;
+		LEVEL current_state.update_sync FOR 39.981;
+		LEVEL Undefined FOR 0.019;
+		LEVEL current_state.s_assign_sync FOR 19.963;
+		LEVEL Undefined FOR 0.018;
+		LEVEL current_state.delay_state FOR 1019.982;
+		LEVEL current_state.check_success FOR 20.0;
+		LEVEL Undefined FOR 0.037;
+		LEVEL current_state.reset_internal FOR 20.0;
+		LEVEL current_state.wait_for_card1 FOR 4120.0;
+		LEVEL current_state.card1_received FOR 20.0;
+		LEVEL current_state.update_sync FOR 40.0;
+		LEVEL current_state.wait_for_card1 FOR 3480.0;
+		LEVEL current_state.card2_received FOR 20.0;
+		LEVEL current_state.update_sync FOR 39.981;
+		LEVEL Undefined FOR 0.019;
+		LEVEL current_state.s_assign_sync FOR 19.963;
+		LEVEL Undefined FOR 0.018;
+		LEVEL current_state.delay_state FOR 1019.982;
+		LEVEL current_state.check_success FOR 4880.0;
+		LEVEL Undefined FOR 0.037;
+		LEVEL current_state.reset_internal FOR 20.0;
+		LEVEL current_state.wait_for_card1 FOR 20.0;
+		LEVEL current_state.card1_received FOR 20.0;
+		LEVEL current_state.update_sync FOR 40.0;
+		LEVEL current_state.wait_for_card1 FOR 4960.0;
+		LEVEL current_state.card2_received FOR 20.0;
+		LEVEL current_state.update_sync FOR 39.981;
+		LEVEL Undefined FOR 0.019;
+		LEVEL current_state.s_assign_sync FOR 19.963;
+		LEVEL Undefined FOR 0.018;
+		LEVEL current_state.delay_state FOR 1019.982;
+		LEVEL current_state.check_success FOR 5447.107;
+	}
+}
+
+TRANSITION_LIST("Game_Module:inst2|current_state")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL current_state.init FOR 972.93;
+		LEVEL current_state.consult_first FOR 120.0;
+		LEVEL current_state.second_card FOR 1640.0;
+		LEVEL current_state.consult_second FOR 139.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL current_state.wait_for_second_card FOR 19.999;
+		LEVEL current_state.compare_cards FOR 60.0;
+		LEVEL current_state.second_sweep FOR 979.964;
+		LEVEL Undefined FOR 0.036;
+		LEVEL current_state.hide_cards FOR 79.964;
+		LEVEL Undefined FOR 0.037;
+		LEVEL current_state.init FOR 6880.0;
+		LEVEL current_state.consult_first FOR 120.0;
+		LEVEL current_state.second_card FOR 2440.0;
+		LEVEL current_state.consult_second FOR 139.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL current_state.wait_for_second_card FOR 19.999;
+		LEVEL current_state.compare_cards FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL current_state.match FOR 1120.0;
+		LEVEL current_state.init FOR 3980.0;
+		LEVEL current_state.consult_first FOR 120.0;
+		LEVEL current_state.second_card FOR 3400.0;
+		LEVEL current_state.consult_second FOR 139.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL current_state.wait_for_second_card FOR 19.999;
+		LEVEL current_state.compare_cards FOR 140.0;
+		LEVEL current_state.second_sweep FOR 979.964;
+		LEVEL Undefined FOR 0.036;
+		LEVEL current_state.hide_cards FOR 19.964;
+		LEVEL Undefined FOR 0.037;
+		LEVEL current_state.init FOR 2060.0;
+		LEVEL current_state.consult_first FOR 120.0;
+		LEVEL current_state.second_card FOR 2440.0;
+		LEVEL current_state.consult_second FOR 139.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL current_state.wait_for_second_card FOR 19.999;
+		LEVEL current_state.compare_cards FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL current_state.match FOR 20.0;
+		LEVEL current_state.init FOR 20.0;
+		LEVEL current_state.consult_first FOR 20.0;
+		LEVEL current_state.second_card FOR 4880.0;
+		LEVEL current_state.consult_second FOR 139.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL current_state.wait_for_second_card FOR 19.999;
+		LEVEL current_state.compare_cards FOR 860.0;
+		LEVEL current_state.second_sweep FOR 979.964;
+		LEVEL Undefined FOR 0.036;
+		LEVEL current_state.hide_cards FOR 19.964;
+		LEVEL Undefined FOR 0.037;
+		LEVEL current_state.init FOR 1820.0;
+		LEVEL current_state.consult_first FOR 120.0;
+		LEVEL current_state.second_card FOR 2747.07;
+	}
+}
+
+TRANSITION_LIST("done")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 1 FOR 80.0;
+		LEVEL 0 FOR 880.0;
+		LEVEL 1 FOR 160.0;
+		LEVEL 0 FOR 1600.0;
+		LEVEL 1 FOR 160.0;
+		LEVEL 0 FOR 8000.0;
+		LEVEL 1 FOR 160.0;
+		LEVEL 0 FOR 2400.0;
+		LEVEL 1 FOR 150.0;
+		LEVEL 0 FOR 5130.0;
+		LEVEL 1 FOR 320.0;
+		LEVEL 0 FOR 3200.0;
+		LEVEL 1 FOR 160.0;
+		LEVEL 0 FOR 3200.0;
+		LEVEL 1 FOR 320.0;
+		LEVEL 0 FOR 2240.0;
+		LEVEL 1 FOR 320.0;
+		LEVEL 0 FOR 4800.0;
+		LEVEL 1 FOR 1280.0;
+		LEVEL 0 FOR 2560.0;
+		LEVEL 1 FOR 640.0;
+		LEVEL 0 FOR 2240.0;
+	}
+}
+
+TRANSITION_LIST("counter_taulell[2]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("counter_taulell[1]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("counter_taulell[0]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG0_INT[3]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 32.94;
+		LEVEL 1 FOR 39967.06;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG0_INT[2]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG0_INT[1]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG0_INT[0]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG1_INT[3]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 92.94;
+		LEVEL 1 FOR 39907.06;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG1_INT[2]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG1_INT[1]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG1_INT[0]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG2_INT[3]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 152.935;
+		LEVEL 1 FOR 39847.065;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG2_INT[2]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG2_INT[1]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG2_INT[0]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG3_INT[3]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 212.937;
+		LEVEL 1 FOR 28420.0;
+		LEVEL 0 FOR 11367.063;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG3_INT[2]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG3_INT[1]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG3_INT[0]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 28632.937;
+		LEVEL 1 FOR 11367.063;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG4_INT[3]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 272.936;
+		LEVEL 1 FOR 19600.0;
+		LEVEL 0 FOR 20127.064;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG4_INT[2]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG4_INT[1]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 19872.936;
+		LEVEL 1 FOR 20127.064;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG4_INT[0]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG5_INT[3]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 332.933;
+		LEVEL 1 FOR 39667.067;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG5_INT[2]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG5_INT[1]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG5_INT[0]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG6_INT[3]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 392.935;
+		LEVEL 1 FOR 2940.0;
+		LEVEL 0 FOR 980.0;
+		LEVEL 1 FOR 35687.065;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG6_INT[2]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG6_INT[1]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 3332.935;
+		LEVEL 1 FOR 980.0;
+		LEVEL 0 FOR 35687.065;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG6_INT[0]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 3332.935;
+		LEVEL 1 FOR 980.0;
+		LEVEL 0 FOR 35687.065;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG7_INT[3]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 452.936;
+		LEVEL 1 FOR 39547.064;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG7_INT[2]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG7_INT[1]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG7_INT[0]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG8_INT[3]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 512.931;
+		LEVEL 1 FOR 39487.069;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG8_INT[2]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG8_INT[1]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG8_INT[0]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG9_INT[3]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 572.939;
+		LEVEL 1 FOR 39427.061;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG9_INT[2]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG9_INT[1]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG9_INT[0]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG10_INT[3]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 632.941;
+		LEVEL 1 FOR 39367.059;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG10_INT[2]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG10_INT[1]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG10_INT[0]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG11_INT[3]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 692.942;
+		LEVEL 1 FOR 22540.0;
+		LEVEL 0 FOR 16767.058;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG11_INT[2]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 23232.942;
+		LEVEL 1 FOR 16767.058;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG11_INT[1]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG11_INT[0]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 23232.942;
+		LEVEL 1 FOR 16767.058;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG12_INT[3]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 752.937;
+		LEVEL 1 FOR 39247.063;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG12_INT[2]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG12_INT[1]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG12_INT[0]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG13_INT[3]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 812.936;
+		LEVEL 1 FOR 39187.064;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG13_INT[2]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG13_INT[1]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG13_INT[0]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG14_INT[3]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 872.939;
+		LEVEL 1 FOR 10780.0;
+		LEVEL 0 FOR 28347.061;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG14_INT[2]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 11652.939;
+		LEVEL 1 FOR 28347.061;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG14_INT[1]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 11652.939;
+		LEVEL 1 FOR 28347.061;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG14_INT[0]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 11652.939;
+		LEVEL 1 FOR 28347.061;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG15_INT[3]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 932.943;
+		LEVEL 1 FOR 980.0;
+		LEVEL 0 FOR 2940.0;
+		LEVEL 1 FOR 8820.0;
+		LEVEL 0 FOR 26327.057;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG15_INT[2]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 1912.943;
+		LEVEL 1 FOR 2940.0;
+		LEVEL 0 FOR 8820.0;
+		LEVEL 1 FOR 26327.057;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG15_INT[1]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 1912.943;
+		LEVEL 1 FOR 2940.0;
+		LEVEL 0 FOR 8820.0;
+		LEVEL 1 FOR 26327.057;
+	}
+}
+
+TRANSITION_LIST("square:inst1|LG15_INT[0]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 1912.943;
+		LEVEL 1 FOR 2940.0;
+		LEVEL 0 FOR 8820.0;
+		LEVEL 1 FOR 26327.057;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|Card_2_bit_position[3]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 13652.911;
+		LEVEL 1 FOR 1100.0;
+		LEVEL 0 FOR 7700.0;
+		LEVEL 1 FOR 5960.0;
+		LEVEL 0 FOR 5080.0;
+		LEVEL 1 FOR 6507.089;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|Card_2_bit_position[2]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 2932.912;
+		LEVEL 1 FOR 1080.0;
+		LEVEL 0 FOR 9640.0;
+		LEVEL 1 FOR 1100.0;
+		LEVEL 0 FOR 25247.088;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|Card_2_bit_position[1]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 2932.912;
+		LEVEL 1 FOR 1080.0;
+		LEVEL 0 FOR 9640.0;
+		LEVEL 1 FOR 1100.0;
+		LEVEL 0 FOR 7700.0;
+		LEVEL 1 FOR 5960.0;
+		LEVEL 0 FOR 5080.0;
+		LEVEL 1 FOR 6507.088;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|Card_2_bit_position[0]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 13652.912;
+		LEVEL 1 FOR 1100.0;
+		LEVEL 0 FOR 7700.0;
+		LEVEL 1 FOR 5960.0;
+		LEVEL 0 FOR 5080.0;
+		LEVEL 1 FOR 6507.088;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|Card_1_bit_position[4]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 32.924;
+		LEVEL 1 FOR 1120.0;
+		LEVEL 0 FOR 2860.0;
+		LEVEL 1 FOR 7060.0;
+		LEVEL 0 FOR 3680.0;
+		LEVEL 1 FOR 4160.0;
+		LEVEL 0 FOR 9500.0;
+		LEVEL 1 FOR 60.0;
+		LEVEL 0 FOR 11527.076;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|Card_1_bit_position[3]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 1152.924;
+		LEVEL 1 FOR 2860.0;
+		LEVEL 0 FOR 7060.0;
+		LEVEL 1 FOR 3680.0;
+		LEVEL 0 FOR 25247.076;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|Card_1_bit_position[2]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 1152.923;
+		LEVEL 1 FOR 2860.0;
+		LEVEL 0 FOR 7060.0;
+		LEVEL 1 FOR 3680.0;
+		LEVEL 0 FOR 4160.0;
+		LEVEL 1 FOR 9500.0;
+		LEVEL 0 FOR 11587.077;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|Card_1_bit_position[1]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 1152.924;
+		LEVEL 1 FOR 2860.0;
+		LEVEL 0 FOR 7060.0;
+		LEVEL 1 FOR 3680.0;
+		LEVEL 0 FOR 13720.0;
+		LEVEL 1 FOR 11527.076;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|Card_1_bit_position[0]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 1152.924;
+		LEVEL 1 FOR 2860.0;
+		LEVEL 0 FOR 24460.0;
+		LEVEL 1 FOR 11527.076;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|delay_done")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 3992.893;
+		LEVEL 1 FOR 20.0;
+		LEVEL 0 FOR 10720.0;
+		LEVEL 1 FOR 20.0;
+		LEVEL 0 FOR 8780.0;
+		LEVEL 1 FOR 4880.0;
+		LEVEL 0 FOR 6160.0;
+		LEVEL 1 FOR 5427.107;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|hide_int")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 3972.93;
+		LEVEL 1 FOR 20.0;
+		LEVEL 0 FOR 20.0;
+		LEVEL 1 FOR 7020.0;
+		LEVEL 0 FOR 28967.07;
+	}
+}
+
+TRANSITION_LIST("Game_Module:inst2|Hide")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 3952.93;
+		LEVEL 1 FOR 60.0;
+		LEVEL 0 FOR 35987.07;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|Card_1_number[15]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 1132.927;
+		LEVEL 1 FOR 2880.0;
+		LEVEL 0 FOR 35987.073;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|Card_1_number[14]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 11052.927;
+		LEVEL 1 FOR 3700.0;
+		LEVEL 0 FOR 25247.073;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|Card_1_number[13]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|Card_1_number[12]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|Card_1_number[11]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|Card_1_number[10]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|Card_1_number[9]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|Card_1_number[8]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|Card_1_number[7]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|Card_1_number[6]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|Card_1_number[5]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|Card_1_number[4]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 18892.933;
+		LEVEL 1 FOR 9520.0;
+		LEVEL 0 FOR 11587.067;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|Card_1_number[3]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 28452.931;
+		LEVEL 1 FOR 11547.069;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|Card_1_number[2]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|Card_1_number[1]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|Card_1_number[0]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|Card_2_number[15]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 13632.922;
+		LEVEL 1 FOR 1120.0;
+		LEVEL 0 FOR 25247.078;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|Card_2_number[14]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|Card_2_number[13]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|Card_2_number[12]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|Card_2_number[11]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 22432.923;
+		LEVEL 1 FOR 5980.0;
+		LEVEL 0 FOR 5060.0;
+		LEVEL 1 FOR 6527.077;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|Card_2_number[10]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|Card_2_number[9]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|Card_2_number[8]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|Card_2_number[7]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|Card_2_number[6]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 2912.927;
+		LEVEL 1 FOR 1100.0;
+		LEVEL 0 FOR 35987.073;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|Card_2_number[5]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|Card_2_number[4]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|Card_2_number[3]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|Card_2_number[2]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|Card_2_number[1]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("Board_status_Memory:inst4|Card_2_number[0]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 40000.0;
+	}
+}
+
+TRANSITION_LIST("Game_Module:inst2|Card_1_sent")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 1092.93;
+		LEVEL 1 FOR 2860.0;
+		LEVEL 0 FOR 7060.0;
+		LEVEL 1 FOR 2640.0;
+		LEVEL 0 FOR 5200.0;
+		LEVEL 1 FOR 4700.0;
+		LEVEL 0 FOR 2180.0;
+		LEVEL 1 FOR 2640.0;
+		LEVEL 0 FOR 40.0;
+		LEVEL 1 FOR 6900.0;
+		LEVEL 0 FOR 1940.0;
+		LEVEL 1 FOR 2747.07;
+	}
+}
+
+TRANSITION_LIST("Game_Module:inst2|Card_2_sent")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 2872.93;
+		LEVEL 1 FOR 1080.0;
+		LEVEL 0 FOR 9640.0;
+		LEVEL 1 FOR 60.0;
+		LEVEL 0 FOR 8740.0;
+		LEVEL 1 FOR 1160.0;
+		LEVEL 0 FOR 4760.0;
+		LEVEL 1 FOR 60.0;
+		LEVEL 0 FOR 5060.0;
+		LEVEL 1 FOR 1880.0;
+		LEVEL 0 FOR 4687.07;
+	}
+}
+
+TRANSITION_LIST("square:inst1|st_square")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL st_square.sLG0a FOR 32.94;
+		LEVEL st_square.sLG0b FOR 20.0;
+		LEVEL st_square.sLG0c FOR 20.0;
+		LEVEL st_square.sLG1a FOR 20.0;
+		LEVEL st_square.sLG1b FOR 19.995;
+		LEVEL Undefined FOR 0.005;
+		LEVEL st_square.sLG1c FOR 19.995;
+		LEVEL st_square.sLG2a FOR 20.0;
+		LEVEL st_square.sLG2b FOR 20.0;
+		LEVEL st_square.sLG2c FOR 20.0;
+		LEVEL st_square.sLG3a FOR 19.998;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG3b FOR 19.998;
+		LEVEL st_square.sLG3c FOR 20.0;
+		LEVEL st_square.sLG4a FOR 20.0;
+		LEVEL st_square.sLG4b FOR 20.0;
+		LEVEL st_square.sLG4c FOR 20.0;
+		LEVEL st_square.sLG5a FOR 20.0;
+		LEVEL st_square.sLG5b FOR 20.0;
+		LEVEL st_square.sLG5c FOR 20.0;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG6a FOR 20.0;
+		LEVEL st_square.sLG6b FOR 20.0;
+		LEVEL st_square.sLG6c FOR 20.0;
+		LEVEL st_square.sLG7a FOR 20.0;
+		LEVEL st_square.sLG7b FOR 19.997;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG7c FOR 19.996;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG8a FOR 19.999;
+		LEVEL st_square.sLG8b FOR 20.0;
+		LEVEL st_square.sLG8c FOR 20.0;
+		LEVEL st_square.sLG9a FOR 20.0;
+		LEVEL st_square.sLG9b FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG9c FOR 20.0;
+		LEVEL Undefined FOR 0.009;
+		LEVEL st_square.sLG10a FOR 20.0;
+		LEVEL st_square.sLG10b FOR 20.0;
+		LEVEL st_square.sLG10c FOR 20.0;
+		LEVEL st_square.sLG11a FOR 20.0;
+		LEVEL st_square.sLG11b FOR 19.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG11c FOR 19.995;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG12a FOR 19.996;
+		LEVEL st_square.sLG12b FOR 20.0;
+		LEVEL st_square.sLG12c FOR 20.0;
+		LEVEL st_square.sLG13a FOR 20.0;
+		LEVEL st_square.sLG13b FOR 20.0;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG13c FOR 20.0;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG14a FOR 20.0;
+		LEVEL st_square.sLG14b FOR 20.0;
+		LEVEL st_square.sLG14c FOR 20.0;
+		LEVEL st_square.sLG15a FOR 20.0;
+		LEVEL st_square.sLG15b FOR 19.98;
+		LEVEL Undefined FOR 0.02;
+		LEVEL st_square.sLG15c FOR 19.98;
+		LEVEL Undefined FOR 0.006;
+		LEVEL st_square.s_aux FOR 20.0;
+		LEVEL Undefined FOR 0.011;
+		LEVEL st_square.sLG0a FOR 20.0;
+		LEVEL st_square.sLG0b FOR 20.0;
+		LEVEL st_square.sLG0c FOR 20.0;
+		LEVEL st_square.sLG1a FOR 20.0;
+		LEVEL st_square.sLG1b FOR 19.995;
+		LEVEL Undefined FOR 0.005;
+		LEVEL st_square.sLG1c FOR 19.995;
+		LEVEL st_square.sLG2a FOR 20.0;
+		LEVEL st_square.sLG2b FOR 20.0;
+		LEVEL st_square.sLG2c FOR 20.0;
+		LEVEL st_square.sLG3a FOR 19.998;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG3b FOR 19.998;
+		LEVEL st_square.sLG3c FOR 20.0;
+		LEVEL st_square.sLG4a FOR 20.0;
+		LEVEL st_square.sLG4b FOR 20.0;
+		LEVEL st_square.sLG4c FOR 20.0;
+		LEVEL st_square.sLG5a FOR 20.0;
+		LEVEL st_square.sLG5b FOR 20.0;
+		LEVEL st_square.sLG5c FOR 20.0;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG6a FOR 20.0;
+		LEVEL st_square.sLG6b FOR 20.0;
+		LEVEL st_square.sLG6c FOR 20.0;
+		LEVEL st_square.sLG7a FOR 20.0;
+		LEVEL st_square.sLG7b FOR 19.997;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG7c FOR 19.996;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG8a FOR 19.999;
+		LEVEL st_square.sLG8b FOR 20.0;
+		LEVEL st_square.sLG8c FOR 20.0;
+		LEVEL st_square.sLG9a FOR 20.0;
+		LEVEL st_square.sLG9b FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG9c FOR 20.0;
+		LEVEL Undefined FOR 0.009;
+		LEVEL st_square.sLG10a FOR 20.0;
+		LEVEL st_square.sLG10b FOR 20.0;
+		LEVEL st_square.sLG10c FOR 20.0;
+		LEVEL st_square.sLG11a FOR 20.0;
+		LEVEL st_square.sLG11b FOR 19.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG11c FOR 19.995;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG12a FOR 19.996;
+		LEVEL st_square.sLG12b FOR 20.0;
+		LEVEL st_square.sLG12c FOR 20.0;
+		LEVEL st_square.sLG13a FOR 20.0;
+		LEVEL st_square.sLG13b FOR 20.0;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG13c FOR 20.0;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG14a FOR 20.0;
+		LEVEL st_square.sLG14b FOR 20.0;
+		LEVEL st_square.sLG14c FOR 20.0;
+		LEVEL st_square.sLG15a FOR 20.0;
+		LEVEL st_square.sLG15b FOR 19.98;
+		LEVEL Undefined FOR 0.02;
+		LEVEL st_square.sLG15c FOR 19.98;
+		LEVEL Undefined FOR 0.006;
+		LEVEL st_square.s_aux FOR 20.0;
+		LEVEL Undefined FOR 0.011;
+		LEVEL st_square.sLG0a FOR 20.0;
+		LEVEL st_square.sLG0b FOR 20.0;
+		LEVEL st_square.sLG0c FOR 20.0;
+		LEVEL st_square.sLG1a FOR 20.0;
+		LEVEL st_square.sLG1b FOR 19.995;
+		LEVEL Undefined FOR 0.005;
+		LEVEL st_square.sLG1c FOR 19.995;
+		LEVEL st_square.sLG2a FOR 20.0;
+		LEVEL st_square.sLG2b FOR 20.0;
+		LEVEL st_square.sLG2c FOR 20.0;
+		LEVEL st_square.sLG3a FOR 19.998;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG3b FOR 19.998;
+		LEVEL st_square.sLG3c FOR 20.0;
+		LEVEL st_square.sLG4a FOR 20.0;
+		LEVEL st_square.sLG4b FOR 20.0;
+		LEVEL st_square.sLG4c FOR 20.0;
+		LEVEL st_square.sLG5a FOR 20.0;
+		LEVEL st_square.sLG5b FOR 20.0;
+		LEVEL st_square.sLG5c FOR 20.0;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG6a FOR 20.0;
+		LEVEL st_square.sLG6b FOR 20.0;
+		LEVEL st_square.sLG6c FOR 20.0;
+		LEVEL st_square.sLG7a FOR 20.0;
+		LEVEL st_square.sLG7b FOR 19.997;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG7c FOR 19.996;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG8a FOR 19.999;
+		LEVEL st_square.sLG8b FOR 20.0;
+		LEVEL st_square.sLG8c FOR 20.0;
+		LEVEL st_square.sLG9a FOR 20.0;
+		LEVEL st_square.sLG9b FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG9c FOR 20.0;
+		LEVEL Undefined FOR 0.009;
+		LEVEL st_square.sLG10a FOR 20.0;
+		LEVEL st_square.sLG10b FOR 20.0;
+		LEVEL st_square.sLG10c FOR 20.0;
+		LEVEL st_square.sLG11a FOR 20.0;
+		LEVEL st_square.sLG11b FOR 19.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG11c FOR 19.995;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG12a FOR 19.996;
+		LEVEL st_square.sLG12b FOR 20.0;
+		LEVEL st_square.sLG12c FOR 20.0;
+		LEVEL st_square.sLG13a FOR 20.0;
+		LEVEL st_square.sLG13b FOR 20.0;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG13c FOR 20.0;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG14a FOR 20.0;
+		LEVEL st_square.sLG14b FOR 20.0;
+		LEVEL st_square.sLG14c FOR 20.0;
+		LEVEL st_square.sLG15a FOR 20.0;
+		LEVEL st_square.sLG15b FOR 19.98;
+		LEVEL Undefined FOR 0.02;
+		LEVEL st_square.sLG15c FOR 19.98;
+		LEVEL Undefined FOR 0.006;
+		LEVEL st_square.s_aux FOR 20.0;
+		LEVEL Undefined FOR 0.011;
+		LEVEL st_square.sLG0a FOR 20.0;
+		LEVEL st_square.sLG0b FOR 20.0;
+		LEVEL st_square.sLG0c FOR 20.0;
+		LEVEL st_square.sLG1a FOR 20.0;
+		LEVEL st_square.sLG1b FOR 19.995;
+		LEVEL Undefined FOR 0.005;
+		LEVEL st_square.sLG1c FOR 19.995;
+		LEVEL st_square.sLG2a FOR 20.0;
+		LEVEL st_square.sLG2b FOR 20.0;
+		LEVEL st_square.sLG2c FOR 20.0;
+		LEVEL st_square.sLG3a FOR 19.998;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG3b FOR 19.998;
+		LEVEL st_square.sLG3c FOR 20.0;
+		LEVEL st_square.sLG4a FOR 20.0;
+		LEVEL st_square.sLG4b FOR 20.0;
+		LEVEL st_square.sLG4c FOR 20.0;
+		LEVEL st_square.sLG5a FOR 20.0;
+		LEVEL st_square.sLG5b FOR 20.0;
+		LEVEL st_square.sLG5c FOR 20.0;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG6a FOR 20.0;
+		LEVEL st_square.sLG6b FOR 20.0;
+		LEVEL st_square.sLG6c FOR 20.0;
+		LEVEL st_square.sLG7a FOR 20.0;
+		LEVEL st_square.sLG7b FOR 19.997;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG7c FOR 19.996;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG8a FOR 19.999;
+		LEVEL st_square.sLG8b FOR 20.0;
+		LEVEL st_square.sLG8c FOR 20.0;
+		LEVEL st_square.sLG9a FOR 20.0;
+		LEVEL st_square.sLG9b FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG9c FOR 20.0;
+		LEVEL Undefined FOR 0.009;
+		LEVEL st_square.sLG10a FOR 20.0;
+		LEVEL st_square.sLG10b FOR 20.0;
+		LEVEL st_square.sLG10c FOR 20.0;
+		LEVEL st_square.sLG11a FOR 20.0;
+		LEVEL st_square.sLG11b FOR 19.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG11c FOR 19.995;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG12a FOR 19.996;
+		LEVEL st_square.sLG12b FOR 20.0;
+		LEVEL st_square.sLG12c FOR 20.0;
+		LEVEL st_square.sLG13a FOR 20.0;
+		LEVEL st_square.sLG13b FOR 20.0;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG13c FOR 20.0;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG14a FOR 20.0;
+		LEVEL st_square.sLG14b FOR 20.0;
+		LEVEL st_square.sLG14c FOR 20.0;
+		LEVEL st_square.sLG15a FOR 20.0;
+		LEVEL st_square.sLG15b FOR 19.98;
+		LEVEL Undefined FOR 0.02;
+		LEVEL st_square.sLG15c FOR 19.98;
+		LEVEL Undefined FOR 0.006;
+		LEVEL st_square.s_aux FOR 20.0;
+		LEVEL Undefined FOR 0.011;
+		LEVEL st_square.sLG0a FOR 20.0;
+		LEVEL st_square.sLG0b FOR 20.0;
+		LEVEL st_square.sLG0c FOR 20.0;
+		LEVEL st_square.sLG1a FOR 20.0;
+		LEVEL st_square.sLG1b FOR 19.995;
+		LEVEL Undefined FOR 0.005;
+		LEVEL st_square.sLG1c FOR 19.995;
+		LEVEL st_square.sLG2a FOR 20.0;
+		LEVEL st_square.sLG2b FOR 20.0;
+		LEVEL st_square.sLG2c FOR 20.0;
+		LEVEL st_square.sLG3a FOR 19.998;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG3b FOR 19.998;
+		LEVEL st_square.sLG3c FOR 20.0;
+		LEVEL st_square.sLG4a FOR 20.0;
+		LEVEL st_square.sLG4b FOR 20.0;
+		LEVEL st_square.sLG4c FOR 20.0;
+		LEVEL st_square.sLG5a FOR 20.0;
+		LEVEL st_square.sLG5b FOR 20.0;
+		LEVEL st_square.sLG5c FOR 20.0;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG6a FOR 20.0;
+		LEVEL st_square.sLG6b FOR 20.0;
+		LEVEL st_square.sLG6c FOR 20.0;
+		LEVEL st_square.sLG7a FOR 20.0;
+		LEVEL st_square.sLG7b FOR 19.997;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG7c FOR 19.996;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG8a FOR 19.999;
+		LEVEL st_square.sLG8b FOR 20.0;
+		LEVEL st_square.sLG8c FOR 20.0;
+		LEVEL st_square.sLG9a FOR 20.0;
+		LEVEL st_square.sLG9b FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG9c FOR 20.0;
+		LEVEL Undefined FOR 0.009;
+		LEVEL st_square.sLG10a FOR 20.0;
+		LEVEL st_square.sLG10b FOR 20.0;
+		LEVEL st_square.sLG10c FOR 20.0;
+		LEVEL st_square.sLG11a FOR 20.0;
+		LEVEL st_square.sLG11b FOR 19.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG11c FOR 19.995;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG12a FOR 19.996;
+		LEVEL st_square.sLG12b FOR 20.0;
+		LEVEL st_square.sLG12c FOR 20.0;
+		LEVEL st_square.sLG13a FOR 20.0;
+		LEVEL st_square.sLG13b FOR 20.0;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG13c FOR 20.0;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG14a FOR 20.0;
+		LEVEL st_square.sLG14b FOR 20.0;
+		LEVEL st_square.sLG14c FOR 20.0;
+		LEVEL st_square.sLG15a FOR 20.0;
+		LEVEL st_square.sLG15b FOR 19.98;
+		LEVEL Undefined FOR 0.02;
+		LEVEL st_square.sLG15c FOR 19.98;
+		LEVEL Undefined FOR 0.006;
+		LEVEL st_square.s_aux FOR 20.0;
+		LEVEL Undefined FOR 0.011;
+		LEVEL st_square.sLG0a FOR 20.0;
+		LEVEL st_square.sLG0b FOR 20.0;
+		LEVEL st_square.sLG0c FOR 20.0;
+		LEVEL st_square.sLG1a FOR 20.0;
+		LEVEL st_square.sLG1b FOR 19.995;
+		LEVEL Undefined FOR 0.005;
+		LEVEL st_square.sLG1c FOR 19.995;
+		LEVEL st_square.sLG2a FOR 20.0;
+		LEVEL st_square.sLG2b FOR 20.0;
+		LEVEL st_square.sLG2c FOR 20.0;
+		LEVEL st_square.sLG3a FOR 19.998;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG3b FOR 19.998;
+		LEVEL st_square.sLG3c FOR 20.0;
+		LEVEL st_square.sLG4a FOR 20.0;
+		LEVEL st_square.sLG4b FOR 20.0;
+		LEVEL st_square.sLG4c FOR 20.0;
+		LEVEL st_square.sLG5a FOR 20.0;
+		LEVEL st_square.sLG5b FOR 20.0;
+		LEVEL st_square.sLG5c FOR 20.0;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG6a FOR 20.0;
+		LEVEL st_square.sLG6b FOR 20.0;
+		LEVEL st_square.sLG6c FOR 20.0;
+		LEVEL st_square.sLG7a FOR 20.0;
+		LEVEL st_square.sLG7b FOR 19.997;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG7c FOR 19.996;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG8a FOR 19.999;
+		LEVEL st_square.sLG8b FOR 20.0;
+		LEVEL st_square.sLG8c FOR 20.0;
+		LEVEL st_square.sLG9a FOR 20.0;
+		LEVEL st_square.sLG9b FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG9c FOR 20.0;
+		LEVEL Undefined FOR 0.009;
+		LEVEL st_square.sLG10a FOR 20.0;
+		LEVEL st_square.sLG10b FOR 20.0;
+		LEVEL st_square.sLG10c FOR 20.0;
+		LEVEL st_square.sLG11a FOR 20.0;
+		LEVEL st_square.sLG11b FOR 19.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG11c FOR 19.995;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG12a FOR 19.996;
+		LEVEL st_square.sLG12b FOR 20.0;
+		LEVEL st_square.sLG12c FOR 20.0;
+		LEVEL st_square.sLG13a FOR 20.0;
+		LEVEL st_square.sLG13b FOR 20.0;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG13c FOR 20.0;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG14a FOR 20.0;
+		LEVEL st_square.sLG14b FOR 20.0;
+		LEVEL st_square.sLG14c FOR 20.0;
+		LEVEL st_square.sLG15a FOR 20.0;
+		LEVEL st_square.sLG15b FOR 19.98;
+		LEVEL Undefined FOR 0.02;
+		LEVEL st_square.sLG15c FOR 19.98;
+		LEVEL Undefined FOR 0.006;
+		LEVEL st_square.s_aux FOR 20.0;
+		LEVEL Undefined FOR 0.011;
+		LEVEL st_square.sLG0a FOR 20.0;
+		LEVEL st_square.sLG0b FOR 20.0;
+		LEVEL st_square.sLG0c FOR 20.0;
+		LEVEL st_square.sLG1a FOR 20.0;
+		LEVEL st_square.sLG1b FOR 19.995;
+		LEVEL Undefined FOR 0.005;
+		LEVEL st_square.sLG1c FOR 19.995;
+		LEVEL st_square.sLG2a FOR 20.0;
+		LEVEL st_square.sLG2b FOR 20.0;
+		LEVEL st_square.sLG2c FOR 20.0;
+		LEVEL st_square.sLG3a FOR 19.998;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG3b FOR 19.998;
+		LEVEL st_square.sLG3c FOR 20.0;
+		LEVEL st_square.sLG4a FOR 20.0;
+		LEVEL st_square.sLG4b FOR 20.0;
+		LEVEL st_square.sLG4c FOR 20.0;
+		LEVEL st_square.sLG5a FOR 20.0;
+		LEVEL st_square.sLG5b FOR 20.0;
+		LEVEL st_square.sLG5c FOR 20.0;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG6a FOR 20.0;
+		LEVEL st_square.sLG6b FOR 20.0;
+		LEVEL st_square.sLG6c FOR 20.0;
+		LEVEL st_square.sLG7a FOR 20.0;
+		LEVEL st_square.sLG7b FOR 19.997;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG7c FOR 19.996;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG8a FOR 19.999;
+		LEVEL st_square.sLG8b FOR 20.0;
+		LEVEL st_square.sLG8c FOR 20.0;
+		LEVEL st_square.sLG9a FOR 20.0;
+		LEVEL st_square.sLG9b FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG9c FOR 20.0;
+		LEVEL Undefined FOR 0.009;
+		LEVEL st_square.sLG10a FOR 20.0;
+		LEVEL st_square.sLG10b FOR 20.0;
+		LEVEL st_square.sLG10c FOR 20.0;
+		LEVEL st_square.sLG11a FOR 20.0;
+		LEVEL st_square.sLG11b FOR 19.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG11c FOR 19.995;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG12a FOR 19.996;
+		LEVEL st_square.sLG12b FOR 20.0;
+		LEVEL st_square.sLG12c FOR 20.0;
+		LEVEL st_square.sLG13a FOR 20.0;
+		LEVEL st_square.sLG13b FOR 20.0;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG13c FOR 20.0;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG14a FOR 20.0;
+		LEVEL st_square.sLG14b FOR 20.0;
+		LEVEL st_square.sLG14c FOR 20.0;
+		LEVEL st_square.sLG15a FOR 20.0;
+		LEVEL st_square.sLG15b FOR 19.98;
+		LEVEL Undefined FOR 0.02;
+		LEVEL st_square.sLG15c FOR 19.98;
+		LEVEL Undefined FOR 0.006;
+		LEVEL st_square.s_aux FOR 20.0;
+		LEVEL Undefined FOR 0.011;
+		LEVEL st_square.sLG0a FOR 20.0;
+		LEVEL st_square.sLG0b FOR 20.0;
+		LEVEL st_square.sLG0c FOR 20.0;
+		LEVEL st_square.sLG1a FOR 20.0;
+		LEVEL st_square.sLG1b FOR 19.995;
+		LEVEL Undefined FOR 0.005;
+		LEVEL st_square.sLG1c FOR 19.995;
+		LEVEL st_square.sLG2a FOR 20.0;
+		LEVEL st_square.sLG2b FOR 20.0;
+		LEVEL st_square.sLG2c FOR 20.0;
+		LEVEL st_square.sLG3a FOR 19.998;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG3b FOR 19.998;
+		LEVEL st_square.sLG3c FOR 20.0;
+		LEVEL st_square.sLG4a FOR 20.0;
+		LEVEL st_square.sLG4b FOR 20.0;
+		LEVEL st_square.sLG4c FOR 20.0;
+		LEVEL st_square.sLG5a FOR 20.0;
+		LEVEL st_square.sLG5b FOR 20.0;
+		LEVEL st_square.sLG5c FOR 20.0;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG6a FOR 20.0;
+		LEVEL st_square.sLG6b FOR 20.0;
+		LEVEL st_square.sLG6c FOR 20.0;
+		LEVEL st_square.sLG7a FOR 20.0;
+		LEVEL st_square.sLG7b FOR 19.997;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG7c FOR 19.996;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG8a FOR 19.999;
+		LEVEL st_square.sLG8b FOR 20.0;
+		LEVEL st_square.sLG8c FOR 20.0;
+		LEVEL st_square.sLG9a FOR 20.0;
+		LEVEL st_square.sLG9b FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG9c FOR 20.0;
+		LEVEL Undefined FOR 0.009;
+		LEVEL st_square.sLG10a FOR 20.0;
+		LEVEL st_square.sLG10b FOR 20.0;
+		LEVEL st_square.sLG10c FOR 20.0;
+		LEVEL st_square.sLG11a FOR 20.0;
+		LEVEL st_square.sLG11b FOR 19.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG11c FOR 19.995;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG12a FOR 19.996;
+		LEVEL st_square.sLG12b FOR 20.0;
+		LEVEL st_square.sLG12c FOR 20.0;
+		LEVEL st_square.sLG13a FOR 20.0;
+		LEVEL st_square.sLG13b FOR 20.0;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG13c FOR 20.0;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG14a FOR 20.0;
+		LEVEL st_square.sLG14b FOR 20.0;
+		LEVEL st_square.sLG14c FOR 20.0;
+		LEVEL st_square.sLG15a FOR 20.0;
+		LEVEL st_square.sLG15b FOR 19.98;
+		LEVEL Undefined FOR 0.02;
+		LEVEL st_square.sLG15c FOR 19.98;
+		LEVEL Undefined FOR 0.006;
+		LEVEL st_square.s_aux FOR 20.0;
+		LEVEL Undefined FOR 0.011;
+		LEVEL st_square.sLG0a FOR 20.0;
+		LEVEL st_square.sLG0b FOR 20.0;
+		LEVEL st_square.sLG0c FOR 20.0;
+		LEVEL st_square.sLG1a FOR 20.0;
+		LEVEL st_square.sLG1b FOR 19.995;
+		LEVEL Undefined FOR 0.005;
+		LEVEL st_square.sLG1c FOR 19.995;
+		LEVEL st_square.sLG2a FOR 20.0;
+		LEVEL st_square.sLG2b FOR 20.0;
+		LEVEL st_square.sLG2c FOR 20.0;
+		LEVEL st_square.sLG3a FOR 19.998;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG3b FOR 19.998;
+		LEVEL st_square.sLG3c FOR 20.0;
+		LEVEL st_square.sLG4a FOR 20.0;
+		LEVEL st_square.sLG4b FOR 20.0;
+		LEVEL st_square.sLG4c FOR 20.0;
+		LEVEL st_square.sLG5a FOR 20.0;
+		LEVEL st_square.sLG5b FOR 20.0;
+		LEVEL st_square.sLG5c FOR 20.0;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG6a FOR 20.0;
+		LEVEL st_square.sLG6b FOR 20.0;
+		LEVEL st_square.sLG6c FOR 20.0;
+		LEVEL st_square.sLG7a FOR 20.0;
+		LEVEL st_square.sLG7b FOR 19.997;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG7c FOR 19.996;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG8a FOR 19.999;
+		LEVEL st_square.sLG8b FOR 20.0;
+		LEVEL st_square.sLG8c FOR 20.0;
+		LEVEL st_square.sLG9a FOR 20.0;
+		LEVEL st_square.sLG9b FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG9c FOR 20.0;
+		LEVEL Undefined FOR 0.009;
+		LEVEL st_square.sLG10a FOR 20.0;
+		LEVEL st_square.sLG10b FOR 20.0;
+		LEVEL st_square.sLG10c FOR 20.0;
+		LEVEL st_square.sLG11a FOR 20.0;
+		LEVEL st_square.sLG11b FOR 19.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG11c FOR 19.995;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG12a FOR 19.996;
+		LEVEL st_square.sLG12b FOR 20.0;
+		LEVEL st_square.sLG12c FOR 20.0;
+		LEVEL st_square.sLG13a FOR 20.0;
+		LEVEL st_square.sLG13b FOR 20.0;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG13c FOR 20.0;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG14a FOR 20.0;
+		LEVEL st_square.sLG14b FOR 20.0;
+		LEVEL st_square.sLG14c FOR 20.0;
+		LEVEL st_square.sLG15a FOR 20.0;
+		LEVEL st_square.sLG15b FOR 19.98;
+		LEVEL Undefined FOR 0.02;
+		LEVEL st_square.sLG15c FOR 19.98;
+		LEVEL Undefined FOR 0.006;
+		LEVEL st_square.s_aux FOR 20.0;
+		LEVEL Undefined FOR 0.011;
+		LEVEL st_square.sLG0a FOR 20.0;
+		LEVEL st_square.sLG0b FOR 20.0;
+		LEVEL st_square.sLG0c FOR 20.0;
+		LEVEL st_square.sLG1a FOR 20.0;
+		LEVEL st_square.sLG1b FOR 19.995;
+		LEVEL Undefined FOR 0.005;
+		LEVEL st_square.sLG1c FOR 19.995;
+		LEVEL st_square.sLG2a FOR 20.0;
+		LEVEL st_square.sLG2b FOR 20.0;
+		LEVEL st_square.sLG2c FOR 20.0;
+		LEVEL st_square.sLG3a FOR 19.998;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG3b FOR 19.998;
+		LEVEL st_square.sLG3c FOR 20.0;
+		LEVEL st_square.sLG4a FOR 20.0;
+		LEVEL st_square.sLG4b FOR 20.0;
+		LEVEL st_square.sLG4c FOR 20.0;
+		LEVEL st_square.sLG5a FOR 20.0;
+		LEVEL st_square.sLG5b FOR 20.0;
+		LEVEL st_square.sLG5c FOR 20.0;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG6a FOR 20.0;
+		LEVEL st_square.sLG6b FOR 20.0;
+		LEVEL st_square.sLG6c FOR 20.0;
+		LEVEL st_square.sLG7a FOR 20.0;
+		LEVEL st_square.sLG7b FOR 19.997;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG7c FOR 19.996;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG8a FOR 19.999;
+		LEVEL st_square.sLG8b FOR 20.0;
+		LEVEL st_square.sLG8c FOR 20.0;
+		LEVEL st_square.sLG9a FOR 20.0;
+		LEVEL st_square.sLG9b FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG9c FOR 20.0;
+		LEVEL Undefined FOR 0.009;
+		LEVEL st_square.sLG10a FOR 20.0;
+		LEVEL st_square.sLG10b FOR 20.0;
+		LEVEL st_square.sLG10c FOR 20.0;
+		LEVEL st_square.sLG11a FOR 20.0;
+		LEVEL st_square.sLG11b FOR 19.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG11c FOR 19.995;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG12a FOR 19.996;
+		LEVEL st_square.sLG12b FOR 20.0;
+		LEVEL st_square.sLG12c FOR 20.0;
+		LEVEL st_square.sLG13a FOR 20.0;
+		LEVEL st_square.sLG13b FOR 20.0;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG13c FOR 20.0;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG14a FOR 20.0;
+		LEVEL st_square.sLG14b FOR 20.0;
+		LEVEL st_square.sLG14c FOR 20.0;
+		LEVEL st_square.sLG15a FOR 20.0;
+		LEVEL st_square.sLG15b FOR 19.98;
+		LEVEL Undefined FOR 0.02;
+		LEVEL st_square.sLG15c FOR 19.98;
+		LEVEL Undefined FOR 0.006;
+		LEVEL st_square.s_aux FOR 20.0;
+		LEVEL Undefined FOR 0.011;
+		LEVEL st_square.sLG0a FOR 20.0;
+		LEVEL st_square.sLG0b FOR 20.0;
+		LEVEL st_square.sLG0c FOR 20.0;
+		LEVEL st_square.sLG1a FOR 20.0;
+		LEVEL st_square.sLG1b FOR 19.995;
+		LEVEL Undefined FOR 0.005;
+		LEVEL st_square.sLG1c FOR 19.995;
+		LEVEL st_square.sLG2a FOR 20.0;
+		LEVEL st_square.sLG2b FOR 20.0;
+		LEVEL st_square.sLG2c FOR 20.0;
+		LEVEL st_square.sLG3a FOR 19.998;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG3b FOR 19.998;
+		LEVEL st_square.sLG3c FOR 20.0;
+		LEVEL st_square.sLG4a FOR 20.0;
+		LEVEL st_square.sLG4b FOR 20.0;
+		LEVEL st_square.sLG4c FOR 20.0;
+		LEVEL st_square.sLG5a FOR 20.0;
+		LEVEL st_square.sLG5b FOR 20.0;
+		LEVEL st_square.sLG5c FOR 20.0;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG6a FOR 20.0;
+		LEVEL st_square.sLG6b FOR 20.0;
+		LEVEL st_square.sLG6c FOR 20.0;
+		LEVEL st_square.sLG7a FOR 20.0;
+		LEVEL st_square.sLG7b FOR 19.997;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG7c FOR 19.996;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG8a FOR 19.999;
+		LEVEL st_square.sLG8b FOR 20.0;
+		LEVEL st_square.sLG8c FOR 20.0;
+		LEVEL st_square.sLG9a FOR 20.0;
+		LEVEL st_square.sLG9b FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG9c FOR 20.0;
+		LEVEL Undefined FOR 0.009;
+		LEVEL st_square.sLG10a FOR 20.0;
+		LEVEL st_square.sLG10b FOR 20.0;
+		LEVEL st_square.sLG10c FOR 20.0;
+		LEVEL st_square.sLG11a FOR 20.0;
+		LEVEL st_square.sLG11b FOR 19.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG11c FOR 19.995;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG12a FOR 19.996;
+		LEVEL st_square.sLG12b FOR 20.0;
+		LEVEL st_square.sLG12c FOR 20.0;
+		LEVEL st_square.sLG13a FOR 20.0;
+		LEVEL st_square.sLG13b FOR 20.0;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG13c FOR 20.0;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG14a FOR 20.0;
+		LEVEL st_square.sLG14b FOR 20.0;
+		LEVEL st_square.sLG14c FOR 20.0;
+		LEVEL st_square.sLG15a FOR 20.0;
+		LEVEL st_square.sLG15b FOR 19.98;
+		LEVEL Undefined FOR 0.02;
+		LEVEL st_square.sLG15c FOR 19.98;
+		LEVEL Undefined FOR 0.006;
+		LEVEL st_square.s_aux FOR 20.0;
+		LEVEL Undefined FOR 0.011;
+		LEVEL st_square.sLG0a FOR 20.0;
+		LEVEL st_square.sLG0b FOR 20.0;
+		LEVEL st_square.sLG0c FOR 20.0;
+		LEVEL st_square.sLG1a FOR 20.0;
+		LEVEL st_square.sLG1b FOR 19.995;
+		LEVEL Undefined FOR 0.005;
+		LEVEL st_square.sLG1c FOR 19.995;
+		LEVEL st_square.sLG2a FOR 20.0;
+		LEVEL st_square.sLG2b FOR 20.0;
+		LEVEL st_square.sLG2c FOR 20.0;
+		LEVEL st_square.sLG3a FOR 19.998;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG3b FOR 19.998;
+		LEVEL st_square.sLG3c FOR 20.0;
+		LEVEL st_square.sLG4a FOR 20.0;
+		LEVEL st_square.sLG4b FOR 20.0;
+		LEVEL st_square.sLG4c FOR 20.0;
+		LEVEL st_square.sLG5a FOR 20.0;
+		LEVEL st_square.sLG5b FOR 20.0;
+		LEVEL st_square.sLG5c FOR 20.0;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG6a FOR 20.0;
+		LEVEL st_square.sLG6b FOR 20.0;
+		LEVEL st_square.sLG6c FOR 20.0;
+		LEVEL st_square.sLG7a FOR 20.0;
+		LEVEL st_square.sLG7b FOR 19.997;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG7c FOR 19.996;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG8a FOR 19.999;
+		LEVEL st_square.sLG8b FOR 20.0;
+		LEVEL st_square.sLG8c FOR 20.0;
+		LEVEL st_square.sLG9a FOR 20.0;
+		LEVEL st_square.sLG9b FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG9c FOR 20.0;
+		LEVEL Undefined FOR 0.009;
+		LEVEL st_square.sLG10a FOR 20.0;
+		LEVEL st_square.sLG10b FOR 20.0;
+		LEVEL st_square.sLG10c FOR 20.0;
+		LEVEL st_square.sLG11a FOR 20.0;
+		LEVEL st_square.sLG11b FOR 19.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG11c FOR 19.995;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG12a FOR 19.996;
+		LEVEL st_square.sLG12b FOR 20.0;
+		LEVEL st_square.sLG12c FOR 20.0;
+		LEVEL st_square.sLG13a FOR 20.0;
+		LEVEL st_square.sLG13b FOR 20.0;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG13c FOR 20.0;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG14a FOR 20.0;
+		LEVEL st_square.sLG14b FOR 20.0;
+		LEVEL st_square.sLG14c FOR 20.0;
+		LEVEL st_square.sLG15a FOR 20.0;
+		LEVEL st_square.sLG15b FOR 19.98;
+		LEVEL Undefined FOR 0.02;
+		LEVEL st_square.sLG15c FOR 19.98;
+		LEVEL Undefined FOR 0.006;
+		LEVEL st_square.s_aux FOR 20.0;
+		LEVEL Undefined FOR 0.011;
+		LEVEL st_square.sLG0a FOR 20.0;
+		LEVEL st_square.sLG0b FOR 20.0;
+		LEVEL st_square.sLG0c FOR 20.0;
+		LEVEL st_square.sLG1a FOR 20.0;
+		LEVEL st_square.sLG1b FOR 19.995;
+		LEVEL Undefined FOR 0.005;
+		LEVEL st_square.sLG1c FOR 19.995;
+		LEVEL st_square.sLG2a FOR 20.0;
+		LEVEL st_square.sLG2b FOR 20.0;
+		LEVEL st_square.sLG2c FOR 20.0;
+		LEVEL st_square.sLG3a FOR 19.998;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG3b FOR 19.998;
+		LEVEL st_square.sLG3c FOR 20.0;
+		LEVEL st_square.sLG4a FOR 20.0;
+		LEVEL st_square.sLG4b FOR 20.0;
+		LEVEL st_square.sLG4c FOR 20.0;
+		LEVEL st_square.sLG5a FOR 20.0;
+		LEVEL st_square.sLG5b FOR 20.0;
+		LEVEL st_square.sLG5c FOR 20.0;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG6a FOR 20.0;
+		LEVEL st_square.sLG6b FOR 20.0;
+		LEVEL st_square.sLG6c FOR 20.0;
+		LEVEL st_square.sLG7a FOR 20.0;
+		LEVEL st_square.sLG7b FOR 19.997;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG7c FOR 19.996;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG8a FOR 19.999;
+		LEVEL st_square.sLG8b FOR 20.0;
+		LEVEL st_square.sLG8c FOR 20.0;
+		LEVEL st_square.sLG9a FOR 20.0;
+		LEVEL st_square.sLG9b FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG9c FOR 20.0;
+		LEVEL Undefined FOR 0.009;
+		LEVEL st_square.sLG10a FOR 20.0;
+		LEVEL st_square.sLG10b FOR 20.0;
+		LEVEL st_square.sLG10c FOR 20.0;
+		LEVEL st_square.sLG11a FOR 20.0;
+		LEVEL st_square.sLG11b FOR 19.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG11c FOR 19.995;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG12a FOR 19.996;
+		LEVEL st_square.sLG12b FOR 20.0;
+		LEVEL st_square.sLG12c FOR 20.0;
+		LEVEL st_square.sLG13a FOR 20.0;
+		LEVEL st_square.sLG13b FOR 20.0;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG13c FOR 20.0;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG14a FOR 20.0;
+		LEVEL st_square.sLG14b FOR 20.0;
+		LEVEL st_square.sLG14c FOR 20.0;
+		LEVEL st_square.sLG15a FOR 20.0;
+		LEVEL st_square.sLG15b FOR 19.98;
+		LEVEL Undefined FOR 0.02;
+		LEVEL st_square.sLG15c FOR 19.98;
+		LEVEL Undefined FOR 0.006;
+		LEVEL st_square.s_aux FOR 20.0;
+		LEVEL Undefined FOR 0.011;
+		LEVEL st_square.sLG0a FOR 20.0;
+		LEVEL st_square.sLG0b FOR 20.0;
+		LEVEL st_square.sLG0c FOR 20.0;
+		LEVEL st_square.sLG1a FOR 20.0;
+		LEVEL st_square.sLG1b FOR 19.995;
+		LEVEL Undefined FOR 0.005;
+		LEVEL st_square.sLG1c FOR 19.995;
+		LEVEL st_square.sLG2a FOR 20.0;
+		LEVEL st_square.sLG2b FOR 20.0;
+		LEVEL st_square.sLG2c FOR 20.0;
+		LEVEL st_square.sLG3a FOR 19.998;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG3b FOR 19.998;
+		LEVEL st_square.sLG3c FOR 20.0;
+		LEVEL st_square.sLG4a FOR 20.0;
+		LEVEL st_square.sLG4b FOR 20.0;
+		LEVEL st_square.sLG4c FOR 20.0;
+		LEVEL st_square.sLG5a FOR 20.0;
+		LEVEL st_square.sLG5b FOR 20.0;
+		LEVEL st_square.sLG5c FOR 20.0;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG6a FOR 20.0;
+		LEVEL st_square.sLG6b FOR 20.0;
+		LEVEL st_square.sLG6c FOR 20.0;
+		LEVEL st_square.sLG7a FOR 20.0;
+		LEVEL st_square.sLG7b FOR 19.997;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG7c FOR 19.996;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG8a FOR 19.999;
+		LEVEL st_square.sLG8b FOR 20.0;
+		LEVEL st_square.sLG8c FOR 20.0;
+		LEVEL st_square.sLG9a FOR 20.0;
+		LEVEL st_square.sLG9b FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG9c FOR 20.0;
+		LEVEL Undefined FOR 0.009;
+		LEVEL st_square.sLG10a FOR 20.0;
+		LEVEL st_square.sLG10b FOR 20.0;
+		LEVEL st_square.sLG10c FOR 20.0;
+		LEVEL st_square.sLG11a FOR 20.0;
+		LEVEL st_square.sLG11b FOR 19.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG11c FOR 19.995;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG12a FOR 19.996;
+		LEVEL st_square.sLG12b FOR 20.0;
+		LEVEL st_square.sLG12c FOR 20.0;
+		LEVEL st_square.sLG13a FOR 20.0;
+		LEVEL st_square.sLG13b FOR 20.0;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG13c FOR 20.0;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG14a FOR 20.0;
+		LEVEL st_square.sLG14b FOR 20.0;
+		LEVEL st_square.sLG14c FOR 20.0;
+		LEVEL st_square.sLG15a FOR 20.0;
+		LEVEL st_square.sLG15b FOR 19.98;
+		LEVEL Undefined FOR 0.02;
+		LEVEL st_square.sLG15c FOR 19.98;
+		LEVEL Undefined FOR 0.006;
+		LEVEL st_square.s_aux FOR 20.0;
+		LEVEL Undefined FOR 0.011;
+		LEVEL st_square.sLG0a FOR 20.0;
+		LEVEL st_square.sLG0b FOR 20.0;
+		LEVEL st_square.sLG0c FOR 20.0;
+		LEVEL st_square.sLG1a FOR 20.0;
+		LEVEL st_square.sLG1b FOR 19.995;
+		LEVEL Undefined FOR 0.005;
+		LEVEL st_square.sLG1c FOR 19.995;
+		LEVEL st_square.sLG2a FOR 20.0;
+		LEVEL st_square.sLG2b FOR 20.0;
+		LEVEL st_square.sLG2c FOR 20.0;
+		LEVEL st_square.sLG3a FOR 19.998;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG3b FOR 19.998;
+		LEVEL st_square.sLG3c FOR 20.0;
+		LEVEL st_square.sLG4a FOR 20.0;
+		LEVEL st_square.sLG4b FOR 20.0;
+		LEVEL st_square.sLG4c FOR 20.0;
+		LEVEL st_square.sLG5a FOR 20.0;
+		LEVEL st_square.sLG5b FOR 20.0;
+		LEVEL st_square.sLG5c FOR 20.0;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG6a FOR 20.0;
+		LEVEL st_square.sLG6b FOR 20.0;
+		LEVEL st_square.sLG6c FOR 20.0;
+		LEVEL st_square.sLG7a FOR 20.0;
+		LEVEL st_square.sLG7b FOR 19.997;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG7c FOR 19.996;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG8a FOR 19.999;
+		LEVEL st_square.sLG8b FOR 20.0;
+		LEVEL st_square.sLG8c FOR 20.0;
+		LEVEL st_square.sLG9a FOR 20.0;
+		LEVEL st_square.sLG9b FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG9c FOR 20.0;
+		LEVEL Undefined FOR 0.009;
+		LEVEL st_square.sLG10a FOR 20.0;
+		LEVEL st_square.sLG10b FOR 20.0;
+		LEVEL st_square.sLG10c FOR 20.0;
+		LEVEL st_square.sLG11a FOR 20.0;
+		LEVEL st_square.sLG11b FOR 19.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG11c FOR 19.995;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG12a FOR 19.996;
+		LEVEL st_square.sLG12b FOR 20.0;
+		LEVEL st_square.sLG12c FOR 20.0;
+		LEVEL st_square.sLG13a FOR 20.0;
+		LEVEL st_square.sLG13b FOR 20.0;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG13c FOR 20.0;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG14a FOR 20.0;
+		LEVEL st_square.sLG14b FOR 20.0;
+		LEVEL st_square.sLG14c FOR 20.0;
+		LEVEL st_square.sLG15a FOR 20.0;
+		LEVEL st_square.sLG15b FOR 19.98;
+		LEVEL Undefined FOR 0.02;
+		LEVEL st_square.sLG15c FOR 19.98;
+		LEVEL Undefined FOR 0.006;
+		LEVEL st_square.s_aux FOR 20.0;
+		LEVEL Undefined FOR 0.011;
+		LEVEL st_square.sLG0a FOR 20.0;
+		LEVEL st_square.sLG0b FOR 20.0;
+		LEVEL st_square.sLG0c FOR 20.0;
+		LEVEL st_square.sLG1a FOR 20.0;
+		LEVEL st_square.sLG1b FOR 19.995;
+		LEVEL Undefined FOR 0.005;
+		LEVEL st_square.sLG1c FOR 19.995;
+		LEVEL st_square.sLG2a FOR 20.0;
+		LEVEL st_square.sLG2b FOR 20.0;
+		LEVEL st_square.sLG2c FOR 20.0;
+		LEVEL st_square.sLG3a FOR 19.998;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG3b FOR 19.998;
+		LEVEL st_square.sLG3c FOR 20.0;
+		LEVEL st_square.sLG4a FOR 20.0;
+		LEVEL st_square.sLG4b FOR 20.0;
+		LEVEL st_square.sLG4c FOR 20.0;
+		LEVEL st_square.sLG5a FOR 20.0;
+		LEVEL st_square.sLG5b FOR 20.0;
+		LEVEL st_square.sLG5c FOR 20.0;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG6a FOR 20.0;
+		LEVEL st_square.sLG6b FOR 20.0;
+		LEVEL st_square.sLG6c FOR 20.0;
+		LEVEL st_square.sLG7a FOR 20.0;
+		LEVEL st_square.sLG7b FOR 19.997;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG7c FOR 19.996;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG8a FOR 19.999;
+		LEVEL st_square.sLG8b FOR 20.0;
+		LEVEL st_square.sLG8c FOR 20.0;
+		LEVEL st_square.sLG9a FOR 20.0;
+		LEVEL st_square.sLG9b FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG9c FOR 20.0;
+		LEVEL Undefined FOR 0.009;
+		LEVEL st_square.sLG10a FOR 20.0;
+		LEVEL st_square.sLG10b FOR 20.0;
+		LEVEL st_square.sLG10c FOR 20.0;
+		LEVEL st_square.sLG11a FOR 20.0;
+		LEVEL st_square.sLG11b FOR 19.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG11c FOR 19.995;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG12a FOR 19.996;
+		LEVEL st_square.sLG12b FOR 20.0;
+		LEVEL st_square.sLG12c FOR 20.0;
+		LEVEL st_square.sLG13a FOR 20.0;
+		LEVEL st_square.sLG13b FOR 20.0;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG13c FOR 20.0;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG14a FOR 20.0;
+		LEVEL st_square.sLG14b FOR 20.0;
+		LEVEL st_square.sLG14c FOR 20.0;
+		LEVEL st_square.sLG15a FOR 20.0;
+		LEVEL st_square.sLG15b FOR 19.98;
+		LEVEL Undefined FOR 0.02;
+		LEVEL st_square.sLG15c FOR 19.98;
+		LEVEL Undefined FOR 0.006;
+		LEVEL st_square.s_aux FOR 20.0;
+		LEVEL Undefined FOR 0.011;
+		LEVEL st_square.sLG0a FOR 20.0;
+		LEVEL st_square.sLG0b FOR 20.0;
+		LEVEL st_square.sLG0c FOR 20.0;
+		LEVEL st_square.sLG1a FOR 20.0;
+		LEVEL st_square.sLG1b FOR 19.995;
+		LEVEL Undefined FOR 0.005;
+		LEVEL st_square.sLG1c FOR 19.995;
+		LEVEL st_square.sLG2a FOR 20.0;
+		LEVEL st_square.sLG2b FOR 20.0;
+		LEVEL st_square.sLG2c FOR 20.0;
+		LEVEL st_square.sLG3a FOR 19.998;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG3b FOR 19.998;
+		LEVEL st_square.sLG3c FOR 20.0;
+		LEVEL st_square.sLG4a FOR 20.0;
+		LEVEL st_square.sLG4b FOR 20.0;
+		LEVEL st_square.sLG4c FOR 20.0;
+		LEVEL st_square.sLG5a FOR 20.0;
+		LEVEL st_square.sLG5b FOR 20.0;
+		LEVEL st_square.sLG5c FOR 20.0;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG6a FOR 20.0;
+		LEVEL st_square.sLG6b FOR 20.0;
+		LEVEL st_square.sLG6c FOR 20.0;
+		LEVEL st_square.sLG7a FOR 20.0;
+		LEVEL st_square.sLG7b FOR 19.997;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG7c FOR 19.996;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG8a FOR 19.999;
+		LEVEL st_square.sLG8b FOR 20.0;
+		LEVEL st_square.sLG8c FOR 20.0;
+		LEVEL st_square.sLG9a FOR 20.0;
+		LEVEL st_square.sLG9b FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG9c FOR 20.0;
+		LEVEL Undefined FOR 0.009;
+		LEVEL st_square.sLG10a FOR 20.0;
+		LEVEL st_square.sLG10b FOR 20.0;
+		LEVEL st_square.sLG10c FOR 20.0;
+		LEVEL st_square.sLG11a FOR 20.0;
+		LEVEL st_square.sLG11b FOR 19.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG11c FOR 19.995;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG12a FOR 19.996;
+		LEVEL st_square.sLG12b FOR 20.0;
+		LEVEL st_square.sLG12c FOR 20.0;
+		LEVEL st_square.sLG13a FOR 20.0;
+		LEVEL st_square.sLG13b FOR 20.0;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG13c FOR 20.0;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG14a FOR 20.0;
+		LEVEL st_square.sLG14b FOR 20.0;
+		LEVEL st_square.sLG14c FOR 20.0;
+		LEVEL st_square.sLG15a FOR 20.0;
+		LEVEL st_square.sLG15b FOR 19.98;
+		LEVEL Undefined FOR 0.02;
+		LEVEL st_square.sLG15c FOR 19.98;
+		LEVEL Undefined FOR 0.006;
+		LEVEL st_square.s_aux FOR 20.0;
+		LEVEL Undefined FOR 0.011;
+		LEVEL st_square.sLG0a FOR 20.0;
+		LEVEL st_square.sLG0b FOR 20.0;
+		LEVEL st_square.sLG0c FOR 20.0;
+		LEVEL st_square.sLG1a FOR 20.0;
+		LEVEL st_square.sLG1b FOR 19.995;
+		LEVEL Undefined FOR 0.005;
+		LEVEL st_square.sLG1c FOR 19.995;
+		LEVEL st_square.sLG2a FOR 20.0;
+		LEVEL st_square.sLG2b FOR 20.0;
+		LEVEL st_square.sLG2c FOR 20.0;
+		LEVEL st_square.sLG3a FOR 19.998;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG3b FOR 19.998;
+		LEVEL st_square.sLG3c FOR 20.0;
+		LEVEL st_square.sLG4a FOR 20.0;
+		LEVEL st_square.sLG4b FOR 20.0;
+		LEVEL st_square.sLG4c FOR 20.0;
+		LEVEL st_square.sLG5a FOR 20.0;
+		LEVEL st_square.sLG5b FOR 20.0;
+		LEVEL st_square.sLG5c FOR 20.0;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG6a FOR 20.0;
+		LEVEL st_square.sLG6b FOR 20.0;
+		LEVEL st_square.sLG6c FOR 20.0;
+		LEVEL st_square.sLG7a FOR 20.0;
+		LEVEL st_square.sLG7b FOR 19.997;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG7c FOR 19.996;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG8a FOR 19.999;
+		LEVEL st_square.sLG8b FOR 20.0;
+		LEVEL st_square.sLG8c FOR 20.0;
+		LEVEL st_square.sLG9a FOR 20.0;
+		LEVEL st_square.sLG9b FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG9c FOR 20.0;
+		LEVEL Undefined FOR 0.009;
+		LEVEL st_square.sLG10a FOR 20.0;
+		LEVEL st_square.sLG10b FOR 20.0;
+		LEVEL st_square.sLG10c FOR 20.0;
+		LEVEL st_square.sLG11a FOR 20.0;
+		LEVEL st_square.sLG11b FOR 19.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG11c FOR 19.995;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG12a FOR 19.996;
+		LEVEL st_square.sLG12b FOR 20.0;
+		LEVEL st_square.sLG12c FOR 20.0;
+		LEVEL st_square.sLG13a FOR 20.0;
+		LEVEL st_square.sLG13b FOR 20.0;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG13c FOR 20.0;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG14a FOR 20.0;
+		LEVEL st_square.sLG14b FOR 20.0;
+		LEVEL st_square.sLG14c FOR 20.0;
+		LEVEL st_square.sLG15a FOR 20.0;
+		LEVEL st_square.sLG15b FOR 19.98;
+		LEVEL Undefined FOR 0.02;
+		LEVEL st_square.sLG15c FOR 19.98;
+		LEVEL Undefined FOR 0.006;
+		LEVEL st_square.s_aux FOR 20.0;
+		LEVEL Undefined FOR 0.011;
+		LEVEL st_square.sLG0a FOR 20.0;
+		LEVEL st_square.sLG0b FOR 20.0;
+		LEVEL st_square.sLG0c FOR 20.0;
+		LEVEL st_square.sLG1a FOR 20.0;
+		LEVEL st_square.sLG1b FOR 19.995;
+		LEVEL Undefined FOR 0.005;
+		LEVEL st_square.sLG1c FOR 19.995;
+		LEVEL st_square.sLG2a FOR 20.0;
+		LEVEL st_square.sLG2b FOR 20.0;
+		LEVEL st_square.sLG2c FOR 20.0;
+		LEVEL st_square.sLG3a FOR 19.998;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG3b FOR 19.998;
+		LEVEL st_square.sLG3c FOR 20.0;
+		LEVEL st_square.sLG4a FOR 20.0;
+		LEVEL st_square.sLG4b FOR 20.0;
+		LEVEL st_square.sLG4c FOR 20.0;
+		LEVEL st_square.sLG5a FOR 20.0;
+		LEVEL st_square.sLG5b FOR 20.0;
+		LEVEL st_square.sLG5c FOR 20.0;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG6a FOR 20.0;
+		LEVEL st_square.sLG6b FOR 20.0;
+		LEVEL st_square.sLG6c FOR 20.0;
+		LEVEL st_square.sLG7a FOR 20.0;
+		LEVEL st_square.sLG7b FOR 19.997;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG7c FOR 19.996;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG8a FOR 19.999;
+		LEVEL st_square.sLG8b FOR 20.0;
+		LEVEL st_square.sLG8c FOR 20.0;
+		LEVEL st_square.sLG9a FOR 20.0;
+		LEVEL st_square.sLG9b FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG9c FOR 20.0;
+		LEVEL Undefined FOR 0.009;
+		LEVEL st_square.sLG10a FOR 20.0;
+		LEVEL st_square.sLG10b FOR 20.0;
+		LEVEL st_square.sLG10c FOR 20.0;
+		LEVEL st_square.sLG11a FOR 20.0;
+		LEVEL st_square.sLG11b FOR 19.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG11c FOR 19.995;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG12a FOR 19.996;
+		LEVEL st_square.sLG12b FOR 20.0;
+		LEVEL st_square.sLG12c FOR 20.0;
+		LEVEL st_square.sLG13a FOR 20.0;
+		LEVEL st_square.sLG13b FOR 20.0;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG13c FOR 20.0;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG14a FOR 20.0;
+		LEVEL st_square.sLG14b FOR 20.0;
+		LEVEL st_square.sLG14c FOR 20.0;
+		LEVEL st_square.sLG15a FOR 20.0;
+		LEVEL st_square.sLG15b FOR 19.98;
+		LEVEL Undefined FOR 0.02;
+		LEVEL st_square.sLG15c FOR 19.98;
+		LEVEL Undefined FOR 0.006;
+		LEVEL st_square.s_aux FOR 20.0;
+		LEVEL Undefined FOR 0.011;
+		LEVEL st_square.sLG0a FOR 20.0;
+		LEVEL st_square.sLG0b FOR 20.0;
+		LEVEL st_square.sLG0c FOR 20.0;
+		LEVEL st_square.sLG1a FOR 20.0;
+		LEVEL st_square.sLG1b FOR 19.995;
+		LEVEL Undefined FOR 0.005;
+		LEVEL st_square.sLG1c FOR 19.995;
+		LEVEL st_square.sLG2a FOR 20.0;
+		LEVEL st_square.sLG2b FOR 20.0;
+		LEVEL st_square.sLG2c FOR 20.0;
+		LEVEL st_square.sLG3a FOR 19.998;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG3b FOR 19.998;
+		LEVEL st_square.sLG3c FOR 20.0;
+		LEVEL st_square.sLG4a FOR 20.0;
+		LEVEL st_square.sLG4b FOR 20.0;
+		LEVEL st_square.sLG4c FOR 20.0;
+		LEVEL st_square.sLG5a FOR 20.0;
+		LEVEL st_square.sLG5b FOR 20.0;
+		LEVEL st_square.sLG5c FOR 20.0;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG6a FOR 20.0;
+		LEVEL st_square.sLG6b FOR 20.0;
+		LEVEL st_square.sLG6c FOR 20.0;
+		LEVEL st_square.sLG7a FOR 20.0;
+		LEVEL st_square.sLG7b FOR 19.997;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG7c FOR 19.996;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG8a FOR 19.999;
+		LEVEL st_square.sLG8b FOR 20.0;
+		LEVEL st_square.sLG8c FOR 20.0;
+		LEVEL st_square.sLG9a FOR 20.0;
+		LEVEL st_square.sLG9b FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG9c FOR 20.0;
+		LEVEL Undefined FOR 0.009;
+		LEVEL st_square.sLG10a FOR 20.0;
+		LEVEL st_square.sLG10b FOR 20.0;
+		LEVEL st_square.sLG10c FOR 20.0;
+		LEVEL st_square.sLG11a FOR 20.0;
+		LEVEL st_square.sLG11b FOR 19.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG11c FOR 19.995;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG12a FOR 19.996;
+		LEVEL st_square.sLG12b FOR 20.0;
+		LEVEL st_square.sLG12c FOR 20.0;
+		LEVEL st_square.sLG13a FOR 20.0;
+		LEVEL st_square.sLG13b FOR 20.0;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG13c FOR 20.0;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG14a FOR 20.0;
+		LEVEL st_square.sLG14b FOR 20.0;
+		LEVEL st_square.sLG14c FOR 20.0;
+		LEVEL st_square.sLG15a FOR 20.0;
+		LEVEL st_square.sLG15b FOR 19.98;
+		LEVEL Undefined FOR 0.02;
+		LEVEL st_square.sLG15c FOR 19.98;
+		LEVEL Undefined FOR 0.006;
+		LEVEL st_square.s_aux FOR 20.0;
+		LEVEL Undefined FOR 0.011;
+		LEVEL st_square.sLG0a FOR 20.0;
+		LEVEL st_square.sLG0b FOR 20.0;
+		LEVEL st_square.sLG0c FOR 20.0;
+		LEVEL st_square.sLG1a FOR 20.0;
+		LEVEL st_square.sLG1b FOR 19.995;
+		LEVEL Undefined FOR 0.005;
+		LEVEL st_square.sLG1c FOR 19.995;
+		LEVEL st_square.sLG2a FOR 20.0;
+		LEVEL st_square.sLG2b FOR 20.0;
+		LEVEL st_square.sLG2c FOR 20.0;
+		LEVEL st_square.sLG3a FOR 19.998;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG3b FOR 19.998;
+		LEVEL st_square.sLG3c FOR 20.0;
+		LEVEL st_square.sLG4a FOR 20.0;
+		LEVEL st_square.sLG4b FOR 20.0;
+		LEVEL st_square.sLG4c FOR 20.0;
+		LEVEL st_square.sLG5a FOR 20.0;
+		LEVEL st_square.sLG5b FOR 20.0;
+		LEVEL st_square.sLG5c FOR 20.0;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG6a FOR 20.0;
+		LEVEL st_square.sLG6b FOR 20.0;
+		LEVEL st_square.sLG6c FOR 20.0;
+		LEVEL st_square.sLG7a FOR 20.0;
+		LEVEL st_square.sLG7b FOR 19.997;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG7c FOR 19.996;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG8a FOR 19.999;
+		LEVEL st_square.sLG8b FOR 20.0;
+		LEVEL st_square.sLG8c FOR 20.0;
+		LEVEL st_square.sLG9a FOR 20.0;
+		LEVEL st_square.sLG9b FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG9c FOR 20.0;
+		LEVEL Undefined FOR 0.009;
+		LEVEL st_square.sLG10a FOR 20.0;
+		LEVEL st_square.sLG10b FOR 20.0;
+		LEVEL st_square.sLG10c FOR 20.0;
+		LEVEL st_square.sLG11a FOR 20.0;
+		LEVEL st_square.sLG11b FOR 19.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG11c FOR 19.995;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG12a FOR 19.996;
+		LEVEL st_square.sLG12b FOR 20.0;
+		LEVEL st_square.sLG12c FOR 20.0;
+		LEVEL st_square.sLG13a FOR 20.0;
+		LEVEL st_square.sLG13b FOR 20.0;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG13c FOR 20.0;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG14a FOR 20.0;
+		LEVEL st_square.sLG14b FOR 20.0;
+		LEVEL st_square.sLG14c FOR 20.0;
+		LEVEL st_square.sLG15a FOR 20.0;
+		LEVEL st_square.sLG15b FOR 19.98;
+		LEVEL Undefined FOR 0.02;
+		LEVEL st_square.sLG15c FOR 19.98;
+		LEVEL Undefined FOR 0.006;
+		LEVEL st_square.s_aux FOR 20.0;
+		LEVEL Undefined FOR 0.011;
+		LEVEL st_square.sLG0a FOR 20.0;
+		LEVEL st_square.sLG0b FOR 20.0;
+		LEVEL st_square.sLG0c FOR 20.0;
+		LEVEL st_square.sLG1a FOR 20.0;
+		LEVEL st_square.sLG1b FOR 19.995;
+		LEVEL Undefined FOR 0.005;
+		LEVEL st_square.sLG1c FOR 19.995;
+		LEVEL st_square.sLG2a FOR 20.0;
+		LEVEL st_square.sLG2b FOR 20.0;
+		LEVEL st_square.sLG2c FOR 20.0;
+		LEVEL st_square.sLG3a FOR 19.998;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG3b FOR 19.998;
+		LEVEL st_square.sLG3c FOR 20.0;
+		LEVEL st_square.sLG4a FOR 20.0;
+		LEVEL st_square.sLG4b FOR 20.0;
+		LEVEL st_square.sLG4c FOR 20.0;
+		LEVEL st_square.sLG5a FOR 20.0;
+		LEVEL st_square.sLG5b FOR 20.0;
+		LEVEL st_square.sLG5c FOR 20.0;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG6a FOR 20.0;
+		LEVEL st_square.sLG6b FOR 20.0;
+		LEVEL st_square.sLG6c FOR 20.0;
+		LEVEL st_square.sLG7a FOR 20.0;
+		LEVEL st_square.sLG7b FOR 19.997;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG7c FOR 19.996;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG8a FOR 19.999;
+		LEVEL st_square.sLG8b FOR 20.0;
+		LEVEL st_square.sLG8c FOR 20.0;
+		LEVEL st_square.sLG9a FOR 20.0;
+		LEVEL st_square.sLG9b FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG9c FOR 20.0;
+		LEVEL Undefined FOR 0.009;
+		LEVEL st_square.sLG10a FOR 20.0;
+		LEVEL st_square.sLG10b FOR 20.0;
+		LEVEL st_square.sLG10c FOR 20.0;
+		LEVEL st_square.sLG11a FOR 20.0;
+		LEVEL st_square.sLG11b FOR 19.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG11c FOR 19.995;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG12a FOR 19.996;
+		LEVEL st_square.sLG12b FOR 20.0;
+		LEVEL st_square.sLG12c FOR 20.0;
+		LEVEL st_square.sLG13a FOR 20.0;
+		LEVEL st_square.sLG13b FOR 20.0;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG13c FOR 20.0;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG14a FOR 20.0;
+		LEVEL st_square.sLG14b FOR 20.0;
+		LEVEL st_square.sLG14c FOR 20.0;
+		LEVEL st_square.sLG15a FOR 20.0;
+		LEVEL st_square.sLG15b FOR 19.98;
+		LEVEL Undefined FOR 0.02;
+		LEVEL st_square.sLG15c FOR 19.98;
+		LEVEL Undefined FOR 0.006;
+		LEVEL st_square.s_aux FOR 20.0;
+		LEVEL Undefined FOR 0.011;
+		LEVEL st_square.sLG0a FOR 20.0;
+		LEVEL st_square.sLG0b FOR 20.0;
+		LEVEL st_square.sLG0c FOR 20.0;
+		LEVEL st_square.sLG1a FOR 20.0;
+		LEVEL st_square.sLG1b FOR 19.995;
+		LEVEL Undefined FOR 0.005;
+		LEVEL st_square.sLG1c FOR 19.995;
+		LEVEL st_square.sLG2a FOR 20.0;
+		LEVEL st_square.sLG2b FOR 20.0;
+		LEVEL st_square.sLG2c FOR 20.0;
+		LEVEL st_square.sLG3a FOR 19.998;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG3b FOR 19.998;
+		LEVEL st_square.sLG3c FOR 20.0;
+		LEVEL st_square.sLG4a FOR 20.0;
+		LEVEL st_square.sLG4b FOR 20.0;
+		LEVEL st_square.sLG4c FOR 20.0;
+		LEVEL st_square.sLG5a FOR 20.0;
+		LEVEL st_square.sLG5b FOR 20.0;
+		LEVEL st_square.sLG5c FOR 20.0;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG6a FOR 20.0;
+		LEVEL st_square.sLG6b FOR 20.0;
+		LEVEL st_square.sLG6c FOR 20.0;
+		LEVEL st_square.sLG7a FOR 20.0;
+		LEVEL st_square.sLG7b FOR 19.997;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG7c FOR 19.996;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG8a FOR 19.999;
+		LEVEL st_square.sLG8b FOR 20.0;
+		LEVEL st_square.sLG8c FOR 20.0;
+		LEVEL st_square.sLG9a FOR 20.0;
+		LEVEL st_square.sLG9b FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG9c FOR 20.0;
+		LEVEL Undefined FOR 0.009;
+		LEVEL st_square.sLG10a FOR 20.0;
+		LEVEL st_square.sLG10b FOR 20.0;
+		LEVEL st_square.sLG10c FOR 20.0;
+		LEVEL st_square.sLG11a FOR 20.0;
+		LEVEL st_square.sLG11b FOR 19.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG11c FOR 19.995;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG12a FOR 19.996;
+		LEVEL st_square.sLG12b FOR 20.0;
+		LEVEL st_square.sLG12c FOR 20.0;
+		LEVEL st_square.sLG13a FOR 20.0;
+		LEVEL st_square.sLG13b FOR 20.0;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG13c FOR 20.0;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG14a FOR 20.0;
+		LEVEL st_square.sLG14b FOR 20.0;
+		LEVEL st_square.sLG14c FOR 20.0;
+		LEVEL st_square.sLG15a FOR 20.0;
+		LEVEL st_square.sLG15b FOR 19.98;
+		LEVEL Undefined FOR 0.02;
+		LEVEL st_square.sLG15c FOR 19.98;
+		LEVEL Undefined FOR 0.006;
+		LEVEL st_square.s_aux FOR 20.0;
+		LEVEL Undefined FOR 0.011;
+		LEVEL st_square.sLG0a FOR 20.0;
+		LEVEL st_square.sLG0b FOR 20.0;
+		LEVEL st_square.sLG0c FOR 20.0;
+		LEVEL st_square.sLG1a FOR 20.0;
+		LEVEL st_square.sLG1b FOR 19.995;
+		LEVEL Undefined FOR 0.005;
+		LEVEL st_square.sLG1c FOR 19.995;
+		LEVEL st_square.sLG2a FOR 20.0;
+		LEVEL st_square.sLG2b FOR 20.0;
+		LEVEL st_square.sLG2c FOR 20.0;
+		LEVEL st_square.sLG3a FOR 19.998;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG3b FOR 19.998;
+		LEVEL st_square.sLG3c FOR 20.0;
+		LEVEL st_square.sLG4a FOR 20.0;
+		LEVEL st_square.sLG4b FOR 20.0;
+		LEVEL st_square.sLG4c FOR 20.0;
+		LEVEL st_square.sLG5a FOR 20.0;
+		LEVEL st_square.sLG5b FOR 20.0;
+		LEVEL st_square.sLG5c FOR 20.0;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG6a FOR 20.0;
+		LEVEL st_square.sLG6b FOR 20.0;
+		LEVEL st_square.sLG6c FOR 20.0;
+		LEVEL st_square.sLG7a FOR 20.0;
+		LEVEL st_square.sLG7b FOR 19.997;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG7c FOR 19.996;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG8a FOR 19.999;
+		LEVEL st_square.sLG8b FOR 20.0;
+		LEVEL st_square.sLG8c FOR 20.0;
+		LEVEL st_square.sLG9a FOR 20.0;
+		LEVEL st_square.sLG9b FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG9c FOR 20.0;
+		LEVEL Undefined FOR 0.009;
+		LEVEL st_square.sLG10a FOR 20.0;
+		LEVEL st_square.sLG10b FOR 20.0;
+		LEVEL st_square.sLG10c FOR 20.0;
+		LEVEL st_square.sLG11a FOR 20.0;
+		LEVEL st_square.sLG11b FOR 19.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG11c FOR 19.995;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG12a FOR 19.996;
+		LEVEL st_square.sLG12b FOR 20.0;
+		LEVEL st_square.sLG12c FOR 20.0;
+		LEVEL st_square.sLG13a FOR 20.0;
+		LEVEL st_square.sLG13b FOR 20.0;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG13c FOR 20.0;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG14a FOR 20.0;
+		LEVEL st_square.sLG14b FOR 20.0;
+		LEVEL st_square.sLG14c FOR 20.0;
+		LEVEL st_square.sLG15a FOR 20.0;
+		LEVEL st_square.sLG15b FOR 19.98;
+		LEVEL Undefined FOR 0.02;
+		LEVEL st_square.sLG15c FOR 19.98;
+		LEVEL Undefined FOR 0.006;
+		LEVEL st_square.s_aux FOR 20.0;
+		LEVEL Undefined FOR 0.011;
+		LEVEL st_square.sLG0a FOR 20.0;
+		LEVEL st_square.sLG0b FOR 20.0;
+		LEVEL st_square.sLG0c FOR 20.0;
+		LEVEL st_square.sLG1a FOR 20.0;
+		LEVEL st_square.sLG1b FOR 19.995;
+		LEVEL Undefined FOR 0.005;
+		LEVEL st_square.sLG1c FOR 19.995;
+		LEVEL st_square.sLG2a FOR 20.0;
+		LEVEL st_square.sLG2b FOR 20.0;
+		LEVEL st_square.sLG2c FOR 20.0;
+		LEVEL st_square.sLG3a FOR 19.998;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG3b FOR 19.998;
+		LEVEL st_square.sLG3c FOR 20.0;
+		LEVEL st_square.sLG4a FOR 20.0;
+		LEVEL st_square.sLG4b FOR 20.0;
+		LEVEL st_square.sLG4c FOR 20.0;
+		LEVEL st_square.sLG5a FOR 20.0;
+		LEVEL st_square.sLG5b FOR 20.0;
+		LEVEL st_square.sLG5c FOR 20.0;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG6a FOR 20.0;
+		LEVEL st_square.sLG6b FOR 20.0;
+		LEVEL st_square.sLG6c FOR 20.0;
+		LEVEL st_square.sLG7a FOR 20.0;
+		LEVEL st_square.sLG7b FOR 19.997;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG7c FOR 19.996;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG8a FOR 19.999;
+		LEVEL st_square.sLG8b FOR 20.0;
+		LEVEL st_square.sLG8c FOR 20.0;
+		LEVEL st_square.sLG9a FOR 20.0;
+		LEVEL st_square.sLG9b FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG9c FOR 20.0;
+		LEVEL Undefined FOR 0.009;
+		LEVEL st_square.sLG10a FOR 20.0;
+		LEVEL st_square.sLG10b FOR 20.0;
+		LEVEL st_square.sLG10c FOR 20.0;
+		LEVEL st_square.sLG11a FOR 20.0;
+		LEVEL st_square.sLG11b FOR 19.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG11c FOR 19.995;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG12a FOR 19.996;
+		LEVEL st_square.sLG12b FOR 20.0;
+		LEVEL st_square.sLG12c FOR 20.0;
+		LEVEL st_square.sLG13a FOR 20.0;
+		LEVEL st_square.sLG13b FOR 20.0;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG13c FOR 20.0;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG14a FOR 20.0;
+		LEVEL st_square.sLG14b FOR 20.0;
+		LEVEL st_square.sLG14c FOR 20.0;
+		LEVEL st_square.sLG15a FOR 20.0;
+		LEVEL st_square.sLG15b FOR 19.98;
+		LEVEL Undefined FOR 0.02;
+		LEVEL st_square.sLG15c FOR 19.98;
+		LEVEL Undefined FOR 0.006;
+		LEVEL st_square.s_aux FOR 20.0;
+		LEVEL Undefined FOR 0.011;
+		LEVEL st_square.sLG0a FOR 20.0;
+		LEVEL st_square.sLG0b FOR 20.0;
+		LEVEL st_square.sLG0c FOR 20.0;
+		LEVEL st_square.sLG1a FOR 20.0;
+		LEVEL st_square.sLG1b FOR 19.995;
+		LEVEL Undefined FOR 0.005;
+		LEVEL st_square.sLG1c FOR 19.995;
+		LEVEL st_square.sLG2a FOR 20.0;
+		LEVEL st_square.sLG2b FOR 20.0;
+		LEVEL st_square.sLG2c FOR 20.0;
+		LEVEL st_square.sLG3a FOR 19.998;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG3b FOR 19.998;
+		LEVEL st_square.sLG3c FOR 20.0;
+		LEVEL st_square.sLG4a FOR 20.0;
+		LEVEL st_square.sLG4b FOR 20.0;
+		LEVEL st_square.sLG4c FOR 20.0;
+		LEVEL st_square.sLG5a FOR 20.0;
+		LEVEL st_square.sLG5b FOR 20.0;
+		LEVEL st_square.sLG5c FOR 20.0;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG6a FOR 20.0;
+		LEVEL st_square.sLG6b FOR 20.0;
+		LEVEL st_square.sLG6c FOR 20.0;
+		LEVEL st_square.sLG7a FOR 20.0;
+		LEVEL st_square.sLG7b FOR 19.997;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG7c FOR 19.996;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG8a FOR 19.999;
+		LEVEL st_square.sLG8b FOR 20.0;
+		LEVEL st_square.sLG8c FOR 20.0;
+		LEVEL st_square.sLG9a FOR 20.0;
+		LEVEL st_square.sLG9b FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG9c FOR 20.0;
+		LEVEL Undefined FOR 0.009;
+		LEVEL st_square.sLG10a FOR 20.0;
+		LEVEL st_square.sLG10b FOR 20.0;
+		LEVEL st_square.sLG10c FOR 20.0;
+		LEVEL st_square.sLG11a FOR 20.0;
+		LEVEL st_square.sLG11b FOR 19.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG11c FOR 19.995;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG12a FOR 19.996;
+		LEVEL st_square.sLG12b FOR 20.0;
+		LEVEL st_square.sLG12c FOR 20.0;
+		LEVEL st_square.sLG13a FOR 20.0;
+		LEVEL st_square.sLG13b FOR 20.0;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG13c FOR 20.0;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG14a FOR 20.0;
+		LEVEL st_square.sLG14b FOR 20.0;
+		LEVEL st_square.sLG14c FOR 20.0;
+		LEVEL st_square.sLG15a FOR 20.0;
+		LEVEL st_square.sLG15b FOR 19.98;
+		LEVEL Undefined FOR 0.02;
+		LEVEL st_square.sLG15c FOR 19.98;
+		LEVEL Undefined FOR 0.006;
+		LEVEL st_square.s_aux FOR 20.0;
+		LEVEL Undefined FOR 0.011;
+		LEVEL st_square.sLG0a FOR 20.0;
+		LEVEL st_square.sLG0b FOR 20.0;
+		LEVEL st_square.sLG0c FOR 20.0;
+		LEVEL st_square.sLG1a FOR 20.0;
+		LEVEL st_square.sLG1b FOR 19.995;
+		LEVEL Undefined FOR 0.005;
+		LEVEL st_square.sLG1c FOR 19.995;
+		LEVEL st_square.sLG2a FOR 20.0;
+		LEVEL st_square.sLG2b FOR 20.0;
+		LEVEL st_square.sLG2c FOR 20.0;
+		LEVEL st_square.sLG3a FOR 19.998;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG3b FOR 19.998;
+		LEVEL st_square.sLG3c FOR 20.0;
+		LEVEL st_square.sLG4a FOR 20.0;
+		LEVEL st_square.sLG4b FOR 20.0;
+		LEVEL st_square.sLG4c FOR 20.0;
+		LEVEL st_square.sLG5a FOR 20.0;
+		LEVEL st_square.sLG5b FOR 20.0;
+		LEVEL st_square.sLG5c FOR 20.0;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG6a FOR 20.0;
+		LEVEL st_square.sLG6b FOR 20.0;
+		LEVEL st_square.sLG6c FOR 20.0;
+		LEVEL st_square.sLG7a FOR 20.0;
+		LEVEL st_square.sLG7b FOR 19.997;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG7c FOR 19.996;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG8a FOR 19.999;
+		LEVEL st_square.sLG8b FOR 20.0;
+		LEVEL st_square.sLG8c FOR 20.0;
+		LEVEL st_square.sLG9a FOR 20.0;
+		LEVEL st_square.sLG9b FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG9c FOR 20.0;
+		LEVEL Undefined FOR 0.009;
+		LEVEL st_square.sLG10a FOR 20.0;
+		LEVEL st_square.sLG10b FOR 20.0;
+		LEVEL st_square.sLG10c FOR 20.0;
+		LEVEL st_square.sLG11a FOR 20.0;
+		LEVEL st_square.sLG11b FOR 19.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG11c FOR 19.995;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG12a FOR 19.996;
+		LEVEL st_square.sLG12b FOR 20.0;
+		LEVEL st_square.sLG12c FOR 20.0;
+		LEVEL st_square.sLG13a FOR 20.0;
+		LEVEL st_square.sLG13b FOR 20.0;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG13c FOR 20.0;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG14a FOR 20.0;
+		LEVEL st_square.sLG14b FOR 20.0;
+		LEVEL st_square.sLG14c FOR 20.0;
+		LEVEL st_square.sLG15a FOR 20.0;
+		LEVEL st_square.sLG15b FOR 19.98;
+		LEVEL Undefined FOR 0.02;
+		LEVEL st_square.sLG15c FOR 19.98;
+		LEVEL Undefined FOR 0.006;
+		LEVEL st_square.s_aux FOR 20.0;
+		LEVEL Undefined FOR 0.011;
+		LEVEL st_square.sLG0a FOR 20.0;
+		LEVEL st_square.sLG0b FOR 20.0;
+		LEVEL st_square.sLG0c FOR 20.0;
+		LEVEL st_square.sLG1a FOR 20.0;
+		LEVEL st_square.sLG1b FOR 19.995;
+		LEVEL Undefined FOR 0.005;
+		LEVEL st_square.sLG1c FOR 19.995;
+		LEVEL st_square.sLG2a FOR 20.0;
+		LEVEL st_square.sLG2b FOR 20.0;
+		LEVEL st_square.sLG2c FOR 20.0;
+		LEVEL st_square.sLG3a FOR 19.998;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG3b FOR 19.998;
+		LEVEL st_square.sLG3c FOR 20.0;
+		LEVEL st_square.sLG4a FOR 20.0;
+		LEVEL st_square.sLG4b FOR 20.0;
+		LEVEL st_square.sLG4c FOR 20.0;
+		LEVEL st_square.sLG5a FOR 20.0;
+		LEVEL st_square.sLG5b FOR 20.0;
+		LEVEL st_square.sLG5c FOR 20.0;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG6a FOR 20.0;
+		LEVEL st_square.sLG6b FOR 20.0;
+		LEVEL st_square.sLG6c FOR 20.0;
+		LEVEL st_square.sLG7a FOR 20.0;
+		LEVEL st_square.sLG7b FOR 19.997;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG7c FOR 19.996;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG8a FOR 19.999;
+		LEVEL st_square.sLG8b FOR 20.0;
+		LEVEL st_square.sLG8c FOR 20.0;
+		LEVEL st_square.sLG9a FOR 20.0;
+		LEVEL st_square.sLG9b FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG9c FOR 20.0;
+		LEVEL Undefined FOR 0.009;
+		LEVEL st_square.sLG10a FOR 20.0;
+		LEVEL st_square.sLG10b FOR 20.0;
+		LEVEL st_square.sLG10c FOR 20.0;
+		LEVEL st_square.sLG11a FOR 20.0;
+		LEVEL st_square.sLG11b FOR 19.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG11c FOR 19.995;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG12a FOR 19.996;
+		LEVEL st_square.sLG12b FOR 20.0;
+		LEVEL st_square.sLG12c FOR 20.0;
+		LEVEL st_square.sLG13a FOR 20.0;
+		LEVEL st_square.sLG13b FOR 20.0;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG13c FOR 20.0;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG14a FOR 20.0;
+		LEVEL st_square.sLG14b FOR 20.0;
+		LEVEL st_square.sLG14c FOR 20.0;
+		LEVEL st_square.sLG15a FOR 20.0;
+		LEVEL st_square.sLG15b FOR 19.98;
+		LEVEL Undefined FOR 0.02;
+		LEVEL st_square.sLG15c FOR 19.98;
+		LEVEL Undefined FOR 0.006;
+		LEVEL st_square.s_aux FOR 20.0;
+		LEVEL Undefined FOR 0.011;
+		LEVEL st_square.sLG0a FOR 20.0;
+		LEVEL st_square.sLG0b FOR 20.0;
+		LEVEL st_square.sLG0c FOR 20.0;
+		LEVEL st_square.sLG1a FOR 20.0;
+		LEVEL st_square.sLG1b FOR 19.995;
+		LEVEL Undefined FOR 0.005;
+		LEVEL st_square.sLG1c FOR 19.995;
+		LEVEL st_square.sLG2a FOR 20.0;
+		LEVEL st_square.sLG2b FOR 20.0;
+		LEVEL st_square.sLG2c FOR 20.0;
+		LEVEL st_square.sLG3a FOR 19.998;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG3b FOR 19.998;
+		LEVEL st_square.sLG3c FOR 20.0;
+		LEVEL st_square.sLG4a FOR 20.0;
+		LEVEL st_square.sLG4b FOR 20.0;
+		LEVEL st_square.sLG4c FOR 20.0;
+		LEVEL st_square.sLG5a FOR 20.0;
+		LEVEL st_square.sLG5b FOR 20.0;
+		LEVEL st_square.sLG5c FOR 20.0;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG6a FOR 20.0;
+		LEVEL st_square.sLG6b FOR 20.0;
+		LEVEL st_square.sLG6c FOR 20.0;
+		LEVEL st_square.sLG7a FOR 20.0;
+		LEVEL st_square.sLG7b FOR 19.997;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG7c FOR 19.996;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG8a FOR 19.999;
+		LEVEL st_square.sLG8b FOR 20.0;
+		LEVEL st_square.sLG8c FOR 20.0;
+		LEVEL st_square.sLG9a FOR 20.0;
+		LEVEL st_square.sLG9b FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG9c FOR 20.0;
+		LEVEL Undefined FOR 0.009;
+		LEVEL st_square.sLG10a FOR 20.0;
+		LEVEL st_square.sLG10b FOR 20.0;
+		LEVEL st_square.sLG10c FOR 20.0;
+		LEVEL st_square.sLG11a FOR 20.0;
+		LEVEL st_square.sLG11b FOR 19.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG11c FOR 19.995;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG12a FOR 19.996;
+		LEVEL st_square.sLG12b FOR 20.0;
+		LEVEL st_square.sLG12c FOR 20.0;
+		LEVEL st_square.sLG13a FOR 20.0;
+		LEVEL st_square.sLG13b FOR 20.0;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG13c FOR 20.0;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG14a FOR 20.0;
+		LEVEL st_square.sLG14b FOR 20.0;
+		LEVEL st_square.sLG14c FOR 20.0;
+		LEVEL st_square.sLG15a FOR 20.0;
+		LEVEL st_square.sLG15b FOR 19.98;
+		LEVEL Undefined FOR 0.02;
+		LEVEL st_square.sLG15c FOR 19.98;
+		LEVEL Undefined FOR 0.006;
+		LEVEL st_square.s_aux FOR 20.0;
+		LEVEL Undefined FOR 0.011;
+		LEVEL st_square.sLG0a FOR 20.0;
+		LEVEL st_square.sLG0b FOR 20.0;
+		LEVEL st_square.sLG0c FOR 20.0;
+		LEVEL st_square.sLG1a FOR 20.0;
+		LEVEL st_square.sLG1b FOR 19.995;
+		LEVEL Undefined FOR 0.005;
+		LEVEL st_square.sLG1c FOR 19.995;
+		LEVEL st_square.sLG2a FOR 20.0;
+		LEVEL st_square.sLG2b FOR 20.0;
+		LEVEL st_square.sLG2c FOR 20.0;
+		LEVEL st_square.sLG3a FOR 19.998;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG3b FOR 19.998;
+		LEVEL st_square.sLG3c FOR 20.0;
+		LEVEL st_square.sLG4a FOR 20.0;
+		LEVEL st_square.sLG4b FOR 20.0;
+		LEVEL st_square.sLG4c FOR 20.0;
+		LEVEL st_square.sLG5a FOR 20.0;
+		LEVEL st_square.sLG5b FOR 20.0;
+		LEVEL st_square.sLG5c FOR 20.0;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG6a FOR 20.0;
+		LEVEL st_square.sLG6b FOR 20.0;
+		LEVEL st_square.sLG6c FOR 20.0;
+		LEVEL st_square.sLG7a FOR 20.0;
+		LEVEL st_square.sLG7b FOR 19.997;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG7c FOR 19.996;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG8a FOR 19.999;
+		LEVEL st_square.sLG8b FOR 20.0;
+		LEVEL st_square.sLG8c FOR 20.0;
+		LEVEL st_square.sLG9a FOR 20.0;
+		LEVEL st_square.sLG9b FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG9c FOR 20.0;
+		LEVEL Undefined FOR 0.009;
+		LEVEL st_square.sLG10a FOR 20.0;
+		LEVEL st_square.sLG10b FOR 20.0;
+		LEVEL st_square.sLG10c FOR 20.0;
+		LEVEL st_square.sLG11a FOR 20.0;
+		LEVEL st_square.sLG11b FOR 19.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG11c FOR 19.995;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG12a FOR 19.996;
+		LEVEL st_square.sLG12b FOR 20.0;
+		LEVEL st_square.sLG12c FOR 20.0;
+		LEVEL st_square.sLG13a FOR 20.0;
+		LEVEL st_square.sLG13b FOR 20.0;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG13c FOR 20.0;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG14a FOR 20.0;
+		LEVEL st_square.sLG14b FOR 20.0;
+		LEVEL st_square.sLG14c FOR 20.0;
+		LEVEL st_square.sLG15a FOR 20.0;
+		LEVEL st_square.sLG15b FOR 19.98;
+		LEVEL Undefined FOR 0.02;
+		LEVEL st_square.sLG15c FOR 19.98;
+		LEVEL Undefined FOR 0.006;
+		LEVEL st_square.s_aux FOR 20.0;
+		LEVEL Undefined FOR 0.011;
+		LEVEL st_square.sLG0a FOR 20.0;
+		LEVEL st_square.sLG0b FOR 20.0;
+		LEVEL st_square.sLG0c FOR 20.0;
+		LEVEL st_square.sLG1a FOR 20.0;
+		LEVEL st_square.sLG1b FOR 19.995;
+		LEVEL Undefined FOR 0.005;
+		LEVEL st_square.sLG1c FOR 19.995;
+		LEVEL st_square.sLG2a FOR 20.0;
+		LEVEL st_square.sLG2b FOR 20.0;
+		LEVEL st_square.sLG2c FOR 20.0;
+		LEVEL st_square.sLG3a FOR 19.998;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG3b FOR 19.998;
+		LEVEL st_square.sLG3c FOR 20.0;
+		LEVEL st_square.sLG4a FOR 20.0;
+		LEVEL st_square.sLG4b FOR 20.0;
+		LEVEL st_square.sLG4c FOR 20.0;
+		LEVEL st_square.sLG5a FOR 20.0;
+		LEVEL st_square.sLG5b FOR 20.0;
+		LEVEL st_square.sLG5c FOR 20.0;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG6a FOR 20.0;
+		LEVEL st_square.sLG6b FOR 20.0;
+		LEVEL st_square.sLG6c FOR 20.0;
+		LEVEL st_square.sLG7a FOR 20.0;
+		LEVEL st_square.sLG7b FOR 19.997;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG7c FOR 19.996;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG8a FOR 19.999;
+		LEVEL st_square.sLG8b FOR 20.0;
+		LEVEL st_square.sLG8c FOR 20.0;
+		LEVEL st_square.sLG9a FOR 20.0;
+		LEVEL st_square.sLG9b FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG9c FOR 20.0;
+		LEVEL Undefined FOR 0.009;
+		LEVEL st_square.sLG10a FOR 20.0;
+		LEVEL st_square.sLG10b FOR 20.0;
+		LEVEL st_square.sLG10c FOR 20.0;
+		LEVEL st_square.sLG11a FOR 20.0;
+		LEVEL st_square.sLG11b FOR 19.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG11c FOR 19.995;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG12a FOR 19.996;
+		LEVEL st_square.sLG12b FOR 20.0;
+		LEVEL st_square.sLG12c FOR 20.0;
+		LEVEL st_square.sLG13a FOR 20.0;
+		LEVEL st_square.sLG13b FOR 20.0;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG13c FOR 20.0;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG14a FOR 20.0;
+		LEVEL st_square.sLG14b FOR 20.0;
+		LEVEL st_square.sLG14c FOR 20.0;
+		LEVEL st_square.sLG15a FOR 20.0;
+		LEVEL st_square.sLG15b FOR 19.98;
+		LEVEL Undefined FOR 0.02;
+		LEVEL st_square.sLG15c FOR 19.98;
+		LEVEL Undefined FOR 0.006;
+		LEVEL st_square.s_aux FOR 20.0;
+		LEVEL Undefined FOR 0.011;
+		LEVEL st_square.sLG0a FOR 20.0;
+		LEVEL st_square.sLG0b FOR 20.0;
+		LEVEL st_square.sLG0c FOR 20.0;
+		LEVEL st_square.sLG1a FOR 20.0;
+		LEVEL st_square.sLG1b FOR 19.995;
+		LEVEL Undefined FOR 0.005;
+		LEVEL st_square.sLG1c FOR 19.995;
+		LEVEL st_square.sLG2a FOR 20.0;
+		LEVEL st_square.sLG2b FOR 20.0;
+		LEVEL st_square.sLG2c FOR 20.0;
+		LEVEL st_square.sLG3a FOR 19.998;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG3b FOR 19.998;
+		LEVEL st_square.sLG3c FOR 20.0;
+		LEVEL st_square.sLG4a FOR 20.0;
+		LEVEL st_square.sLG4b FOR 20.0;
+		LEVEL st_square.sLG4c FOR 20.0;
+		LEVEL st_square.sLG5a FOR 20.0;
+		LEVEL st_square.sLG5b FOR 20.0;
+		LEVEL st_square.sLG5c FOR 20.0;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG6a FOR 20.0;
+		LEVEL st_square.sLG6b FOR 20.0;
+		LEVEL st_square.sLG6c FOR 20.0;
+		LEVEL st_square.sLG7a FOR 20.0;
+		LEVEL st_square.sLG7b FOR 19.997;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG7c FOR 19.996;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG8a FOR 19.999;
+		LEVEL st_square.sLG8b FOR 20.0;
+		LEVEL st_square.sLG8c FOR 20.0;
+		LEVEL st_square.sLG9a FOR 20.0;
+		LEVEL st_square.sLG9b FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG9c FOR 20.0;
+		LEVEL Undefined FOR 0.009;
+		LEVEL st_square.sLG10a FOR 20.0;
+		LEVEL st_square.sLG10b FOR 20.0;
+		LEVEL st_square.sLG10c FOR 20.0;
+		LEVEL st_square.sLG11a FOR 20.0;
+		LEVEL st_square.sLG11b FOR 19.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG11c FOR 19.995;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG12a FOR 19.996;
+		LEVEL st_square.sLG12b FOR 20.0;
+		LEVEL st_square.sLG12c FOR 20.0;
+		LEVEL st_square.sLG13a FOR 20.0;
+		LEVEL st_square.sLG13b FOR 20.0;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG13c FOR 20.0;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG14a FOR 20.0;
+		LEVEL st_square.sLG14b FOR 20.0;
+		LEVEL st_square.sLG14c FOR 20.0;
+		LEVEL st_square.sLG15a FOR 20.0;
+		LEVEL st_square.sLG15b FOR 19.98;
+		LEVEL Undefined FOR 0.02;
+		LEVEL st_square.sLG15c FOR 19.98;
+		LEVEL Undefined FOR 0.006;
+		LEVEL st_square.s_aux FOR 20.0;
+		LEVEL Undefined FOR 0.011;
+		LEVEL st_square.sLG0a FOR 20.0;
+		LEVEL st_square.sLG0b FOR 20.0;
+		LEVEL st_square.sLG0c FOR 20.0;
+		LEVEL st_square.sLG1a FOR 20.0;
+		LEVEL st_square.sLG1b FOR 19.995;
+		LEVEL Undefined FOR 0.005;
+		LEVEL st_square.sLG1c FOR 19.995;
+		LEVEL st_square.sLG2a FOR 20.0;
+		LEVEL st_square.sLG2b FOR 20.0;
+		LEVEL st_square.sLG2c FOR 20.0;
+		LEVEL st_square.sLG3a FOR 19.998;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG3b FOR 19.998;
+		LEVEL st_square.sLG3c FOR 20.0;
+		LEVEL st_square.sLG4a FOR 20.0;
+		LEVEL st_square.sLG4b FOR 20.0;
+		LEVEL st_square.sLG4c FOR 20.0;
+		LEVEL st_square.sLG5a FOR 20.0;
+		LEVEL st_square.sLG5b FOR 20.0;
+		LEVEL st_square.sLG5c FOR 20.0;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG6a FOR 20.0;
+		LEVEL st_square.sLG6b FOR 20.0;
+		LEVEL st_square.sLG6c FOR 20.0;
+		LEVEL st_square.sLG7a FOR 20.0;
+		LEVEL st_square.sLG7b FOR 19.997;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG7c FOR 19.996;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG8a FOR 19.999;
+		LEVEL st_square.sLG8b FOR 20.0;
+		LEVEL st_square.sLG8c FOR 20.0;
+		LEVEL st_square.sLG9a FOR 20.0;
+		LEVEL st_square.sLG9b FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG9c FOR 20.0;
+		LEVEL Undefined FOR 0.009;
+		LEVEL st_square.sLG10a FOR 20.0;
+		LEVEL st_square.sLG10b FOR 20.0;
+		LEVEL st_square.sLG10c FOR 20.0;
+		LEVEL st_square.sLG11a FOR 20.0;
+		LEVEL st_square.sLG11b FOR 19.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG11c FOR 19.995;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG12a FOR 19.996;
+		LEVEL st_square.sLG12b FOR 20.0;
+		LEVEL st_square.sLG12c FOR 20.0;
+		LEVEL st_square.sLG13a FOR 20.0;
+		LEVEL st_square.sLG13b FOR 20.0;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG13c FOR 20.0;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG14a FOR 20.0;
+		LEVEL st_square.sLG14b FOR 20.0;
+		LEVEL st_square.sLG14c FOR 20.0;
+		LEVEL st_square.sLG15a FOR 20.0;
+		LEVEL st_square.sLG15b FOR 19.98;
+		LEVEL Undefined FOR 0.02;
+		LEVEL st_square.sLG15c FOR 19.98;
+		LEVEL Undefined FOR 0.006;
+		LEVEL st_square.s_aux FOR 20.0;
+		LEVEL Undefined FOR 0.011;
+		LEVEL st_square.sLG0a FOR 20.0;
+		LEVEL st_square.sLG0b FOR 20.0;
+		LEVEL st_square.sLG0c FOR 20.0;
+		LEVEL st_square.sLG1a FOR 20.0;
+		LEVEL st_square.sLG1b FOR 19.995;
+		LEVEL Undefined FOR 0.005;
+		LEVEL st_square.sLG1c FOR 19.995;
+		LEVEL st_square.sLG2a FOR 20.0;
+		LEVEL st_square.sLG2b FOR 20.0;
+		LEVEL st_square.sLG2c FOR 20.0;
+		LEVEL st_square.sLG3a FOR 19.998;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG3b FOR 19.998;
+		LEVEL st_square.sLG3c FOR 20.0;
+		LEVEL st_square.sLG4a FOR 20.0;
+		LEVEL st_square.sLG4b FOR 20.0;
+		LEVEL st_square.sLG4c FOR 20.0;
+		LEVEL st_square.sLG5a FOR 20.0;
+		LEVEL st_square.sLG5b FOR 20.0;
+		LEVEL st_square.sLG5c FOR 20.0;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG6a FOR 20.0;
+		LEVEL st_square.sLG6b FOR 20.0;
+		LEVEL st_square.sLG6c FOR 20.0;
+		LEVEL st_square.sLG7a FOR 20.0;
+		LEVEL st_square.sLG7b FOR 19.997;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG7c FOR 19.996;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG8a FOR 19.999;
+		LEVEL st_square.sLG8b FOR 20.0;
+		LEVEL st_square.sLG8c FOR 20.0;
+		LEVEL st_square.sLG9a FOR 20.0;
+		LEVEL st_square.sLG9b FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG9c FOR 20.0;
+		LEVEL Undefined FOR 0.009;
+		LEVEL st_square.sLG10a FOR 20.0;
+		LEVEL st_square.sLG10b FOR 20.0;
+		LEVEL st_square.sLG10c FOR 20.0;
+		LEVEL st_square.sLG11a FOR 20.0;
+		LEVEL st_square.sLG11b FOR 19.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG11c FOR 19.995;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG12a FOR 19.996;
+		LEVEL st_square.sLG12b FOR 20.0;
+		LEVEL st_square.sLG12c FOR 20.0;
+		LEVEL st_square.sLG13a FOR 20.0;
+		LEVEL st_square.sLG13b FOR 20.0;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG13c FOR 20.0;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG14a FOR 20.0;
+		LEVEL st_square.sLG14b FOR 20.0;
+		LEVEL st_square.sLG14c FOR 20.0;
+		LEVEL st_square.sLG15a FOR 20.0;
+		LEVEL st_square.sLG15b FOR 19.98;
+		LEVEL Undefined FOR 0.02;
+		LEVEL st_square.sLG15c FOR 19.98;
+		LEVEL Undefined FOR 0.006;
+		LEVEL st_square.s_aux FOR 20.0;
+		LEVEL Undefined FOR 0.011;
+		LEVEL st_square.sLG0a FOR 20.0;
+		LEVEL st_square.sLG0b FOR 20.0;
+		LEVEL st_square.sLG0c FOR 20.0;
+		LEVEL st_square.sLG1a FOR 20.0;
+		LEVEL st_square.sLG1b FOR 19.995;
+		LEVEL Undefined FOR 0.005;
+		LEVEL st_square.sLG1c FOR 19.995;
+		LEVEL st_square.sLG2a FOR 20.0;
+		LEVEL st_square.sLG2b FOR 20.0;
+		LEVEL st_square.sLG2c FOR 20.0;
+		LEVEL st_square.sLG3a FOR 19.998;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG3b FOR 19.998;
+		LEVEL st_square.sLG3c FOR 20.0;
+		LEVEL st_square.sLG4a FOR 20.0;
+		LEVEL st_square.sLG4b FOR 20.0;
+		LEVEL st_square.sLG4c FOR 20.0;
+		LEVEL st_square.sLG5a FOR 20.0;
+		LEVEL st_square.sLG5b FOR 20.0;
+		LEVEL st_square.sLG5c FOR 20.0;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG6a FOR 20.0;
+		LEVEL st_square.sLG6b FOR 20.0;
+		LEVEL st_square.sLG6c FOR 20.0;
+		LEVEL st_square.sLG7a FOR 20.0;
+		LEVEL st_square.sLG7b FOR 19.997;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG7c FOR 19.996;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG8a FOR 19.999;
+		LEVEL st_square.sLG8b FOR 20.0;
+		LEVEL st_square.sLG8c FOR 20.0;
+		LEVEL st_square.sLG9a FOR 20.0;
+		LEVEL st_square.sLG9b FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG9c FOR 20.0;
+		LEVEL Undefined FOR 0.009;
+		LEVEL st_square.sLG10a FOR 20.0;
+		LEVEL st_square.sLG10b FOR 20.0;
+		LEVEL st_square.sLG10c FOR 20.0;
+		LEVEL st_square.sLG11a FOR 20.0;
+		LEVEL st_square.sLG11b FOR 19.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG11c FOR 19.995;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG12a FOR 19.996;
+		LEVEL st_square.sLG12b FOR 20.0;
+		LEVEL st_square.sLG12c FOR 20.0;
+		LEVEL st_square.sLG13a FOR 20.0;
+		LEVEL st_square.sLG13b FOR 20.0;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG13c FOR 20.0;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG14a FOR 20.0;
+		LEVEL st_square.sLG14b FOR 20.0;
+		LEVEL st_square.sLG14c FOR 20.0;
+		LEVEL st_square.sLG15a FOR 20.0;
+		LEVEL st_square.sLG15b FOR 19.98;
+		LEVEL Undefined FOR 0.02;
+		LEVEL st_square.sLG15c FOR 19.98;
+		LEVEL Undefined FOR 0.006;
+		LEVEL st_square.s_aux FOR 20.0;
+		LEVEL Undefined FOR 0.011;
+		LEVEL st_square.sLG0a FOR 20.0;
+		LEVEL st_square.sLG0b FOR 20.0;
+		LEVEL st_square.sLG0c FOR 20.0;
+		LEVEL st_square.sLG1a FOR 20.0;
+		LEVEL st_square.sLG1b FOR 19.995;
+		LEVEL Undefined FOR 0.005;
+		LEVEL st_square.sLG1c FOR 19.995;
+		LEVEL st_square.sLG2a FOR 20.0;
+		LEVEL st_square.sLG2b FOR 20.0;
+		LEVEL st_square.sLG2c FOR 20.0;
+		LEVEL st_square.sLG3a FOR 19.998;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG3b FOR 19.998;
+		LEVEL st_square.sLG3c FOR 20.0;
+		LEVEL st_square.sLG4a FOR 20.0;
+		LEVEL st_square.sLG4b FOR 20.0;
+		LEVEL st_square.sLG4c FOR 20.0;
+		LEVEL st_square.sLG5a FOR 20.0;
+		LEVEL st_square.sLG5b FOR 20.0;
+		LEVEL st_square.sLG5c FOR 20.0;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG6a FOR 20.0;
+		LEVEL st_square.sLG6b FOR 20.0;
+		LEVEL st_square.sLG6c FOR 20.0;
+		LEVEL st_square.sLG7a FOR 20.0;
+		LEVEL st_square.sLG7b FOR 19.997;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG7c FOR 19.996;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG8a FOR 19.999;
+		LEVEL st_square.sLG8b FOR 20.0;
+		LEVEL st_square.sLG8c FOR 20.0;
+		LEVEL st_square.sLG9a FOR 20.0;
+		LEVEL st_square.sLG9b FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG9c FOR 20.0;
+		LEVEL Undefined FOR 0.009;
+		LEVEL st_square.sLG10a FOR 20.0;
+		LEVEL st_square.sLG10b FOR 20.0;
+		LEVEL st_square.sLG10c FOR 20.0;
+		LEVEL st_square.sLG11a FOR 20.0;
+		LEVEL st_square.sLG11b FOR 19.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG11c FOR 19.995;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG12a FOR 19.996;
+		LEVEL st_square.sLG12b FOR 20.0;
+		LEVEL st_square.sLG12c FOR 20.0;
+		LEVEL st_square.sLG13a FOR 20.0;
+		LEVEL st_square.sLG13b FOR 20.0;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG13c FOR 20.0;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG14a FOR 20.0;
+		LEVEL st_square.sLG14b FOR 20.0;
+		LEVEL st_square.sLG14c FOR 20.0;
+		LEVEL st_square.sLG15a FOR 20.0;
+		LEVEL st_square.sLG15b FOR 19.98;
+		LEVEL Undefined FOR 0.02;
+		LEVEL st_square.sLG15c FOR 19.98;
+		LEVEL Undefined FOR 0.006;
+		LEVEL st_square.s_aux FOR 20.0;
+		LEVEL Undefined FOR 0.011;
+		LEVEL st_square.sLG0a FOR 20.0;
+		LEVEL st_square.sLG0b FOR 20.0;
+		LEVEL st_square.sLG0c FOR 20.0;
+		LEVEL st_square.sLG1a FOR 20.0;
+		LEVEL st_square.sLG1b FOR 19.995;
+		LEVEL Undefined FOR 0.005;
+		LEVEL st_square.sLG1c FOR 19.995;
+		LEVEL st_square.sLG2a FOR 20.0;
+		LEVEL st_square.sLG2b FOR 20.0;
+		LEVEL st_square.sLG2c FOR 20.0;
+		LEVEL st_square.sLG3a FOR 19.998;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG3b FOR 19.998;
+		LEVEL st_square.sLG3c FOR 20.0;
+		LEVEL st_square.sLG4a FOR 20.0;
+		LEVEL st_square.sLG4b FOR 20.0;
+		LEVEL st_square.sLG4c FOR 20.0;
+		LEVEL st_square.sLG5a FOR 20.0;
+		LEVEL st_square.sLG5b FOR 20.0;
+		LEVEL st_square.sLG5c FOR 20.0;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG6a FOR 20.0;
+		LEVEL st_square.sLG6b FOR 20.0;
+		LEVEL st_square.sLG6c FOR 20.0;
+		LEVEL st_square.sLG7a FOR 20.0;
+		LEVEL st_square.sLG7b FOR 19.997;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG7c FOR 19.996;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG8a FOR 19.999;
+		LEVEL st_square.sLG8b FOR 20.0;
+		LEVEL st_square.sLG8c FOR 20.0;
+		LEVEL st_square.sLG9a FOR 20.0;
+		LEVEL st_square.sLG9b FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG9c FOR 20.0;
+		LEVEL Undefined FOR 0.009;
+		LEVEL st_square.sLG10a FOR 20.0;
+		LEVEL st_square.sLG10b FOR 20.0;
+		LEVEL st_square.sLG10c FOR 20.0;
+		LEVEL st_square.sLG11a FOR 20.0;
+		LEVEL st_square.sLG11b FOR 19.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG11c FOR 19.995;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG12a FOR 19.996;
+		LEVEL st_square.sLG12b FOR 20.0;
+		LEVEL st_square.sLG12c FOR 20.0;
+		LEVEL st_square.sLG13a FOR 20.0;
+		LEVEL st_square.sLG13b FOR 20.0;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG13c FOR 20.0;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG14a FOR 20.0;
+		LEVEL st_square.sLG14b FOR 20.0;
+		LEVEL st_square.sLG14c FOR 20.0;
+		LEVEL st_square.sLG15a FOR 20.0;
+		LEVEL st_square.sLG15b FOR 19.98;
+		LEVEL Undefined FOR 0.02;
+		LEVEL st_square.sLG15c FOR 19.98;
+		LEVEL Undefined FOR 0.006;
+		LEVEL st_square.s_aux FOR 20.0;
+		LEVEL Undefined FOR 0.011;
+		LEVEL st_square.sLG0a FOR 20.0;
+		LEVEL st_square.sLG0b FOR 20.0;
+		LEVEL st_square.sLG0c FOR 20.0;
+		LEVEL st_square.sLG1a FOR 20.0;
+		LEVEL st_square.sLG1b FOR 19.995;
+		LEVEL Undefined FOR 0.005;
+		LEVEL st_square.sLG1c FOR 19.995;
+		LEVEL st_square.sLG2a FOR 20.0;
+		LEVEL st_square.sLG2b FOR 20.0;
+		LEVEL st_square.sLG2c FOR 20.0;
+		LEVEL st_square.sLG3a FOR 19.998;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG3b FOR 19.998;
+		LEVEL st_square.sLG3c FOR 20.0;
+		LEVEL st_square.sLG4a FOR 20.0;
+		LEVEL st_square.sLG4b FOR 20.0;
+		LEVEL st_square.sLG4c FOR 20.0;
+		LEVEL st_square.sLG5a FOR 20.0;
+		LEVEL st_square.sLG5b FOR 20.0;
+		LEVEL st_square.sLG5c FOR 20.0;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG6a FOR 20.0;
+		LEVEL st_square.sLG6b FOR 20.0;
+		LEVEL st_square.sLG6c FOR 20.0;
+		LEVEL st_square.sLG7a FOR 20.0;
+		LEVEL st_square.sLG7b FOR 19.997;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG7c FOR 19.996;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG8a FOR 19.999;
+		LEVEL st_square.sLG8b FOR 20.0;
+		LEVEL st_square.sLG8c FOR 20.0;
+		LEVEL st_square.sLG9a FOR 20.0;
+		LEVEL st_square.sLG9b FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG9c FOR 20.0;
+		LEVEL Undefined FOR 0.009;
+		LEVEL st_square.sLG10a FOR 20.0;
+		LEVEL st_square.sLG10b FOR 20.0;
+		LEVEL st_square.sLG10c FOR 20.0;
+		LEVEL st_square.sLG11a FOR 20.0;
+		LEVEL st_square.sLG11b FOR 19.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG11c FOR 19.995;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG12a FOR 19.996;
+		LEVEL st_square.sLG12b FOR 20.0;
+		LEVEL st_square.sLG12c FOR 20.0;
+		LEVEL st_square.sLG13a FOR 20.0;
+		LEVEL st_square.sLG13b FOR 20.0;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG13c FOR 20.0;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG14a FOR 20.0;
+		LEVEL st_square.sLG14b FOR 20.0;
+		LEVEL st_square.sLG14c FOR 20.0;
+		LEVEL st_square.sLG15a FOR 20.0;
+		LEVEL st_square.sLG15b FOR 19.98;
+		LEVEL Undefined FOR 0.02;
+		LEVEL st_square.sLG15c FOR 19.98;
+		LEVEL Undefined FOR 0.006;
+		LEVEL st_square.s_aux FOR 20.0;
+		LEVEL Undefined FOR 0.011;
+		LEVEL st_square.sLG0a FOR 20.0;
+		LEVEL st_square.sLG0b FOR 20.0;
+		LEVEL st_square.sLG0c FOR 20.0;
+		LEVEL st_square.sLG1a FOR 20.0;
+		LEVEL st_square.sLG1b FOR 19.995;
+		LEVEL Undefined FOR 0.005;
+		LEVEL st_square.sLG1c FOR 19.995;
+		LEVEL st_square.sLG2a FOR 20.0;
+		LEVEL st_square.sLG2b FOR 20.0;
+		LEVEL st_square.sLG2c FOR 20.0;
+		LEVEL st_square.sLG3a FOR 19.998;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG3b FOR 19.998;
+		LEVEL st_square.sLG3c FOR 20.0;
+		LEVEL st_square.sLG4a FOR 20.0;
+		LEVEL st_square.sLG4b FOR 20.0;
+		LEVEL st_square.sLG4c FOR 20.0;
+		LEVEL st_square.sLG5a FOR 20.0;
+		LEVEL st_square.sLG5b FOR 20.0;
+		LEVEL st_square.sLG5c FOR 20.0;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG6a FOR 20.0;
+		LEVEL st_square.sLG6b FOR 20.0;
+		LEVEL st_square.sLG6c FOR 20.0;
+		LEVEL st_square.sLG7a FOR 20.0;
+		LEVEL st_square.sLG7b FOR 19.997;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG7c FOR 19.996;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG8a FOR 19.999;
+		LEVEL st_square.sLG8b FOR 20.0;
+		LEVEL st_square.sLG8c FOR 20.0;
+		LEVEL st_square.sLG9a FOR 20.0;
+		LEVEL st_square.sLG9b FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG9c FOR 20.0;
+		LEVEL Undefined FOR 0.009;
+		LEVEL st_square.sLG10a FOR 20.0;
+		LEVEL st_square.sLG10b FOR 20.0;
+		LEVEL st_square.sLG10c FOR 20.0;
+		LEVEL st_square.sLG11a FOR 20.0;
+		LEVEL st_square.sLG11b FOR 19.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG11c FOR 19.995;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG12a FOR 19.996;
+		LEVEL st_square.sLG12b FOR 20.0;
+		LEVEL st_square.sLG12c FOR 20.0;
+		LEVEL st_square.sLG13a FOR 20.0;
+		LEVEL st_square.sLG13b FOR 20.0;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG13c FOR 20.0;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG14a FOR 20.0;
+		LEVEL st_square.sLG14b FOR 20.0;
+		LEVEL st_square.sLG14c FOR 20.0;
+		LEVEL st_square.sLG15a FOR 20.0;
+		LEVEL st_square.sLG15b FOR 19.98;
+		LEVEL Undefined FOR 0.02;
+		LEVEL st_square.sLG15c FOR 19.98;
+		LEVEL Undefined FOR 0.006;
+		LEVEL st_square.s_aux FOR 20.0;
+		LEVEL Undefined FOR 0.011;
+		LEVEL st_square.sLG0a FOR 20.0;
+		LEVEL st_square.sLG0b FOR 20.0;
+		LEVEL st_square.sLG0c FOR 20.0;
+		LEVEL st_square.sLG1a FOR 20.0;
+		LEVEL st_square.sLG1b FOR 19.995;
+		LEVEL Undefined FOR 0.005;
+		LEVEL st_square.sLG1c FOR 19.995;
+		LEVEL st_square.sLG2a FOR 20.0;
+		LEVEL st_square.sLG2b FOR 20.0;
+		LEVEL st_square.sLG2c FOR 20.0;
+		LEVEL st_square.sLG3a FOR 19.998;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG3b FOR 19.998;
+		LEVEL st_square.sLG3c FOR 20.0;
+		LEVEL st_square.sLG4a FOR 20.0;
+		LEVEL st_square.sLG4b FOR 20.0;
+		LEVEL st_square.sLG4c FOR 20.0;
+		LEVEL st_square.sLG5a FOR 20.0;
+		LEVEL st_square.sLG5b FOR 20.0;
+		LEVEL st_square.sLG5c FOR 20.0;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG6a FOR 20.0;
+		LEVEL st_square.sLG6b FOR 20.0;
+		LEVEL st_square.sLG6c FOR 20.0;
+		LEVEL st_square.sLG7a FOR 20.0;
+		LEVEL st_square.sLG7b FOR 19.997;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG7c FOR 19.996;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG8a FOR 19.999;
+		LEVEL st_square.sLG8b FOR 20.0;
+		LEVEL st_square.sLG8c FOR 20.0;
+		LEVEL st_square.sLG9a FOR 20.0;
+		LEVEL st_square.sLG9b FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG9c FOR 20.0;
+		LEVEL Undefined FOR 0.009;
+		LEVEL st_square.sLG10a FOR 20.0;
+		LEVEL st_square.sLG10b FOR 20.0;
+		LEVEL st_square.sLG10c FOR 20.0;
+		LEVEL st_square.sLG11a FOR 20.0;
+		LEVEL st_square.sLG11b FOR 19.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG11c FOR 19.995;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG12a FOR 19.996;
+		LEVEL st_square.sLG12b FOR 20.0;
+		LEVEL st_square.sLG12c FOR 20.0;
+		LEVEL st_square.sLG13a FOR 20.0;
+		LEVEL st_square.sLG13b FOR 20.0;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG13c FOR 20.0;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG14a FOR 20.0;
+		LEVEL st_square.sLG14b FOR 20.0;
+		LEVEL st_square.sLG14c FOR 20.0;
+		LEVEL st_square.sLG15a FOR 20.0;
+		LEVEL st_square.sLG15b FOR 19.98;
+		LEVEL Undefined FOR 0.02;
+		LEVEL st_square.sLG15c FOR 19.98;
+		LEVEL Undefined FOR 0.006;
+		LEVEL st_square.s_aux FOR 20.0;
+		LEVEL Undefined FOR 0.011;
+		LEVEL st_square.sLG0a FOR 20.0;
+		LEVEL st_square.sLG0b FOR 20.0;
+		LEVEL st_square.sLG0c FOR 20.0;
+		LEVEL st_square.sLG1a FOR 20.0;
+		LEVEL st_square.sLG1b FOR 19.995;
+		LEVEL Undefined FOR 0.005;
+		LEVEL st_square.sLG1c FOR 19.995;
+		LEVEL st_square.sLG2a FOR 20.0;
+		LEVEL st_square.sLG2b FOR 20.0;
+		LEVEL st_square.sLG2c FOR 20.0;
+		LEVEL st_square.sLG3a FOR 19.998;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG3b FOR 19.998;
+		LEVEL st_square.sLG3c FOR 20.0;
+		LEVEL st_square.sLG4a FOR 20.0;
+		LEVEL st_square.sLG4b FOR 20.0;
+		LEVEL st_square.sLG4c FOR 20.0;
+		LEVEL st_square.sLG5a FOR 20.0;
+		LEVEL st_square.sLG5b FOR 20.0;
+		LEVEL st_square.sLG5c FOR 20.0;
+		LEVEL Undefined FOR 0.002;
+		LEVEL st_square.sLG6a FOR 20.0;
+		LEVEL st_square.sLG6b FOR 20.0;
+		LEVEL st_square.sLG6c FOR 20.0;
+		LEVEL st_square.sLG7a FOR 20.0;
+		LEVEL st_square.sLG7b FOR 19.997;
+		LEVEL Undefined FOR 0.003;
+		LEVEL st_square.sLG7c FOR 19.996;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG8a FOR 19.999;
+		LEVEL st_square.sLG8b FOR 20.0;
+		LEVEL st_square.sLG8c FOR 20.0;
+		LEVEL st_square.sLG9a FOR 20.0;
+		LEVEL st_square.sLG9b FOR 20.0;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG9c FOR 20.0;
+		LEVEL Undefined FOR 0.009;
+		LEVEL st_square.sLG10a FOR 20.0;
+		LEVEL st_square.sLG10b FOR 20.0;
+		LEVEL st_square.sLG10c FOR 20.0;
+		LEVEL st_square.sLG11a FOR 20.0;
+		LEVEL st_square.sLG11b FOR 19.999;
+		LEVEL Undefined FOR 0.001;
+		LEVEL st_square.sLG11c FOR 19.995;
+		LEVEL Undefined FOR 0.004;
+		LEVEL st_square.sLG12a FOR 19.996;
+		LEVEL st_square.sLG12b FOR 20.0;
+		LEVEL st_square.sLG12c FOR 20.0;
+		LEVEL st_square.sLG13a FOR 7.064;
+	}
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "counter_taulell";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 0;
+	TREE_LEVEL = 0;
+	CHILDREN = 1, 2, 3;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "counter_taulell[2]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 1;
+	TREE_LEVEL = 1;
+	PARENT = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "counter_taulell[1]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 2;
+	TREE_LEVEL = 1;
+	PARENT = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "counter_taulell[0]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 3;
+	TREE_LEVEL = 1;
+	PARENT = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "clk";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = ASCII;
+	TREE_INDEX = 4;
+	TREE_LEVEL = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "nrst";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = ASCII;
+	TREE_INDEX = 5;
+	TREE_LEVEL = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "done";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = ASCII;
+	TREE_INDEX = 6;
+	TREE_LEVEL = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "keycode";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 7;
+	TREE_LEVEL = 0;
+	CHILDREN = 8, 9, 10, 11, 12, 13, 14, 15;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "keycode[7]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 8;
+	TREE_LEVEL = 1;
+	PARENT = 7;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "keycode[6]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 9;
+	TREE_LEVEL = 1;
+	PARENT = 7;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "keycode[5]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 10;
+	TREE_LEVEL = 1;
+	PARENT = 7;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "keycode[4]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 11;
+	TREE_LEVEL = 1;
+	PARENT = 7;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "keycode[3]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 12;
+	TREE_LEVEL = 1;
+	PARENT = 7;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "keycode[2]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 13;
+	TREE_LEVEL = 1;
+	PARENT = 7;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "keycode[1]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 14;
+	TREE_LEVEL = 1;
+	PARENT = 7;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "keycode[0]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 15;
+	TREE_LEVEL = 1;
+	PARENT = 7;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Game_Module:inst2|Card_1_sent";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 16;
+	TREE_LEVEL = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Game_Module:inst2|Card_2_sent";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 17;
+	TREE_LEVEL = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Game_Module:inst2|current_state";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = ASCII;
+	TREE_INDEX = 18;
+	TREE_LEVEL = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Game_Module:inst2|Hide";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 19;
+	TREE_LEVEL = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "correct";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 20;
+	TREE_LEVEL = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Incorrect";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 21;
+	TREE_LEVEL = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "card";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = ASCII;
+	TREE_INDEX = 22;
+	TREE_LEVEL = 0;
+	CHILDREN = 23, 24, 25;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "card[2]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = ASCII;
+	TREE_INDEX = 23;
+	TREE_LEVEL = 1;
+	PARENT = 22;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "card[1]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = ASCII;
+	TREE_INDEX = 24;
+	TREE_LEVEL = 1;
+	PARENT = 22;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "card[0]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = ASCII;
+	TREE_INDEX = 25;
+	TREE_LEVEL = 1;
+	PARENT = 22;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "new_card";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = ASCII;
+	TREE_INDEX = 26;
+	TREE_LEVEL = 0;
+	CHILDREN = 27, 28, 29;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "new_card[2]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = ASCII;
+	TREE_INDEX = 27;
+	TREE_LEVEL = 1;
+	PARENT = 26;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "new_card[1]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = ASCII;
+	TREE_INDEX = 28;
+	TREE_LEVEL = 1;
+	PARENT = 26;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "new_card[0]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = ASCII;
+	TREE_INDEX = 29;
+	TREE_LEVEL = 1;
+	PARENT = 26;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Boards_Memory:inst8|current_state";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = ASCII;
+	TREE_INDEX = 30;
+	TREE_LEVEL = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|current_state";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = ASCII;
+	TREE_INDEX = 31;
+	TREE_LEVEL = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|hide_int";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 32;
+	TREE_LEVEL = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|delay_done";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 33;
+	TREE_LEVEL = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_1_number";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 34;
+	TREE_LEVEL = 0;
+	CHILDREN = 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_1_number[15]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 35;
+	TREE_LEVEL = 1;
+	PARENT = 34;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_1_number[14]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 36;
+	TREE_LEVEL = 1;
+	PARENT = 34;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_1_number[13]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 37;
+	TREE_LEVEL = 1;
+	PARENT = 34;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_1_number[12]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 38;
+	TREE_LEVEL = 1;
+	PARENT = 34;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_1_number[11]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 39;
+	TREE_LEVEL = 1;
+	PARENT = 34;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_1_number[10]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 40;
+	TREE_LEVEL = 1;
+	PARENT = 34;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_1_number[9]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 41;
+	TREE_LEVEL = 1;
+	PARENT = 34;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_1_number[8]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 42;
+	TREE_LEVEL = 1;
+	PARENT = 34;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_1_number[7]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 43;
+	TREE_LEVEL = 1;
+	PARENT = 34;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_1_number[6]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 44;
+	TREE_LEVEL = 1;
+	PARENT = 34;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_1_number[5]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 45;
+	TREE_LEVEL = 1;
+	PARENT = 34;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_1_number[4]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 46;
+	TREE_LEVEL = 1;
+	PARENT = 34;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_1_number[3]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 47;
+	TREE_LEVEL = 1;
+	PARENT = 34;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_1_number[2]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 48;
+	TREE_LEVEL = 1;
+	PARENT = 34;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_1_number[1]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 49;
+	TREE_LEVEL = 1;
+	PARENT = 34;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_1_number[0]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 50;
+	TREE_LEVEL = 1;
+	PARENT = 34;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_2_number";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 51;
+	TREE_LEVEL = 0;
+	CHILDREN = 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_2_number[15]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 52;
+	TREE_LEVEL = 1;
+	PARENT = 51;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_2_number[14]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 53;
+	TREE_LEVEL = 1;
+	PARENT = 51;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_2_number[13]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 54;
+	TREE_LEVEL = 1;
+	PARENT = 51;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_2_number[12]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 55;
+	TREE_LEVEL = 1;
+	PARENT = 51;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_2_number[11]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 56;
+	TREE_LEVEL = 1;
+	PARENT = 51;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_2_number[10]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 57;
+	TREE_LEVEL = 1;
+	PARENT = 51;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_2_number[9]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 58;
+	TREE_LEVEL = 1;
+	PARENT = 51;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_2_number[8]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 59;
+	TREE_LEVEL = 1;
+	PARENT = 51;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_2_number[7]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 60;
+	TREE_LEVEL = 1;
+	PARENT = 51;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_2_number[6]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 61;
+	TREE_LEVEL = 1;
+	PARENT = 51;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_2_number[5]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 62;
+	TREE_LEVEL = 1;
+	PARENT = 51;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_2_number[4]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 63;
+	TREE_LEVEL = 1;
+	PARENT = 51;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_2_number[3]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 64;
+	TREE_LEVEL = 1;
+	PARENT = 51;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_2_number[2]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 65;
+	TREE_LEVEL = 1;
+	PARENT = 51;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_2_number[1]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 66;
+	TREE_LEVEL = 1;
+	PARENT = 51;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_2_number[0]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 67;
+	TREE_LEVEL = 1;
+	PARENT = 51;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_1_bit_position";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 68;
+	TREE_LEVEL = 0;
+	CHILDREN = 69, 70, 71, 72, 73;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_1_bit_position[4]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 69;
+	TREE_LEVEL = 1;
+	PARENT = 68;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_1_bit_position[3]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 70;
+	TREE_LEVEL = 1;
+	PARENT = 68;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_1_bit_position[2]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 71;
+	TREE_LEVEL = 1;
+	PARENT = 68;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_1_bit_position[1]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 72;
+	TREE_LEVEL = 1;
+	PARENT = 68;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_1_bit_position[0]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 73;
+	TREE_LEVEL = 1;
+	PARENT = 68;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_2_bit_position";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 74;
+	TREE_LEVEL = 0;
+	CHILDREN = 75, 76, 77, 78;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_2_bit_position[3]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 75;
+	TREE_LEVEL = 1;
+	PARENT = 74;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_2_bit_position[2]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 76;
+	TREE_LEVEL = 1;
+	PARENT = 74;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_2_bit_position[1]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 77;
+	TREE_LEVEL = 1;
+	PARENT = 74;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "Board_status_Memory:inst4|Card_2_bit_position[0]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 78;
+	TREE_LEVEL = 1;
+	PARENT = 74;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "SYNC_value_c1";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 79;
+	TREE_LEVEL = 0;
+	CHILDREN = 80, 81, 82;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "SYNC_value_c1[2]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 80;
+	TREE_LEVEL = 1;
+	PARENT = 79;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "SYNC_value_c1[1]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 81;
+	TREE_LEVEL = 1;
+	PARENT = 79;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "SYNC_value_c1[0]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 82;
+	TREE_LEVEL = 1;
+	PARENT = 79;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "SYNC_value_c2";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 83;
+	TREE_LEVEL = 0;
+	CHILDREN = 84, 85, 86;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "SYNC_value_c2[2]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 84;
+	TREE_LEVEL = 1;
+	PARENT = 83;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "SYNC_value_c2[1]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 85;
+	TREE_LEVEL = 1;
+	PARENT = 83;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "SYNC_value_c2[0]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 86;
+	TREE_LEVEL = 1;
+	PARENT = 83;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "SYNC";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 87;
+	TREE_LEVEL = 0;
+	CHILDREN = 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "SYNC[15]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 88;
+	TREE_LEVEL = 1;
+	PARENT = 87;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "SYNC[14]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 89;
+	TREE_LEVEL = 1;
+	PARENT = 87;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "SYNC[13]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 90;
+	TREE_LEVEL = 1;
+	PARENT = 87;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "SYNC[12]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 91;
+	TREE_LEVEL = 1;
+	PARENT = 87;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "SYNC[11]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 92;
+	TREE_LEVEL = 1;
+	PARENT = 87;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "SYNC[10]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 93;
+	TREE_LEVEL = 1;
+	PARENT = 87;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "SYNC[9]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 94;
+	TREE_LEVEL = 1;
+	PARENT = 87;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "SYNC[8]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 95;
+	TREE_LEVEL = 1;
+	PARENT = 87;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "SYNC[7]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 96;
+	TREE_LEVEL = 1;
+	PARENT = 87;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "SYNC[6]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 97;
+	TREE_LEVEL = 1;
+	PARENT = 87;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "SYNC[5]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 98;
+	TREE_LEVEL = 1;
+	PARENT = 87;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "SYNC[4]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 99;
+	TREE_LEVEL = 1;
+	PARENT = 87;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "SYNC[3]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 100;
+	TREE_LEVEL = 1;
+	PARENT = 87;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "SYNC[2]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 101;
+	TREE_LEVEL = 1;
+	PARENT = 87;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "SYNC[1]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 102;
+	TREE_LEVEL = 1;
+	PARENT = 87;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "SYNC[0]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 103;
+	TREE_LEVEL = 1;
+	PARENT = 87;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "sweep";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 104;
+	TREE_LEVEL = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|st_square";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = ASCII;
+	TREE_INDEX = 105;
+	TREE_LEVEL = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "color_t";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = ASCII;
+	TREE_INDEX = 106;
+	TREE_LEVEL = 0;
+	CHILDREN = 107, 108, 109, 110;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "color_t[3]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = ASCII;
+	TREE_INDEX = 107;
+	TREE_LEVEL = 1;
+	PARENT = 106;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "color_t[2]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = ASCII;
+	TREE_INDEX = 108;
+	TREE_LEVEL = 1;
+	PARENT = 106;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "color_t[1]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = ASCII;
+	TREE_INDEX = 109;
+	TREE_LEVEL = 1;
+	PARENT = 106;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "color_t[0]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = ASCII;
+	TREE_INDEX = 110;
+	TREE_LEVEL = 1;
+	PARENT = 106;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG0_INT";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 111;
+	TREE_LEVEL = 0;
+	CHILDREN = 112, 113, 114, 115;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG0_INT[3]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 112;
+	TREE_LEVEL = 1;
+	PARENT = 111;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG0_INT[2]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 113;
+	TREE_LEVEL = 1;
+	PARENT = 111;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG0_INT[1]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 114;
+	TREE_LEVEL = 1;
+	PARENT = 111;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG0_INT[0]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 115;
+	TREE_LEVEL = 1;
+	PARENT = 111;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG1_INT";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 116;
+	TREE_LEVEL = 0;
+	CHILDREN = 117, 118, 119, 120;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG1_INT[3]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 117;
+	TREE_LEVEL = 1;
+	PARENT = 116;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG1_INT[2]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 118;
+	TREE_LEVEL = 1;
+	PARENT = 116;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG1_INT[1]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 119;
+	TREE_LEVEL = 1;
+	PARENT = 116;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG1_INT[0]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 120;
+	TREE_LEVEL = 1;
+	PARENT = 116;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG2_INT";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 121;
+	TREE_LEVEL = 0;
+	CHILDREN = 122, 123, 124, 125;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG2_INT[3]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 122;
+	TREE_LEVEL = 1;
+	PARENT = 121;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG2_INT[2]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 123;
+	TREE_LEVEL = 1;
+	PARENT = 121;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG2_INT[1]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 124;
+	TREE_LEVEL = 1;
+	PARENT = 121;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG2_INT[0]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 125;
+	TREE_LEVEL = 1;
+	PARENT = 121;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG3_INT";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 126;
+	TREE_LEVEL = 0;
+	CHILDREN = 127, 128, 129, 130;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG3_INT[3]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 127;
+	TREE_LEVEL = 1;
+	PARENT = 126;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG3_INT[2]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 128;
+	TREE_LEVEL = 1;
+	PARENT = 126;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG3_INT[1]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 129;
+	TREE_LEVEL = 1;
+	PARENT = 126;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG3_INT[0]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 130;
+	TREE_LEVEL = 1;
+	PARENT = 126;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG4_INT";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 131;
+	TREE_LEVEL = 0;
+	CHILDREN = 132, 133, 134, 135;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG4_INT[3]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 132;
+	TREE_LEVEL = 1;
+	PARENT = 131;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG4_INT[2]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 133;
+	TREE_LEVEL = 1;
+	PARENT = 131;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG4_INT[1]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 134;
+	TREE_LEVEL = 1;
+	PARENT = 131;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG4_INT[0]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 135;
+	TREE_LEVEL = 1;
+	PARENT = 131;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG5_INT";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 136;
+	TREE_LEVEL = 0;
+	CHILDREN = 137, 138, 139, 140;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG5_INT[3]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 137;
+	TREE_LEVEL = 1;
+	PARENT = 136;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG5_INT[2]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 138;
+	TREE_LEVEL = 1;
+	PARENT = 136;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG5_INT[1]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 139;
+	TREE_LEVEL = 1;
+	PARENT = 136;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG5_INT[0]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 140;
+	TREE_LEVEL = 1;
+	PARENT = 136;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG6_INT";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 141;
+	TREE_LEVEL = 0;
+	CHILDREN = 142, 143, 144, 145;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG6_INT[3]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 142;
+	TREE_LEVEL = 1;
+	PARENT = 141;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG6_INT[2]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 143;
+	TREE_LEVEL = 1;
+	PARENT = 141;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG6_INT[1]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 144;
+	TREE_LEVEL = 1;
+	PARENT = 141;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG6_INT[0]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 145;
+	TREE_LEVEL = 1;
+	PARENT = 141;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG7_INT";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 146;
+	TREE_LEVEL = 0;
+	CHILDREN = 147, 148, 149, 150;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG7_INT[3]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 147;
+	TREE_LEVEL = 1;
+	PARENT = 146;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG7_INT[2]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 148;
+	TREE_LEVEL = 1;
+	PARENT = 146;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG7_INT[1]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 149;
+	TREE_LEVEL = 1;
+	PARENT = 146;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG7_INT[0]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 150;
+	TREE_LEVEL = 1;
+	PARENT = 146;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG8_INT";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 151;
+	TREE_LEVEL = 0;
+	CHILDREN = 152, 153, 154, 155;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG8_INT[3]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 152;
+	TREE_LEVEL = 1;
+	PARENT = 151;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG8_INT[2]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 153;
+	TREE_LEVEL = 1;
+	PARENT = 151;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG8_INT[1]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 154;
+	TREE_LEVEL = 1;
+	PARENT = 151;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG8_INT[0]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 155;
+	TREE_LEVEL = 1;
+	PARENT = 151;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG9_INT";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 156;
+	TREE_LEVEL = 0;
+	CHILDREN = 157, 158, 159, 160;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG9_INT[3]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 157;
+	TREE_LEVEL = 1;
+	PARENT = 156;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG9_INT[2]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 158;
+	TREE_LEVEL = 1;
+	PARENT = 156;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG9_INT[1]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 159;
+	TREE_LEVEL = 1;
+	PARENT = 156;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG9_INT[0]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 160;
+	TREE_LEVEL = 1;
+	PARENT = 156;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG10_INT";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 161;
+	TREE_LEVEL = 0;
+	CHILDREN = 162, 163, 164, 165;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG10_INT[3]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 162;
+	TREE_LEVEL = 1;
+	PARENT = 161;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG10_INT[2]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 163;
+	TREE_LEVEL = 1;
+	PARENT = 161;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG10_INT[1]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 164;
+	TREE_LEVEL = 1;
+	PARENT = 161;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG10_INT[0]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 165;
+	TREE_LEVEL = 1;
+	PARENT = 161;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG11_INT";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 166;
+	TREE_LEVEL = 0;
+	CHILDREN = 167, 168, 169, 170;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG11_INT[3]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 167;
+	TREE_LEVEL = 1;
+	PARENT = 166;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG11_INT[2]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 168;
+	TREE_LEVEL = 1;
+	PARENT = 166;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG11_INT[1]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 169;
+	TREE_LEVEL = 1;
+	PARENT = 166;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG11_INT[0]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 170;
+	TREE_LEVEL = 1;
+	PARENT = 166;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG12_INT";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 171;
+	TREE_LEVEL = 0;
+	CHILDREN = 172, 173, 174, 175;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG12_INT[3]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 172;
+	TREE_LEVEL = 1;
+	PARENT = 171;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG12_INT[2]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 173;
+	TREE_LEVEL = 1;
+	PARENT = 171;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG12_INT[1]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 174;
+	TREE_LEVEL = 1;
+	PARENT = 171;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG12_INT[0]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 175;
+	TREE_LEVEL = 1;
+	PARENT = 171;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG13_INT";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 176;
+	TREE_LEVEL = 0;
+	CHILDREN = 177, 178, 179, 180;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG13_INT[3]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 177;
+	TREE_LEVEL = 1;
+	PARENT = 176;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG13_INT[2]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 178;
+	TREE_LEVEL = 1;
+	PARENT = 176;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG13_INT[1]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 179;
+	TREE_LEVEL = 1;
+	PARENT = 176;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG13_INT[0]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 180;
+	TREE_LEVEL = 1;
+	PARENT = 176;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG14_INT";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 181;
+	TREE_LEVEL = 0;
+	CHILDREN = 182, 183, 184, 185;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG14_INT[3]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 182;
+	TREE_LEVEL = 1;
+	PARENT = 181;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG14_INT[2]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 183;
+	TREE_LEVEL = 1;
+	PARENT = 181;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG14_INT[1]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 184;
+	TREE_LEVEL = 1;
+	PARENT = 181;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG14_INT[0]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 185;
+	TREE_LEVEL = 1;
+	PARENT = 181;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG15_INT";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 186;
+	TREE_LEVEL = 0;
+	CHILDREN = 187, 188, 189, 190;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG15_INT[3]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 187;
+	TREE_LEVEL = 1;
+	PARENT = 186;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG15_INT[2]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 188;
+	TREE_LEVEL = 1;
+	PARENT = 186;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG15_INT[1]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 189;
+	TREE_LEVEL = 1;
+	PARENT = 186;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "square:inst1|LG15_INT[0]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Hexadecimal;
+	TREE_INDEX = 190;
+	TREE_LEVEL = 1;
+	PARENT = 186;
+}
+
+TIME_BAR
+{
+	TIME = 26880000;
+	MASTER = TRUE;
+}
+;

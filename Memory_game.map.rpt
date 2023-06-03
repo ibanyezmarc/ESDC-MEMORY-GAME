@@ -1,0 +1,1086 @@
+Analysis & Synthesis report for Memory_game
+Wed May 17 15:00:08 2023
+Quartus II Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Analysis & Synthesis RAM Summary
+  9. State Machine - |sim_beta|protocol_tx:inst2|state
+ 10. State Machine - |sim_beta|tx_module:inst17|state
+ 11. State Machine - |sim_beta|gestor_game:inst6|state
+ 12. State Machine - |sim_beta|rx_module2:inst19|state
+ 13. State Machine - |sim_beta|protocol_rx:inst20|state
+ 14. State Machine - |sim_beta|start_game:inst22|state
+ 15. State Machine - |sim_beta|keypad_50_v2:inst8|current_state
+ 16. State Machine - |sim_beta|register_bank:inst12|state
+ 17. State Machine - |sim_beta|sim_logica_game:inst|Board_status_Memory:inst4|current_state
+ 18. State Machine - |sim_beta|sim_logica_game:inst|Boards_Memory:inst8|current_state
+ 19. State Machine - |sim_beta|sim_logica_game:inst|Game_Module:inst2|current_state
+ 20. State Machine - |sim_beta|square:inst1|st_square
+ 21. State Machine - |sim_beta|wr_memory:inst15|st_write
+ 22. Registers Removed During Synthesis
+ 23. Removed Registers Triggering Further Register Optimizations
+ 24. General Register Statistics
+ 25. Inverted Register Statistics
+ 26. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 27. Source assignments for Video_Memory:inst3|altsyncram:altsyncram_component|altsyncram_q9l1:auto_generated
+ 28. Source assignments for Video_Memory:inst3|altsyncram:altsyncram_component|altsyncram_q9l1:auto_generated|altsyncram_cel1:altsyncram1
+ 29. Parameter Settings for User Entity Instance: Video_Memory:inst3|altsyncram:altsyncram_component
+ 30. altsyncram Parameter Settings by Entity Instance
+ 31. Port Connectivity Checks: "hex_disps:inst14|BCD7seg:display7"
+ 32. Port Connectivity Checks: "hex_disps:inst14|BCD7seg:display6"
+ 33. Port Connectivity Checks: "hex_disps:inst14|BCD7seg:display5"
+ 34. Port Connectivity Checks: "hex_disps:inst14|BCD7seg:display4"
+ 35. Port Connectivity Checks: "hex_disps:inst14|BCD7seg:display3"
+ 36. Port Connectivity Checks: "hex_disps:inst14|BCD7seg:display1"
+ 37. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2010 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++-----------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                      ;
++------------------------------------+----------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Wed May 17 15:00:08 2023        ;
+; Quartus II Version                 ; 9.1 Build 350 03/24/2010 SP 2 SJ Web Edition ;
+; Revision Name                      ; Memory_game                                  ;
+; Top-level Entity Name              ; sim_beta                                     ;
+; Family                             ; Cyclone II                                   ;
+; Total logic elements               ; 1,611                                        ;
+;     Total combinational functions  ; 1,436                                        ;
+;     Dedicated logic registers      ; 712                                          ;
+; Total registers                    ; 712                                          ;
+; Total pins                         ; 108                                          ;
+; Total virtual pins                 ; 0                                            ;
+; Total memory bits                  ; 131,072                                      ;
+; Embedded Multiplier 9-bit elements ; 0                                            ;
+; Total PLLs                         ; 0                                            ;
++------------------------------------+----------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                        ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                     ; Setting            ; Default Value      ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                     ; EP2C35F672C6       ;                    ;
+; Top-level entity name                                                      ; sim_beta           ; Memory_game        ;
+; Family name                                                                ; Cyclone II         ; Cyclone IV GX      ;
+; Use Generated Physical Constraints File                                    ; Off                ;                    ;
+; Synchronization Register Chain Length                                      ; 2                  ; 3                  ;
+; Use smart compilation                                                      ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                                ; Off                ; Off                ;
+; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
+; Preserve fewer node names                                                  ; On                 ; On                 ;
+; Disable OpenCore Plus hardware evaluation                                  ; Off                ; Off                ;
+; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto               ; Auto               ;
+; Safe State Machine                                                         ; Off                ; Off                ;
+; Extract Verilog State Machines                                             ; On                 ; On                 ;
+; Extract VHDL State Machines                                                ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                 ; On                 ;
+; Parallel Synthesis                                                         ; On                 ; On                 ;
+; DSP Block Balancing                                                        ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                         ; On                 ; On                 ;
+; Power-Up Don't Care                                                        ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                ; Off                ;
+; Remove Duplicate Registers                                                 ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                ; Off                ;
+; Optimization Technique                                                     ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                         ; 70                 ; 70                 ;
+; Auto Carry Chains                                                          ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                ; Off                ;
+; Auto ROM Replacement                                                       ; On                 ; On                 ;
+; Auto RAM Replacement                                                       ; On                 ; On                 ;
+; Auto Shift Register Replacement                                            ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                 ; On                 ;
+; Strict RAM Replacement                                                     ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                          ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                ; Off                ;
+; Auto RAM to Logic Cell Conversion                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                      ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                              ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                    ; Off                ; Off                ;
+; Show Parameter Settings Tables in Synthesis Report                         ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                ; Off                ;
+; PowerPlay Power Optimization                                               ; Normal compilation ; Normal compilation ;
+; HDL message level                                                          ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                ; 100                ;
+; Clock MUX Protection                                                       ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                ; Off                ; Off                ;
+; Block Design Naming                                                        ; Auto               ; Auto               ;
+; SDC constraint protection                                                  ; Off                ; Off                ;
+; Synthesis Effort                                                           ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                 ; On                 ;
+; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                     ; On                 ; On                 ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+
+
+Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
++-------------------------------------+
+; Parallel Compilation                ;
++----------------------------+--------+
+; Processors                 ; Number ;
++----------------------------+--------+
+; Number detected on machine ; 4      ;
+; Maximum allowed            ; 1      ;
++----------------------------+--------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                          ;
++----------------------------------+-----------------+------------------------------------+-----------------------------------------------------------------------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                          ; File Name with Absolute Path                                          ;
++----------------------------------+-----------------+------------------------------------+-----------------------------------------------------------------------+
+; keypad_50_v2.vhd                 ; yes             ; User VHDL File                     ; C:/Users/marc.ibanyez/Desktop/ESDC-versi-beta/keypad_50_v2.vhd        ;
+; bcd7seg.vhd                      ; yes             ; User VHDL File                     ; C:/Users/marc.ibanyez/Desktop/ESDC-versi-beta/bcd7seg.vhd             ;
+; hex_disps.vhd                    ; yes             ; User VHDL File                     ; C:/Users/marc.ibanyez/Desktop/ESDC-versi-beta/hex_disps.vhd           ;
+; register_bank.vhd                ; yes             ; User VHDL File                     ; C:/Users/marc.ibanyez/Desktop/ESDC-versi-beta/register_bank.vhd       ;
+; keytest_h_v2.vhd                 ; yes             ; User VHDL File                     ; C:/Users/marc.ibanyez/Desktop/ESDC-versi-beta/keytest_h_v2.vhd        ;
+; add_generator.vhd                ; yes             ; User VHDL File                     ; C:/Users/marc.ibanyez/Desktop/ESDC-versi-beta/add_generator.vhd       ;
+; clk_div_two.vhd                  ; yes             ; User VHDL File                     ; C:/Users/marc.ibanyez/Desktop/ESDC-versi-beta/clk_div_two.vhd         ;
+; clk_video.vhd                    ; yes             ; User Wizard-Generated File         ; C:/Users/marc.ibanyez/Desktop/ESDC-versi-beta/clk_video.vhd           ;
+; square.vhd                       ; yes             ; User VHDL File                     ; C:/Users/marc.ibanyez/Desktop/ESDC-versi-beta/square.vhd              ;
+; VGA_SYNC.VHD                     ; yes             ; User VHDL File                     ; C:/Users/marc.ibanyez/Desktop/ESDC-versi-beta/VGA_SYNC.VHD            ;
+; Video_Memory.vhd                 ; yes             ; User Wizard-Generated File         ; C:/Users/marc.ibanyez/Desktop/ESDC-versi-beta/Video_Memory.vhd        ;
+; wr_memory.vhd                    ; yes             ; User VHDL File                     ; C:/Users/marc.ibanyez/Desktop/ESDC-versi-beta/wr_memory.vhd           ;
+; Game_Module.vhd                  ; yes             ; User VHDL File                     ; C:/Users/marc.ibanyez/Desktop/ESDC-versi-beta/Game_Module.vhd         ;
+; Boards_Memory.vhd                ; yes             ; User VHDL File                     ; C:/Users/marc.ibanyez/Desktop/ESDC-versi-beta/Boards_Memory.vhd       ;
+; Board_status_Memory.vhd          ; yes             ; User VHDL File                     ; C:/Users/marc.ibanyez/Desktop/ESDC-versi-beta/Board_status_Memory.vhd ;
+; sim_logica_game.bdf              ; yes             ; User Block Diagram/Schematic File  ; C:/Users/marc.ibanyez/Desktop/ESDC-versi-beta/sim_logica_game.bdf     ;
+; sim_beta.bdf                     ; yes             ; User Block Diagram/Schematic File  ; C:/Users/marc.ibanyez/Desktop/ESDC-versi-beta/sim_beta.bdf            ;
+; altsyncram.tdf                   ; yes             ; Megafunction                       ; c:/altera/91sp2/quartus/libraries/megafunctions/altsyncram.tdf        ;
+; db/altsyncram_q9l1.tdf           ; yes             ; Auto-Generated Megafunction        ; C:/Users/marc.ibanyez/Desktop/ESDC-versi-beta/db/altsyncram_q9l1.tdf  ;
+; db/altsyncram_cel1.tdf           ; yes             ; Auto-Generated Megafunction        ; C:/Users/marc.ibanyez/Desktop/ESDC-versi-beta/db/altsyncram_cel1.tdf  ;
+; db/decode_9oa.tdf                ; yes             ; Auto-Generated Megafunction        ; C:/Users/marc.ibanyez/Desktop/ESDC-versi-beta/db/decode_9oa.tdf       ;
+; db/mux_lib.tdf                   ; yes             ; Auto-Generated Megafunction        ; C:/Users/marc.ibanyez/Desktop/ESDC-versi-beta/db/mux_lib.tdf          ;
+; start_game.vhd                   ; yes             ; Auto-Found VHDL File               ; C:/Users/marc.ibanyez/Desktop/ESDC-versi-beta/start_game.vhd          ;
+; protocol_rx.vhd                  ; yes             ; Auto-Found VHDL File               ; C:/Users/marc.ibanyez/Desktop/ESDC-versi-beta/protocol_rx.vhd         ;
+; rx_module2.vhd                   ; yes             ; Auto-Found VHDL File               ; C:/Users/marc.ibanyez/Desktop/ESDC-versi-beta/rx_module2.vhd          ;
+; gestor_game.vhd                  ; yes             ; Auto-Found VHDL File               ; C:/Users/marc.ibanyez/Desktop/ESDC-versi-beta/gestor_game.vhd         ;
+; timer_block.vhd                  ; yes             ; Auto-Found VHDL File               ; C:/Users/marc.ibanyez/Desktop/ESDC-versi-beta/timer_block.vhd         ;
+; random_selector.vhd              ; yes             ; Auto-Found VHDL File               ; C:/Users/marc.ibanyez/Desktop/ESDC-versi-beta/random_selector.vhd     ;
+; tx_module.vhd                    ; yes             ; Auto-Found VHDL File               ; C:/Users/marc.ibanyez/Desktop/ESDC-versi-beta/tx_module.vhd           ;
+; protocol_tx.vhd                  ; yes             ; Auto-Found VHDL File               ; C:/Users/marc.ibanyez/Desktop/ESDC-versi-beta/protocol_tx.vhd         ;
++----------------------------------+-----------------+------------------------------------+-----------------------------------------------------------------------+
+
+
++------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary          ;
++---------------------------------------------+--------+
+; Resource                                    ; Usage  ;
++---------------------------------------------+--------+
+; Estimated Total logic elements              ; 1,611  ;
+;                                             ;        ;
+; Total combinational functions               ; 1436   ;
+; Logic element usage by number of LUT inputs ;        ;
+;     -- 4 input functions                    ; 798    ;
+;     -- 3 input functions                    ; 271    ;
+;     -- <=2 input functions                  ; 367    ;
+;                                             ;        ;
+; Logic elements by mode                      ;        ;
+;     -- normal mode                          ; 1284   ;
+;     -- arithmetic mode                      ; 152    ;
+;                                             ;        ;
+; Total registers                             ; 712    ;
+;     -- Dedicated logic registers            ; 712    ;
+;     -- I/O registers                        ; 0      ;
+;                                             ;        ;
+; I/O pins                                    ; 108    ;
+; Total memory bits                           ; 131072 ;
+; Maximum fan-out node                        ; OSC_50 ;
+; Maximum fan-out                             ; 666    ;
+; Total fan-out                               ; 7969   ;
+; Average fan-out                             ; 3.48   ;
++---------------------------------------------+--------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                                          ;
++---------------------------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node                                          ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                         ; Library Name ;
++---------------------------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------+--------------+
+; |sim_beta                                                           ; 1436 (0)          ; 712 (0)      ; 131072      ; 0            ; 0       ; 0         ; 108  ; 0            ; |sim_beta                                                                                                                                   ; work         ;
+;    |VGA_SYNC:inst4|                                                 ; 48 (48)           ; 75 (75)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sim_beta|VGA_SYNC:inst4                                                                                                                    ;              ;
+;    |Video_Memory:inst3|                                             ; 40 (0)            ; 3 (0)        ; 131072      ; 0            ; 0       ; 0         ; 0    ; 0            ; |sim_beta|Video_Memory:inst3                                                                                                                ;              ;
+;       |altsyncram:altsyncram_component|                             ; 40 (0)            ; 3 (0)        ; 131072      ; 0            ; 0       ; 0         ; 0    ; 0            ; |sim_beta|Video_Memory:inst3|altsyncram:altsyncram_component                                                                                ;              ;
+;          |altsyncram_q9l1:auto_generated|                           ; 40 (0)            ; 3 (0)        ; 131072      ; 0            ; 0       ; 0         ; 0    ; 0            ; |sim_beta|Video_Memory:inst3|altsyncram:altsyncram_component|altsyncram_q9l1:auto_generated                                                 ;              ;
+;             |altsyncram_cel1:altsyncram1|                           ; 40 (0)            ; 3 (3)        ; 131072      ; 0            ; 0       ; 0         ; 0    ; 0            ; |sim_beta|Video_Memory:inst3|altsyncram:altsyncram_component|altsyncram_q9l1:auto_generated|altsyncram_cel1:altsyncram1                     ;              ;
+;                |decode_9oa:decode4|                                 ; 8 (8)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sim_beta|Video_Memory:inst3|altsyncram:altsyncram_component|altsyncram_q9l1:auto_generated|altsyncram_cel1:altsyncram1|decode_9oa:decode4  ;              ;
+;                |decode_9oa:decode_a|                                ; 8 (8)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sim_beta|Video_Memory:inst3|altsyncram:altsyncram_component|altsyncram_q9l1:auto_generated|altsyncram_cel1:altsyncram1|decode_9oa:decode_a ;              ;
+;                |decode_9oa:decode_b|                                ; 8 (8)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sim_beta|Video_Memory:inst3|altsyncram:altsyncram_component|altsyncram_q9l1:auto_generated|altsyncram_cel1:altsyncram1|decode_9oa:decode_b ;              ;
+;                |mux_lib:mux5|                                       ; 16 (16)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sim_beta|Video_Memory:inst3|altsyncram:altsyncram_component|altsyncram_q9l1:auto_generated|altsyncram_cel1:altsyncram1|mux_lib:mux5        ;              ;
+;    |clk_div_two:inst9|                                              ; 1 (1)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sim_beta|clk_div_two:inst9                                                                                                                 ;              ;
+;    |clk_video:inst5|                                                ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sim_beta|clk_video:inst5                                                                                                                   ;              ;
+;       |clk_video_altclkctrl_6df:clk_video_altclkctrl_6df_component| ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sim_beta|clk_video:inst5|clk_video_altclkctrl_6df:clk_video_altclkctrl_6df_component                                                       ;              ;
+;    |gestor_game:inst6|                                              ; 107 (107)         ; 49 (49)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sim_beta|gestor_game:inst6                                                                                                                 ;              ;
+;    |hex_disps:inst14|                                               ; 14 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sim_beta|hex_disps:inst14                                                                                                                  ;              ;
+;       |BCD7seg:display0|                                            ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sim_beta|hex_disps:inst14|BCD7seg:display0                                                                                                 ;              ;
+;       |BCD7seg:display2|                                            ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sim_beta|hex_disps:inst14|BCD7seg:display2                                                                                                 ;              ;
+;    |keypad_50_v2:inst8|                                             ; 97 (97)           ; 91 (91)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sim_beta|keypad_50_v2:inst8                                                                                                                ;              ;
+;    |keytest_h_v2:inst11|                                            ; 6 (6)             ; 5 (5)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sim_beta|keytest_h_v2:inst11                                                                                                               ;              ;
+;    |protocol_rx:inst20|                                             ; 22 (22)           ; 25 (25)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sim_beta|protocol_rx:inst20                                                                                                                ;              ;
+;    |protocol_tx:inst2|                                              ; 30 (30)           ; 23 (23)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sim_beta|protocol_tx:inst2                                                                                                                 ;              ;
+;    |register_bank:inst12|                                           ; 23 (23)           ; 18 (18)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sim_beta|register_bank:inst12                                                                                                              ;              ;
+;    |rx_module2:inst19|                                              ; 57 (57)           ; 29 (29)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sim_beta|rx_module2:inst19                                                                                                                 ;              ;
+;    |sim_logica_game:inst|                                           ; 586 (0)           ; 179 (0)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sim_beta|sim_logica_game:inst                                                                                                              ;              ;
+;       |Board_status_Memory:inst4|                                   ; 432 (432)         ; 102 (102)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sim_beta|sim_logica_game:inst|Board_status_Memory:inst4                                                                                    ;              ;
+;       |Boards_Memory:inst8|                                         ; 85 (85)           ; 40 (40)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sim_beta|sim_logica_game:inst|Boards_Memory:inst8                                                                                          ;              ;
+;       |Game_Module:inst2|                                           ; 69 (69)           ; 37 (37)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sim_beta|sim_logica_game:inst|Game_Module:inst2                                                                                            ;              ;
+;    |square:inst1|                                                   ; 233 (233)         ; 124 (124)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sim_beta|square:inst1                                                                                                                      ;              ;
+;    |start_game:inst22|                                              ; 47 (47)           ; 30 (30)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sim_beta|start_game:inst22                                                                                                                 ;              ;
+;    |timer_block:inst18|                                             ; 2 (2)             ; 2 (2)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sim_beta|timer_block:inst18                                                                                                                ;              ;
+;    |tx_module:inst17|                                               ; 52 (52)           ; 22 (22)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sim_beta|tx_module:inst17                                                                                                                  ;              ;
+;    |wr_memory:inst15|                                               ; 71 (71)           ; 36 (36)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |sim_beta|wr_memory:inst15                                                                                                                  ;              ;
++---------------------------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------------------------------------------------------------------------------------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis RAM Summary                                                                                                                                                                                             ;
++--------------------------------------------------------------------------------------------------------------------------+------+----------------+--------------+--------------+--------------+--------------+--------+------+
+; Name                                                                                                                     ; Type ; Mode           ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size   ; MIF  ;
++--------------------------------------------------------------------------------------------------------------------------+------+----------------+--------------+--------------+--------------+--------------+--------+------+
+; Video_Memory:inst3|altsyncram:altsyncram_component|altsyncram_q9l1:auto_generated|altsyncram_cel1:altsyncram1|ALTSYNCRAM ; AUTO ; True Dual Port ; 32768        ; 4            ; 32768        ; 4            ; 131072 ; None ;
++--------------------------------------------------------------------------------------------------------------------------+------+----------------+--------------+--------------+--------------+--------------+--------+------+
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |sim_beta|protocol_tx:inst2|state                                                                                                                                                            ;
++---------------------+-----------------+-------------+-------------+---------------------+-------------+-------------+-------------+-------------+-------------+---------------+--------------+---------------+
+; Name                ; state.pr_set_TX ; state.pr_w3 ; state.pr_s3 ; state.pr_check_data ; state.pr_w2 ; state.pr_s2 ; state.pr_w1 ; state.pr_s1 ; state.pr_dt ; state.pr_done ; state.pr_rdy ; state.pr_wait ;
++---------------------+-----------------+-------------+-------------+---------------------+-------------+-------------+-------------+-------------+-------------+---------------+--------------+---------------+
+; state.pr_wait       ; 0               ; 0           ; 0           ; 0                   ; 0           ; 0           ; 0           ; 0           ; 0           ; 0             ; 0            ; 0             ;
+; state.pr_rdy        ; 0               ; 0           ; 0           ; 0                   ; 0           ; 0           ; 0           ; 0           ; 0           ; 0             ; 1            ; 1             ;
+; state.pr_done       ; 0               ; 0           ; 0           ; 0                   ; 0           ; 0           ; 0           ; 0           ; 0           ; 1             ; 0            ; 1             ;
+; state.pr_dt         ; 0               ; 0           ; 0           ; 0                   ; 0           ; 0           ; 0           ; 0           ; 1           ; 0             ; 0            ; 1             ;
+; state.pr_s1         ; 0               ; 0           ; 0           ; 0                   ; 0           ; 0           ; 0           ; 1           ; 0           ; 0             ; 0            ; 1             ;
+; state.pr_w1         ; 0               ; 0           ; 0           ; 0                   ; 0           ; 0           ; 1           ; 0           ; 0           ; 0             ; 0            ; 1             ;
+; state.pr_s2         ; 0               ; 0           ; 0           ; 0                   ; 0           ; 1           ; 0           ; 0           ; 0           ; 0             ; 0            ; 1             ;
+; state.pr_w2         ; 0               ; 0           ; 0           ; 0                   ; 1           ; 0           ; 0           ; 0           ; 0           ; 0             ; 0            ; 1             ;
+; state.pr_check_data ; 0               ; 0           ; 0           ; 1                   ; 0           ; 0           ; 0           ; 0           ; 0           ; 0             ; 0            ; 1             ;
+; state.pr_s3         ; 0               ; 0           ; 1           ; 0                   ; 0           ; 0           ; 0           ; 0           ; 0           ; 0             ; 0            ; 1             ;
+; state.pr_w3         ; 0               ; 1           ; 0           ; 0                   ; 0           ; 0           ; 0           ; 0           ; 0           ; 0             ; 0            ; 1             ;
+; state.pr_set_TX     ; 1               ; 0           ; 0           ; 0                   ; 0           ; 0           ; 0           ; 0           ; 0           ; 0             ; 0            ; 1             ;
++---------------------+-----------------+-------------+-------------+---------------------+-------------+-------------+-------------+-------------+-------------+---------------+--------------+---------------+
+
+
+Encoding Type:  One-Hot
++----------------------------------------------------------------------------------+
+; State Machine - |sim_beta|tx_module:inst17|state                                 ;
++----------------+---------------+----------------+----------------+---------------+
+; Name           ; state.tx_stop ; state.tx_shift ; state.tx_start ; state.tx_idle ;
++----------------+---------------+----------------+----------------+---------------+
+; state.tx_idle  ; 0             ; 0              ; 0              ; 0             ;
+; state.tx_start ; 0             ; 0              ; 1              ; 1             ;
+; state.tx_shift ; 0             ; 1              ; 0              ; 1             ;
+; state.tx_stop  ; 1             ; 0              ; 0              ; 1             ;
++----------------+---------------+----------------+----------------+---------------+
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |sim_beta|gestor_game:inst6|state                                                                                                                                 ;
++------------------------+-------------------+-----------------+------------------------+----------------------+--------------------+---------------+------------------+------------+
+; Name                   ; state.after_delay ; state.end_round ; state.before_end_round ; state.compare_result ; state.check_result ; state.in_game ; state.start_game ; state.init ;
++------------------------+-------------------+-----------------+------------------------+----------------------+--------------------+---------------+------------------+------------+
+; state.init             ; 0                 ; 0               ; 0                      ; 0                    ; 0                  ; 0             ; 0                ; 0          ;
+; state.start_game       ; 0                 ; 0               ; 0                      ; 0                    ; 0                  ; 0             ; 1                ; 1          ;
+; state.in_game          ; 0                 ; 0               ; 0                      ; 0                    ; 0                  ; 1             ; 0                ; 1          ;
+; state.check_result     ; 0                 ; 0               ; 0                      ; 0                    ; 1                  ; 0             ; 0                ; 1          ;
+; state.compare_result   ; 0                 ; 0               ; 0                      ; 1                    ; 0                  ; 0             ; 0                ; 1          ;
+; state.before_end_round ; 0                 ; 0               ; 1                      ; 0                    ; 0                  ; 0             ; 0                ; 1          ;
+; state.end_round        ; 0                 ; 1               ; 0                      ; 0                    ; 0                  ; 0             ; 0                ; 1          ;
+; state.after_delay      ; 1                 ; 0               ; 0                      ; 0                    ; 0                  ; 0             ; 0                ; 1          ;
++------------------------+-------------------+-----------------+------------------------+----------------------+--------------------+---------------+------------------+------------+
+
+
+Encoding Type:  One-Hot
++----------------------------------------------------------------------------------+
+; State Machine - |sim_beta|rx_module2:inst19|state                                ;
++----------------+---------------+----------------+----------------+---------------+
+; Name           ; state.rx_stop ; state.rx_shift ; state.rx_start ; state.rx_idle ;
++----------------+---------------+----------------+----------------+---------------+
+; state.rx_idle  ; 0             ; 0              ; 0              ; 0             ;
+; state.rx_start ; 0             ; 0              ; 1              ; 1             ;
+; state.rx_shift ; 0             ; 1              ; 0              ; 1             ;
+; state.rx_stop  ; 1             ; 0              ; 0              ; 1             ;
++----------------+---------------+----------------+----------------+---------------+
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |sim_beta|protocol_rx:inst20|state                                                                                                                                      ;
++-----------------+---------------+-------------+-------------+-----------------+----------------+-----------------+-------------+-------------+-------------+-------------+--------------+
+; Name            ; state.pr_s_dt ; state.pr_r3 ; state.pr_w3 ; state.pr_s_done ; state.pr_s_rdy ; state.pr_f_type ; state.pr_r2 ; state.pr_w2 ; state.pr_r1 ; state.pr_w1 ; state.pr_ini ;
++-----------------+---------------+-------------+-------------+-----------------+----------------+-----------------+-------------+-------------+-------------+-------------+--------------+
+; state.pr_ini    ; 0             ; 0           ; 0           ; 0               ; 0              ; 0               ; 0           ; 0           ; 0           ; 0           ; 0            ;
+; state.pr_w1     ; 0             ; 0           ; 0           ; 0               ; 0              ; 0               ; 0           ; 0           ; 0           ; 1           ; 1            ;
+; state.pr_r1     ; 0             ; 0           ; 0           ; 0               ; 0              ; 0               ; 0           ; 0           ; 1           ; 0           ; 1            ;
+; state.pr_w2     ; 0             ; 0           ; 0           ; 0               ; 0              ; 0               ; 0           ; 1           ; 0           ; 0           ; 1            ;
+; state.pr_r2     ; 0             ; 0           ; 0           ; 0               ; 0              ; 0               ; 1           ; 0           ; 0           ; 0           ; 1            ;
+; state.pr_f_type ; 0             ; 0           ; 0           ; 0               ; 0              ; 1               ; 0           ; 0           ; 0           ; 0           ; 1            ;
+; state.pr_s_rdy  ; 0             ; 0           ; 0           ; 0               ; 1              ; 0               ; 0           ; 0           ; 0           ; 0           ; 1            ;
+; state.pr_s_done ; 0             ; 0           ; 0           ; 1               ; 0              ; 0               ; 0           ; 0           ; 0           ; 0           ; 1            ;
+; state.pr_w3     ; 0             ; 0           ; 1           ; 0               ; 0              ; 0               ; 0           ; 0           ; 0           ; 0           ; 1            ;
+; state.pr_r3     ; 0             ; 1           ; 0           ; 0               ; 0              ; 0               ; 0           ; 0           ; 0           ; 0           ; 1            ;
+; state.pr_s_dt   ; 1             ; 0           ; 0           ; 0               ; 0              ; 0               ; 0           ; 0           ; 0           ; 0           ; 1            ;
++-----------------+---------------+-------------+-------------+-----------------+----------------+-----------------+-------------+-------------+-------------+-------------+--------------+
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |sim_beta|start_game:inst22|state                                                                                                                                                                                          ;
++--------------------------+---------------+-----------------+----------------------+-------------------+-----------------+--------------------------+--------------------+------------------+------------------+---------------+------------+
+; Name                     ; state.results ; state.play_game ; state.play_game_init ; state.delay_state ; state.wait_hash ; state.after_confirmation ; state.confirmation ; state.situation2 ; state.situation1 ; state.waiting ; state.init ;
++--------------------------+---------------+-----------------+----------------------+-------------------+-----------------+--------------------------+--------------------+------------------+------------------+---------------+------------+
+; state.init               ; 0             ; 0               ; 0                    ; 0                 ; 0               ; 0                        ; 0                  ; 0                ; 0                ; 0             ; 0          ;
+; state.waiting            ; 0             ; 0               ; 0                    ; 0                 ; 0               ; 0                        ; 0                  ; 0                ; 0                ; 1             ; 1          ;
+; state.situation1         ; 0             ; 0               ; 0                    ; 0                 ; 0               ; 0                        ; 0                  ; 0                ; 1                ; 0             ; 1          ;
+; state.situation2         ; 0             ; 0               ; 0                    ; 0                 ; 0               ; 0                        ; 0                  ; 1                ; 0                ; 0             ; 1          ;
+; state.confirmation       ; 0             ; 0               ; 0                    ; 0                 ; 0               ; 0                        ; 1                  ; 0                ; 0                ; 0             ; 1          ;
+; state.after_confirmation ; 0             ; 0               ; 0                    ; 0                 ; 0               ; 1                        ; 0                  ; 0                ; 0                ; 0             ; 1          ;
+; state.wait_hash          ; 0             ; 0               ; 0                    ; 0                 ; 1               ; 0                        ; 0                  ; 0                ; 0                ; 0             ; 1          ;
+; state.delay_state        ; 0             ; 0               ; 0                    ; 1                 ; 0               ; 0                        ; 0                  ; 0                ; 0                ; 0             ; 1          ;
+; state.play_game_init     ; 0             ; 0               ; 1                    ; 0                 ; 0               ; 0                        ; 0                  ; 0                ; 0                ; 0             ; 1          ;
+; state.play_game          ; 0             ; 1               ; 0                    ; 0                 ; 0               ; 0                        ; 0                  ; 0                ; 0                ; 0             ; 1          ;
+; state.results            ; 1             ; 0               ; 0                    ; 0                 ; 0               ; 0                        ; 0                  ; 0                ; 0                ; 0             ; 1          ;
++--------------------------+---------------+-----------------+----------------------+-------------------+-----------------+--------------------------+--------------------+------------------+------------------+---------------+------------+
+
+
+Encoding Type:  One-Hot
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |sim_beta|keypad_50_v2:inst8|current_state                                                                                                                                                                                      ;
++--------------------------+----------------------+---------------------+--------------------+------------------------+------------------------+------------------------+------------------------+--------------------------+---------------------+
+; Name                     ; current_state.check1 ; current_state.wait1 ; current_state.skey ; current_state.srow_4st ; current_state.srow_3st ; current_state.srow_2st ; current_state.srow_1st ; current_state.check_All0 ; current_state.wait0 ;
++--------------------------+----------------------+---------------------+--------------------+------------------------+------------------------+------------------------+------------------------+--------------------------+---------------------+
+; current_state.wait0      ; 0                    ; 0                   ; 0                  ; 0                      ; 0                      ; 0                      ; 0                      ; 0                        ; 0                   ;
+; current_state.check_All0 ; 0                    ; 0                   ; 0                  ; 0                      ; 0                      ; 0                      ; 0                      ; 1                        ; 1                   ;
+; current_state.srow_1st   ; 0                    ; 0                   ; 0                  ; 0                      ; 0                      ; 0                      ; 1                      ; 0                        ; 1                   ;
+; current_state.srow_2st   ; 0                    ; 0                   ; 0                  ; 0                      ; 0                      ; 1                      ; 0                      ; 0                        ; 1                   ;
+; current_state.srow_3st   ; 0                    ; 0                   ; 0                  ; 0                      ; 1                      ; 0                      ; 0                      ; 0                        ; 1                   ;
+; current_state.srow_4st   ; 0                    ; 0                   ; 0                  ; 1                      ; 0                      ; 0                      ; 0                      ; 0                        ; 1                   ;
+; current_state.skey       ; 0                    ; 0                   ; 1                  ; 0                      ; 0                      ; 0                      ; 0                      ; 0                        ; 1                   ;
+; current_state.wait1      ; 0                    ; 1                   ; 0                  ; 0                      ; 0                      ; 0                      ; 0                      ; 0                        ; 1                   ;
+; current_state.check1     ; 1                    ; 0                   ; 0                  ; 0                      ; 0                      ; 0                      ; 0                      ; 0                        ; 1                   ;
++--------------------------+----------------------+---------------------+--------------------+------------------------+------------------------+------------------------+------------------------+--------------------------+---------------------+
+
+
+Encoding Type:  One-Hot
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |sim_beta|register_bank:inst12|state                                                                                                                                                                                                  ;
++-------------------------+------------------------+-------------------------+---------------------+------------------+-------------------------+---------------------+--------------------+------------------+-------------------------+---------------+
+; Name                    ; state.s6_store_keycode ; state.s5_wait_asterisk3 ; state.s4_update_col ; state.s4_get_col ; state.s3_wait_asterisk2 ; state.s2_update_fil ; state.s2_store_fil ; state.s2_get_fil ; state.s1_wait_asterisk1 ; state.s0_wait ;
++-------------------------+------------------------+-------------------------+---------------------+------------------+-------------------------+---------------------+--------------------+------------------+-------------------------+---------------+
+; state.s0_wait           ; 0                      ; 0                       ; 0                   ; 0                ; 0                       ; 0                   ; 0                  ; 0                ; 0                       ; 0             ;
+; state.s1_wait_asterisk1 ; 0                      ; 0                       ; 0                   ; 0                ; 0                       ; 0                   ; 0                  ; 0                ; 1                       ; 1             ;
+; state.s2_get_fil        ; 0                      ; 0                       ; 0                   ; 0                ; 0                       ; 0                   ; 0                  ; 1                ; 0                       ; 1             ;
+; state.s2_store_fil      ; 0                      ; 0                       ; 0                   ; 0                ; 0                       ; 0                   ; 1                  ; 0                ; 0                       ; 1             ;
+; state.s2_update_fil     ; 0                      ; 0                       ; 0                   ; 0                ; 0                       ; 1                   ; 0                  ; 0                ; 0                       ; 1             ;
+; state.s3_wait_asterisk2 ; 0                      ; 0                       ; 0                   ; 0                ; 1                       ; 0                   ; 0                  ; 0                ; 0                       ; 1             ;
+; state.s4_get_col        ; 0                      ; 0                       ; 0                   ; 1                ; 0                       ; 0                   ; 0                  ; 0                ; 0                       ; 1             ;
+; state.s4_update_col     ; 0                      ; 0                       ; 1                   ; 0                ; 0                       ; 0                   ; 0                  ; 0                ; 0                       ; 1             ;
+; state.s5_wait_asterisk3 ; 0                      ; 1                       ; 0                   ; 0                ; 0                       ; 0                   ; 0                  ; 0                ; 0                       ; 1             ;
+; state.s6_store_keycode  ; 1                      ; 0                       ; 0                   ; 0                ; 0                       ; 0                   ; 0                  ; 0                ; 0                       ; 1             ;
++-------------------------+------------------------+-------------------------+---------------------+------------------+-------------------------+---------------------+--------------------+------------------+-------------------------+---------------+
+
+
+Encoding Type:  One-Hot
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |sim_beta|sim_logica_game:inst|Board_status_Memory:inst4|current_state                                                                                                                                                                                                            ;
++------------------------------+------------------------------+-----------------------------+---------------------------+-----------------------------+---------------------------+------------------------------+------------------------------+------------------------------+--------------------+
+; Name                         ; current_state.reset_internal ; current_state.s_assign_sync ; current_state.delay_state ; current_state.check_success ; current_state.update_sync ; current_state.card2_received ; current_state.card1_received ; current_state.wait_for_card1 ; current_state.init ;
++------------------------------+------------------------------+-----------------------------+---------------------------+-----------------------------+---------------------------+------------------------------+------------------------------+------------------------------+--------------------+
+; current_state.init           ; 0                            ; 0                           ; 0                         ; 0                           ; 0                         ; 0                            ; 0                            ; 0                            ; 0                  ;
+; current_state.wait_for_card1 ; 0                            ; 0                           ; 0                         ; 0                           ; 0                         ; 0                            ; 0                            ; 1                            ; 1                  ;
+; current_state.card1_received ; 0                            ; 0                           ; 0                         ; 0                           ; 0                         ; 0                            ; 1                            ; 0                            ; 1                  ;
+; current_state.card2_received ; 0                            ; 0                           ; 0                         ; 0                           ; 0                         ; 1                            ; 0                            ; 0                            ; 1                  ;
+; current_state.update_sync    ; 0                            ; 0                           ; 0                         ; 0                           ; 1                         ; 0                            ; 0                            ; 0                            ; 1                  ;
+; current_state.check_success  ; 0                            ; 0                           ; 0                         ; 1                           ; 0                         ; 0                            ; 0                            ; 0                            ; 1                  ;
+; current_state.delay_state    ; 0                            ; 0                           ; 1                         ; 0                           ; 0                         ; 0                            ; 0                            ; 0                            ; 1                  ;
+; current_state.s_assign_sync  ; 0                            ; 1                           ; 0                         ; 0                           ; 0                         ; 0                            ; 0                            ; 0                            ; 1                  ;
+; current_state.reset_internal ; 1                            ; 0                           ; 0                         ; 0                           ; 0                         ; 0                            ; 0                            ; 0                            ; 1                  ;
++------------------------------+------------------------------+-----------------------------+---------------------------+-----------------------------+---------------------------+------------------------------+------------------------------+------------------------------+--------------------+
+
+
+Encoding Type:  One-Hot
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |sim_beta|sim_logica_game:inst|Boards_Memory:inst8|current_state                                                                                                                                                                      ;
++------------------------------------+-----------------------------+---------------------+------------------------------------+--------------------------------+-----------------------------------+-------------------------------+--------------------+
+; Name                               ; current_state.wait_new_move ; current_state.reset ; current_state.retrieve_second_card ; current_state.read_second_card ; current_state.retrieve_first_card ; current_state.read_first_card ; current_state.init ;
++------------------------------------+-----------------------------+---------------------+------------------------------------+--------------------------------+-----------------------------------+-------------------------------+--------------------+
+; current_state.init                 ; 0                           ; 0                   ; 0                                  ; 0                              ; 0                                 ; 0                             ; 0                  ;
+; current_state.read_first_card      ; 0                           ; 0                   ; 0                                  ; 0                              ; 0                                 ; 1                             ; 1                  ;
+; current_state.retrieve_first_card  ; 0                           ; 0                   ; 0                                  ; 0                              ; 1                                 ; 0                             ; 1                  ;
+; current_state.read_second_card     ; 0                           ; 0                   ; 0                                  ; 1                              ; 0                                 ; 0                             ; 1                  ;
+; current_state.retrieve_second_card ; 0                           ; 0                   ; 1                                  ; 0                              ; 0                                 ; 0                             ; 1                  ;
+; current_state.reset                ; 0                           ; 1                   ; 0                                  ; 0                              ; 0                                 ; 0                             ; 1                  ;
+; current_state.wait_new_move        ; 1                           ; 0                   ; 0                                  ; 0                              ; 0                                 ; 0                             ; 1                  ;
++------------------------------------+-----------------------------+---------------------+------------------------------------+--------------------------------+-----------------------------------+-------------------------------+--------------------+
+
+
+Encoding Type:  One-Hot
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |sim_beta|sim_logica_game:inst|Game_Module:inst2|current_state                                                                                                                                                                                                                                               ;
++------------------------------------+---------------------+--------------------------+----------------------------+-----------------------------+------------------------------------+------------------------------+---------------------------+-----------------------------+--------------------------+--------------------+
+; Name                               ; current_state.match ; current_state.hide_cards ; current_state.second_sweep ; current_state.compare_cards ; current_state.wait_for_second_card ; current_state.consult_second ; current_state.second_card ; current_state.consult_first ; current_state.first_card ; current_state.init ;
++------------------------------------+---------------------+--------------------------+----------------------------+-----------------------------+------------------------------------+------------------------------+---------------------------+-----------------------------+--------------------------+--------------------+
+; current_state.init                 ; 0                   ; 0                        ; 0                          ; 0                           ; 0                                  ; 0                            ; 0                         ; 0                           ; 0                        ; 0                  ;
+; current_state.first_card           ; 0                   ; 0                        ; 0                          ; 0                           ; 0                                  ; 0                            ; 0                         ; 0                           ; 1                        ; 1                  ;
+; current_state.consult_first        ; 0                   ; 0                        ; 0                          ; 0                           ; 0                                  ; 0                            ; 0                         ; 1                           ; 0                        ; 1                  ;
+; current_state.second_card          ; 0                   ; 0                        ; 0                          ; 0                           ; 0                                  ; 0                            ; 1                         ; 0                           ; 0                        ; 1                  ;
+; current_state.consult_second       ; 0                   ; 0                        ; 0                          ; 0                           ; 0                                  ; 1                            ; 0                         ; 0                           ; 0                        ; 1                  ;
+; current_state.wait_for_second_card ; 0                   ; 0                        ; 0                          ; 0                           ; 1                                  ; 0                            ; 0                         ; 0                           ; 0                        ; 1                  ;
+; current_state.compare_cards        ; 0                   ; 0                        ; 0                          ; 1                           ; 0                                  ; 0                            ; 0                         ; 0                           ; 0                        ; 1                  ;
+; current_state.second_sweep         ; 0                   ; 0                        ; 1                          ; 0                           ; 0                                  ; 0                            ; 0                         ; 0                           ; 0                        ; 1                  ;
+; current_state.hide_cards           ; 0                   ; 1                        ; 0                          ; 0                           ; 0                                  ; 0                            ; 0                         ; 0                           ; 0                        ; 1                  ;
+; current_state.match                ; 1                   ; 0                        ; 0                          ; 0                           ; 0                                  ; 0                            ; 0                         ; 0                           ; 0                        ; 1                  ;
++------------------------------------+---------------------+--------------------------+----------------------------+-----------------------------+------------------------------------+------------------------------+---------------------------+-----------------------------+--------------------------+--------------------+
+
+
+Encoding Type:  One-Hot
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |sim_beta|square:inst1|st_square                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ;
++------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+
+; Name             ; st_square.sLG15c ; st_square.sLG15b ; st_square.sLG15a ; st_square.sLG14c ; st_square.sLG14b ; st_square.sLG14a ; st_square.sLG13c ; st_square.sLG13b ; st_square.sLG13a ; st_square.sLG12c ; st_square.sLG12b ; st_square.sLG12a ; st_square.sLG11c ; st_square.sLG11b ; st_square.sLG11a ; st_square.sLG10c ; st_square.sLG10b ; st_square.sLG10a ; st_square.sLG9c ; st_square.sLG9b ; st_square.sLG9a ; st_square.sLG8c ; st_square.sLG8b ; st_square.sLG8a ; st_square.sLG7c ; st_square.sLG7b ; st_square.sLG7a ; st_square.sLG6c ; st_square.sLG6b ; st_square.sLG6a ; st_square.sLG5c ; st_square.sLG5b ; st_square.sLG5a ; st_square.sLG4c ; st_square.sLG4b ; st_square.sLG4a ; st_square.sLG3c ; st_square.sLG3b ; st_square.sLG3a ; st_square.sLG2c ; st_square.sLG2b ; st_square.sLG2a ; st_square.sLG1c ; st_square.sLG1b ; st_square.sLG1a ; st_square.sLG0c ; st_square.sLG0b ; st_square.s_aux ; st_square.sLG0a ;
++------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+
+; st_square.sLG0a  ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ;
+; st_square.s_aux  ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ; 1               ;
+; st_square.sLG0b  ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ; 0               ; 1               ;
+; st_square.sLG0c  ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ; 0               ; 0               ; 1               ;
+; st_square.sLG1a  ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG1b  ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ; 0               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG1c  ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG2a  ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG2b  ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG2c  ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG3a  ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG3b  ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG3c  ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG4a  ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG4b  ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG4c  ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG5a  ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG5b  ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG5c  ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG6a  ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG6b  ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG6c  ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG7a  ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG7b  ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG7c  ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG8a  ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG8b  ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0               ; 0               ; 0               ; 0               ; 1               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG8c  ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0               ; 0               ; 0               ; 1               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG9a  ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0               ; 0               ; 1               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG9b  ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0               ; 1               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG9c  ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 1               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG10a ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 1                ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG10b ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 1                ; 0                ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG10c ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 1                ; 0                ; 0                ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG11a ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 1                ; 0                ; 0                ; 0                ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG11b ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 1                ; 0                ; 0                ; 0                ; 0                ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG11c ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 1                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG12a ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 1                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG12b ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 1                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG12c ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 1                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG13a ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 1                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG13b ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 1                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG13c ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 1                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG14a ; 0                ; 0                ; 0                ; 0                ; 0                ; 1                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG14b ; 0                ; 0                ; 0                ; 0                ; 1                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG14c ; 0                ; 0                ; 0                ; 1                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG15a ; 0                ; 0                ; 1                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG15b ; 0                ; 1                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ;
+; st_square.sLG15c ; 1                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0                ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 0               ; 1               ;
++------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+
+
+
+Encoding Type:  One-Hot
++---------------------------------------------------------------------------------------------------------------+
+; State Machine - |sim_beta|wr_memory:inst15|st_write                                                           ;
++-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+; Name        ; st_write.s6 ; st_write.s5 ; st_write.s4 ; st_write.s3 ; st_write.s2 ; st_write.s1 ; st_write.s0 ;
++-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+; st_write.s0 ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ; 0           ;
+; st_write.s1 ; 0           ; 0           ; 0           ; 0           ; 0           ; 1           ; 1           ;
+; st_write.s2 ; 0           ; 0           ; 0           ; 0           ; 1           ; 0           ; 1           ;
+; st_write.s3 ; 0           ; 0           ; 0           ; 1           ; 0           ; 0           ; 1           ;
+; st_write.s4 ; 0           ; 0           ; 1           ; 0           ; 0           ; 0           ; 1           ;
+; st_write.s5 ; 0           ; 1           ; 0           ; 0           ; 0           ; 0           ; 1           ;
+; st_write.s6 ; 1           ; 0           ; 0           ; 0           ; 0           ; 0           ; 1           ;
++-------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                                      ;
++------------------------------------------------------------------------+----------------------------------------------------------------+
+; Register name                                                          ; Reason for Removal                                             ;
++------------------------------------------------------------------------+----------------------------------------------------------------+
+; protocol_tx:inst2|frame_type[7]                                        ; Stuck at VCC due to stuck port data_in                         ;
+; protocol_tx:inst2|frame_type[6]                                        ; Stuck at GND due to stuck port data_in                         ;
+; protocol_tx:inst2|frame_type[5]                                        ; Stuck at VCC due to stuck port data_in                         ;
+; protocol_tx:inst2|frame_type[2..3]                                     ; Stuck at GND due to stuck port data_in                         ;
+; protocol_tx:inst2|frame_type[0]                                        ; Stuck at VCC due to stuck port data_in                         ;
+; sim_logica_game:inst|Boards_Memory:inst8|current_counter_taulell[0..2] ; Stuck at GND due to stuck port data_in                         ;
+; square:inst1|x_t[1,3,7]                                                ; Stuck at GND due to stuck port data_in                         ;
+; square:inst1|y_t[0]                                                    ; Merged with square:inst1|x_t[0]                                ;
+; square:inst1|x_t[0]                                                    ; Merged with square:inst1|x_t[2]                                ;
+; square:inst1|x_t[2]                                                    ; Merged with square:inst1|x_t[4]                                ;
+; protocol_tx:inst2|tx_data[5]                                           ; Merged with protocol_tx:inst2|tx_data[7]                       ;
+; gestor_game:inst6|TX_done                                              ; Merged with gestor_game:inst6|stop_timer                       ;
+; sim_logica_game:inst|Boards_Memory:inst8|col_2[31]                     ; Merged with sim_logica_game:inst|Boards_Memory:inst8|row_2[31] ;
+; sim_logica_game:inst|Boards_Memory:inst8|col_2[4..28]                  ; Merged with sim_logica_game:inst|Boards_Memory:inst8|row_2[30] ;
+; sim_logica_game:inst|Boards_Memory:inst8|row_2[4..29]                  ; Merged with sim_logica_game:inst|Boards_Memory:inst8|row_2[30] ;
+; sim_logica_game:inst|Boards_Memory:inst8|col_2[29..30]                 ; Merged with sim_logica_game:inst|Boards_Memory:inst8|row_2[30] ;
+; square:inst1|y_t[2..3]                                                 ; Merged with square:inst1|y_t[4]                                ;
+; protocol_tx:inst2|tx_data[6]                                           ; Stuck at GND due to stuck port data_in                         ;
+; sim_logica_game:inst|Boards_Memory:inst8|row_2[30]                     ; Stuck at GND due to stuck port data_in                         ;
+; sim_logica_game:inst|Game_Module:inst2|current_state.first_card        ; Stuck at GND due to stuck port data_in                         ;
+; Total Number of Removed Registers = 76                                 ;                                                                ;
++------------------------------------------------------------------------+----------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                          ;
++---------------------------------+---------------------------+----------------------------------------+
+; Register name                   ; Reason for Removal        ; Registers Removed due to This Register ;
++---------------------------------+---------------------------+----------------------------------------+
+; protocol_tx:inst2|frame_type[6] ; Stuck at GND              ; protocol_tx:inst2|tx_data[6]           ;
+;                                 ; due to stuck port data_in ;                                        ;
++---------------------------------+---------------------------+----------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 712   ;
+; Number of registers using Synchronous Clear  ; 81    ;
+; Number of registers using Synchronous Load   ; 17    ;
+; Number of registers using Asynchronous Clear ; 317   ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 390   ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++--------------------------------------------------+
+; Inverted Register Statistics                     ;
++----------------------------------------+---------+
+; Inverted Register                      ; Fan out ;
++----------------------------------------+---------+
+; tx_module:inst17|tx                    ; 1       ;
+; tx_module:inst17|tx_empty              ; 9       ;
+; Total number of inverted registers = 2 ;         ;
++----------------------------------------+---------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                          ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------+
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |sim_beta|square:inst1|LG15_INT[2]                                        ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |sim_beta|square:inst1|LG14_INT[1]                                        ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |sim_beta|square:inst1|LG13_INT[2]                                        ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |sim_beta|square:inst1|LG12_INT[2]                                        ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |sim_beta|square:inst1|LG11_INT[0]                                        ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |sim_beta|square:inst1|LG10_INT[1]                                        ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |sim_beta|square:inst1|LG9_INT[2]                                         ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |sim_beta|square:inst1|LG8_INT[0]                                         ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |sim_beta|square:inst1|LG7_INT[0]                                         ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |sim_beta|square:inst1|LG6_INT[0]                                         ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |sim_beta|square:inst1|LG5_INT[1]                                         ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |sim_beta|square:inst1|LG4_INT[1]                                         ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |sim_beta|square:inst1|LG3_INT[1]                                         ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |sim_beta|square:inst1|LG2_INT[0]                                         ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |sim_beta|square:inst1|LG1_INT[1]                                         ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 6 LEs                ; 3 LEs                  ; Yes        ; |sim_beta|square:inst1|LG0_INT[2]                                         ;
+; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |sim_beta|wr_memory:inst15|address_t[11]                                  ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |sim_beta|sim_logica_game:inst|Game_Module:inst2|keycode_out[0]           ;
+; 5:1                ; 18 bits   ; 54 LEs        ; 18 LEs               ; 36 LEs                 ; Yes        ; |sim_beta|start_game:inst22|delay_counter[6]                              ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 3 LEs                ; 6 LEs                  ; Yes        ; |sim_beta|wr_memory:inst15|address_t[1]                                   ;
+; 5:1                ; 5 bits    ; 15 LEs        ; 5 LEs                ; 10 LEs                 ; Yes        ; |sim_beta|wr_memory:inst15|address_t[4]                                   ;
+; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |sim_beta|protocol_tx:inst2|tx_data[3]                                    ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |sim_beta|protocol_tx:inst2|tx_data[2]                                    ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |sim_beta|register_bank:inst12|filxcol[7]                                 ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |sim_beta|register_bank:inst12|filxcol[0]                                 ;
+; 6:1                ; 14 bits   ; 56 LEs        ; 14 LEs               ; 42 LEs                 ; Yes        ; |sim_beta|sim_logica_game:inst|Boards_Memory:inst8|col_2[2]               ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 3 LEs                ; 9 LEs                  ; Yes        ; |sim_beta|sim_logica_game:inst|Board_status_Memory:inst4|SYNC_value_c1[2] ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 3 LEs                ; 9 LEs                  ; Yes        ; |sim_beta|sim_logica_game:inst|Board_status_Memory:inst4|SYNC_value_c2[1] ;
+; 6:1                ; 13 bits   ; 52 LEs        ; 13 LEs               ; 39 LEs                 ; Yes        ; |sim_beta|rx_module2:inst19|baud[12]                                      ;
+; 9:1                ; 3 bits    ; 18 LEs        ; 3 LEs                ; 15 LEs                 ; Yes        ; |sim_beta|rx_module2:inst19|bit_count[2]                                  ;
+; 15:1               ; 2 bits    ; 20 LEs        ; 14 LEs               ; 6 LEs                  ; Yes        ; |sim_beta|keypad_50_v2:inst8|keycode[3]                                   ;
+; 33:1               ; 4 bits    ; 88 LEs        ; 88 LEs               ; 0 LEs                  ; Yes        ; |sim_beta|square:inst1|color_t[1]                                         ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 2 LEs                ; 6 LEs                  ; Yes        ; |sim_beta|sim_logica_game:inst|Boards_Memory:inst8|col_2[0]               ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |sim_beta|tx_module:inst17|bit_count                                      ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; No         ; |sim_beta|sim_logica_game:inst|Board_status_Memory:inst4|current_state    ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; No         ; |sim_beta|hex_disps:inst14|BCD7seg:display0|HEX[5]                        ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; No         ; |sim_beta|hex_disps:inst14|BCD7seg:display2|HEX[6]                        ;
+; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; No         ; |sim_beta|sim_logica_game:inst|Board_status_Memory:inst4|current_state    ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; No         ; |sim_beta|tx_module:inst17|Selector20                                     ;
+; 9:1                ; 2 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; No         ; |sim_beta|tx_module:inst17|Selector17                                     ;
+; 9:1                ; 2 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; No         ; |sim_beta|rx_module2:inst19|Selector19                                    ;
+; 9:1                ; 2 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; No         ; |sim_beta|rx_module2:inst19|Selector18                                    ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 9 LEs                ; 3 LEs                  ; No         ; |sim_beta|protocol_rx:inst20|Selector7                                    ;
+; 10:1               ; 2 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; No         ; |sim_beta|start_game:inst22|Selector2                                     ;
+; 12:1               ; 2 bits    ; 16 LEs        ; 6 LEs                ; 10 LEs                 ; No         ; |sim_beta|start_game:inst22|Selector5                                     ;
+; 12:1               ; 2 bits    ; 16 LEs        ; 4 LEs                ; 12 LEs                 ; No         ; |sim_beta|start_game:inst22|Selector0                                     ;
+; 10:1               ; 2 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; No         ; |sim_beta|sim_logica_game:inst|Boards_Memory:inst8|Selector83             ;
+; 14:1               ; 4 bits    ; 36 LEs        ; 16 LEs               ; 20 LEs                 ; No         ; |sim_beta|gestor_game:inst6|Selector47                                    ;
+; 12:1               ; 2 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; No         ; |sim_beta|sim_logica_game:inst|Boards_Memory:inst8|Selector84             ;
+; 11:1               ; 2 bits    ; 14 LEs        ; 8 LEs                ; 6 LEs                  ; No         ; |sim_beta|register_bank:inst12|Selector3                                  ;
+; 14:1               ; 6 bits    ; 54 LEs        ; 24 LEs               ; 30 LEs                 ; No         ; |sim_beta|sim_logica_game:inst|Game_Module:inst2|Selector23               ;
+; 16:1               ; 2 bits    ; 20 LEs        ; 6 LEs                ; 14 LEs                 ; No         ; |sim_beta|sim_logica_game:inst|Game_Module:inst2|Selector27               ;
+; 16:1               ; 2 bits    ; 20 LEs        ; 6 LEs                ; 14 LEs                 ; No         ; |sim_beta|sim_logica_game:inst|Game_Module:inst2|Selector26               ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------+
+; Source assignments for Video_Memory:inst3|altsyncram:altsyncram_component|altsyncram_q9l1:auto_generated ;
++---------------------------------+--------------------+------+--------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                         ;
++---------------------------------+--------------------+------+--------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                          ;
++---------------------------------+--------------------+------+--------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------+
+; Source assignments for Video_Memory:inst3|altsyncram:altsyncram_component|altsyncram_q9l1:auto_generated|altsyncram_cel1:altsyncram1 ;
++---------------------------------+--------------------+------+------------------------------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                                                     ;
++---------------------------------+--------------------+------+------------------------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                                      ;
++---------------------------------+--------------------+------+------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Video_Memory:inst3|altsyncram:altsyncram_component ;
++------------------------------------+----------------------+-------------------------------------+
+; Parameter Name                     ; Value                ; Type                                ;
++------------------------------------+----------------------+-------------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                             ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                          ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                        ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                        ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                      ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                             ;
+; OPERATION_MODE                     ; DUAL_PORT            ; Untyped                             ;
+; WIDTH_A                            ; 4                    ; Signed Integer                      ;
+; WIDTHAD_A                          ; 15                   ; Signed Integer                      ;
+; NUMWORDS_A                         ; 32768                ; Signed Integer                      ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                             ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                             ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                             ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                             ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                             ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                             ;
+; WIDTH_B                            ; 4                    ; Signed Integer                      ;
+; WIDTHAD_B                          ; 15                   ; Signed Integer                      ;
+; NUMWORDS_B                         ; 32768                ; Signed Integer                      ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                             ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                             ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                             ;
+; ADDRESS_REG_B                      ; CLOCK1               ; Untyped                             ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                             ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                             ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                             ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                             ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                             ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                             ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                             ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                             ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Signed Integer                      ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                             ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                             ;
+; BYTE_SIZE                          ; 8                    ; Untyped                             ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                             ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                             ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                             ;
+; INIT_FILE                          ; UNUSED               ; Untyped                             ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                             ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                             ;
+; CLOCK_ENABLE_INPUT_A               ; BYPASS               ; Untyped                             ;
+; CLOCK_ENABLE_INPUT_B               ; BYPASS               ; Untyped                             ;
+; CLOCK_ENABLE_OUTPUT_A              ; BYPASS               ; Untyped                             ;
+; CLOCK_ENABLE_OUTPUT_B              ; BYPASS               ; Untyped                             ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                             ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                             ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                             ;
+; DEVICE_FAMILY                      ; Cyclone II           ; Untyped                             ;
+; CBXI_PARAMETER                     ; altsyncram_q9l1      ; Untyped                             ;
++------------------------------------+----------------------+-------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings Tables in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------+
+; altsyncram Parameter Settings by Entity Instance                                               ;
++-------------------------------------------+----------------------------------------------------+
+; Name                                      ; Value                                              ;
++-------------------------------------------+----------------------------------------------------+
+; Number of entity instances                ; 1                                                  ;
+; Entity Instance                           ; Video_Memory:inst3|altsyncram:altsyncram_component ;
+;     -- OPERATION_MODE                     ; DUAL_PORT                                          ;
+;     -- WIDTH_A                            ; 4                                                  ;
+;     -- NUMWORDS_A                         ; 32768                                              ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                       ;
+;     -- WIDTH_B                            ; 4                                                  ;
+;     -- NUMWORDS_B                         ; 32768                                              ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                                             ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                       ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                               ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                          ;
++-------------------------------------------+----------------------------------------------------+
+
+
++---------------------------------------------------------------+
+; Port Connectivity Checks: "hex_disps:inst14|BCD7seg:display7" ;
++------+-------+----------+-------------------------------------+
+; Port ; Type  ; Severity ; Details                             ;
++------+-------+----------+-------------------------------------+
+; num  ; Input ; Info     ; Stuck at VCC                        ;
++------+-------+----------+-------------------------------------+
+
+
++---------------------------------------------------------------+
+; Port Connectivity Checks: "hex_disps:inst14|BCD7seg:display6" ;
++------+-------+----------+-------------------------------------+
+; Port ; Type  ; Severity ; Details                             ;
++------+-------+----------+-------------------------------------+
+; num  ; Input ; Info     ; Stuck at VCC                        ;
++------+-------+----------+-------------------------------------+
+
+
++---------------------------------------------------------------+
+; Port Connectivity Checks: "hex_disps:inst14|BCD7seg:display5" ;
++------+-------+----------+-------------------------------------+
+; Port ; Type  ; Severity ; Details                             ;
++------+-------+----------+-------------------------------------+
+; num  ; Input ; Info     ; Stuck at VCC                        ;
++------+-------+----------+-------------------------------------+
+
+
++---------------------------------------------------------------+
+; Port Connectivity Checks: "hex_disps:inst14|BCD7seg:display4" ;
++------+-------+----------+-------------------------------------+
+; Port ; Type  ; Severity ; Details                             ;
++------+-------+----------+-------------------------------------+
+; num  ; Input ; Info     ; Stuck at VCC                        ;
++------+-------+----------+-------------------------------------+
+
+
++---------------------------------------------------------------+
+; Port Connectivity Checks: "hex_disps:inst14|BCD7seg:display3" ;
++------+-------+----------+-------------------------------------+
+; Port ; Type  ; Severity ; Details                             ;
++------+-------+----------+-------------------------------------+
+; num  ; Input ; Info     ; Stuck at VCC                        ;
++------+-------+----------+-------------------------------------+
+
+
++---------------------------------------------------------------+
+; Port Connectivity Checks: "hex_disps:inst14|BCD7seg:display1" ;
++------+-------+----------+-------------------------------------+
+; Port ; Type  ; Severity ; Details                             ;
++------+-------+----------+-------------------------------------+
+; num  ; Input ; Info     ; Stuck at VCC                        ;
++------+-------+----------+-------------------------------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II Analysis & Synthesis
+    Info: Version 9.1 Build 350 03/24/2010 Service Pack 2 SJ Web Edition
+    Info: Processing started: Wed May 17 15:00:00 2023
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Memory_game -c Memory_game
+Info: Found 1 design units, including 1 entities, in source file sim_tx_beta.bdf
+    Info: Found entity 1: sim_tx_beta
+Info: Found 1 design units, including 1 entities, in source file sim_square.bdf
+    Info: Found entity 1: sim_square
+Info: Found 2 design units, including 1 entities, in source file keypad_50_v2.vhd
+    Info: Found design unit 1: keypad_50_v2-arc_keypad
+    Info: Found entity 1: keypad_50_v2
+Info: Found 2 design units, including 1 entities, in source file bcd7seg.vhd
+    Info: Found design unit 1: BCD7seg-behaviour
+    Info: Found entity 1: BCD7seg
+Info: Found 2 design units, including 1 entities, in source file hex_disps.vhd
+    Info: Found design unit 1: hex_disps-struct
+    Info: Found entity 1: hex_disps
+Info: Found 1 design units, including 1 entities, in source file p1_board_vga_hex.bdf
+    Info: Found entity 1: P1_BOARD_vga_hex
+Info: Found 2 design units, including 1 entities, in source file count4b.vhd
+    Info: Found design unit 1: count4b-arc_count4b
+    Info: Found entity 1: count4b
+Info: Found 2 design units, including 1 entities, in source file f_div.vhd
+    Info: Found design unit 1: f_div-dni
+    Info: Found entity 1: f_div
+Info: Found 2 design units, including 1 entities, in source file register_bank.vhd
+    Info: Found design unit 1: register_bank-arc
+    Info: Found entity 1: register_bank
+Info: Found 1 design units, including 1 entities, in source file p1_board_vga.bdf
+    Info: Found entity 1: P1_BOARD_vga
+Info: Found 1 design units, including 1 entities, in source file keyboard.bdf
+    Info: Found entity 1: keyboard
+Info: Found 2 design units, including 1 entities, in source file keypad.vhd
+    Info: Found design unit 1: keypad-arc_keypad
+    Info: Found entity 1: keypad
+Info: Found 2 design units, including 1 entities, in source file keytest_h_v2.vhd
+    Info: Found design unit 1: keytest_h_v2-main
+    Info: Found entity 1: keytest_h_v2
+Info: Found 2 design units, including 1 entities, in source file add_generator.vhd
+    Info: Found design unit 1: add_generator-a
+    Info: Found entity 1: add_generator
+Info: Found 2 design units, including 1 entities, in source file clk_div_two.vhd
+    Info: Found design unit 1: clk_div_two-simple
+    Info: Found entity 1: clk_div_two
+Info: Found 4 design units, including 2 entities, in source file clk_video.vhd
+    Info: Found design unit 1: clk_video_altclkctrl_6df-RTL
+    Info: Found design unit 2: clk_video-RTL
+    Info: Found entity 1: clk_video_altclkctrl_6df
+    Info: Found entity 2: clk_video
+Info: Found 2 design units, including 1 entities, in source file square.vhd
+    Info: Found design unit 1: square-functional
+    Info: Found entity 1: square
+Info: Found 1 design units, including 1 entities, in source file vga_visualisation.bdf
+    Info: Found entity 1: VGA_visualisation
+Info: Found 2 design units, including 1 entities, in source file vga_sync.vhd
+    Info: Found design unit 1: VGA_SYNC-a
+    Info: Found entity 1: VGA_SYNC
+Info: Found 2 design units, including 1 entities, in source file video_memory.vhd
+    Info: Found design unit 1: video_memory-SYN
+    Info: Found entity 1: Video_Memory
+Info: Found 2 design units, including 1 entities, in source file wr_memory.vhd
+    Info: Found design unit 1: wr_memory-functional
+    Info: Found entity 1: wr_memory
+Info: Found 2 design units, including 1 entities, in source file user_interface.vhd
+    Info: Found design unit 1: User_Interface-behavior
+    Info: Found entity 1: User_Interface
+Info: Found 2 design units, including 1 entities, in source file keycode_translator.vhd
+    Info: Found design unit 1: keycode_translator-behavior
+    Info: Found entity 1: keycode_translator
+Info: Found 1 design units, including 1 entities, in source file translator_sim.bdf
+    Info: Found entity 1: translator_sim
+Info: Found 2 design units, including 1 entities, in source file game_module.vhd
+    Info: Found design unit 1: Game_Module-Behavioral
+    Info: Found entity 1: Game_Module
+Info: Found 2 design units, including 1 entities, in source file boards_memory.vhd
+    Info: Found design unit 1: Boards_Memory-Behavioral
+    Info: Found entity 1: Boards_Memory
+Info: Found 2 design units, including 1 entities, in source file board_status_memory.vhd
+    Info: Found design unit 1: Board_status_Memory-Behavioral
+    Info: Found entity 1: Board_status_Memory
+Info: Found 1 design units, including 1 entities, in source file sim_logica_game.bdf
+    Info: Found entity 1: sim_logica_game
+Info: Found 1 design units, including 1 entities, in source file sim_game_module_memory.bdf
+    Info: Found entity 1: sim_game_module_memory
+Info: Found 1 design units, including 1 entities, in source file register_sim.bdf
+    Info: Found entity 1: register_sim
+Info: Found 1 design units, including 1 entities, in source file sim_beta.bdf
+    Info: Found entity 1: sim_beta
+Info: Elaborating entity "sim_beta" for the top level hierarchy
+Warning: Not all bits in bus "LED_GREEN[7..0]" are used
+Info: Elaborating entity "VGA_SYNC" for hierarchy "VGA_SYNC:inst4"
+Info: Elaborating entity "clk_video" for hierarchy "clk_video:inst5"
+Info: Elaborating entity "clk_video_altclkctrl_6df" for hierarchy "clk_video:inst5|clk_video_altclkctrl_6df:clk_video_altclkctrl_6df_component"
+Info: Elaborating entity "clk_div_two" for hierarchy "clk_div_two:inst9"
+Info: Elaborating entity "Video_Memory" for hierarchy "Video_Memory:inst3"
+Info: Elaborating entity "altsyncram" for hierarchy "Video_Memory:inst3|altsyncram:altsyncram_component"
+Info: Elaborated megafunction instantiation "Video_Memory:inst3|altsyncram:altsyncram_component"
+Info: Instantiated megafunction "Video_Memory:inst3|altsyncram:altsyncram_component" with the following parameter:
+    Info: Parameter "address_reg_b" = "CLOCK1"
+    Info: Parameter "clock_enable_input_a" = "BYPASS"
+    Info: Parameter "clock_enable_input_b" = "BYPASS"
+    Info: Parameter "clock_enable_output_a" = "BYPASS"
+    Info: Parameter "clock_enable_output_b" = "BYPASS"
+    Info: Parameter "intended_device_family" = "Cyclone II"
+    Info: Parameter "lpm_type" = "altsyncram"
+    Info: Parameter "numwords_a" = "32768"
+    Info: Parameter "numwords_b" = "32768"
+    Info: Parameter "operation_mode" = "DUAL_PORT"
+    Info: Parameter "outdata_aclr_b" = "NONE"
+    Info: Parameter "outdata_reg_b" = "UNREGISTERED"
+    Info: Parameter "power_up_uninitialized" = "FALSE"
+    Info: Parameter "widthad_a" = "15"
+    Info: Parameter "widthad_b" = "15"
+    Info: Parameter "width_a" = "4"
+    Info: Parameter "width_b" = "4"
+    Info: Parameter "width_byteena_a" = "1"
+Info: Found 1 design units, including 1 entities, in source file db/altsyncram_q9l1.tdf
+    Info: Found entity 1: altsyncram_q9l1
+Info: Elaborating entity "altsyncram_q9l1" for hierarchy "Video_Memory:inst3|altsyncram:altsyncram_component|altsyncram_q9l1:auto_generated"
+Info: Found 1 design units, including 1 entities, in source file db/altsyncram_cel1.tdf
+    Info: Found entity 1: altsyncram_cel1
+Info: Elaborating entity "altsyncram_cel1" for hierarchy "Video_Memory:inst3|altsyncram:altsyncram_component|altsyncram_q9l1:auto_generated|altsyncram_cel1:altsyncram1"
+Warning: Variable or input pin "clocken1" is defined but never used
+Info: Found 1 design units, including 1 entities, in source file db/decode_9oa.tdf
+    Info: Found entity 1: decode_9oa
+Info: Elaborating entity "decode_9oa" for hierarchy "Video_Memory:inst3|altsyncram:altsyncram_component|altsyncram_q9l1:auto_generated|altsyncram_cel1:altsyncram1|decode_9oa:decode3"
+Info: Elaborating entity "decode_9oa" for hierarchy "Video_Memory:inst3|altsyncram:altsyncram_component|altsyncram_q9l1:auto_generated|altsyncram_cel1:altsyncram1|decode_9oa:decode_a"
+Info: Found 1 design units, including 1 entities, in source file db/mux_lib.tdf
+    Info: Found entity 1: mux_lib
+Info: Elaborating entity "mux_lib" for hierarchy "Video_Memory:inst3|altsyncram:altsyncram_component|altsyncram_q9l1:auto_generated|altsyncram_cel1:altsyncram1|mux_lib:mux5"
+Info: Elaborating entity "wr_memory" for hierarchy "wr_memory:inst15"
+Info: Elaborating entity "square" for hierarchy "square:inst1"
+Warning (10541): VHDL Signal Declaration warning at square.vhd(29): used implicit default value for signal "leds" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Info: Elaborating entity "sim_logica_game" for hierarchy "sim_logica_game:inst"
+Info: Elaborating entity "Game_Module" for hierarchy "sim_logica_game:inst|Game_Module:inst2"
+Info: Elaborating entity "Boards_Memory" for hierarchy "sim_logica_game:inst|Boards_Memory:inst8"
+Info: Elaborating entity "Board_status_Memory" for hierarchy "sim_logica_game:inst|Board_status_Memory:inst4"
+Info: Elaborating entity "register_bank" for hierarchy "register_bank:inst12"
+Info: Elaborating entity "keytest_h_v2" for hierarchy "keytest_h_v2:inst11"
+Info: Elaborating entity "keypad_50_v2" for hierarchy "keypad_50_v2:inst8"
+Warning: Using design file start_game.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info: Found design unit 1: start_game-behavior
+    Info: Found entity 1: start_game
+Info: Elaborating entity "start_game" for hierarchy "start_game:inst22"
+Warning: Using design file protocol_rx.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info: Found design unit 1: protocol_rx-main
+    Info: Found entity 1: protocol_rx
+Info: Elaborating entity "protocol_rx" for hierarchy "protocol_rx:inst20"
+Warning: Using design file rx_module2.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info: Found design unit 1: rx_module2-main
+    Info: Found entity 1: rx_module2
+Info: Elaborating entity "rx_module2" for hierarchy "rx_module2:inst19"
+Warning: Using design file gestor_game.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info: Found design unit 1: gestor_game-behavior
+    Info: Found entity 1: gestor_game
+Info: Elaborating entity "gestor_game" for hierarchy "gestor_game:inst6"
+Warning: Using design file timer_block.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info: Found design unit 1: timer_block-Behavioral
+    Info: Found entity 1: timer_block
+Info: Elaborating entity "timer_block" for hierarchy "timer_block:inst18"
+Warning: Using design file random_selector.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info: Found design unit 1: random_selector-Behavioral
+    Info: Found entity 1: random_selector
+Info: Elaborating entity "random_selector" for hierarchy "random_selector:inst13"
+Info: Elaborating entity "add_generator" for hierarchy "add_generator:inst7"
+Warning: Using design file tx_module.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info: Found design unit 1: tx_module-main
+    Info: Found entity 1: tx_module
+Info: Elaborating entity "tx_module" for hierarchy "tx_module:inst17"
+Warning: Using design file protocol_tx.vhd, which is not specified as a design file for the current project, but contains definitions for 2 design units and 1 entities in project
+    Info: Found design unit 1: protocol_tx-main
+    Info: Found entity 1: protocol_tx
+Info: Elaborating entity "protocol_tx" for hierarchy "protocol_tx:inst2"
+Info: Elaborating entity "hex_disps" for hierarchy "hex_disps:inst14"
+Info: Elaborating entity "BCD7seg" for hierarchy "hex_disps:inst14|BCD7seg:display0"
+Info: Found 1 instances of uninferred RAM logic
+    Info: RAM logic "sim_logica_game:inst|Boards_Memory:inst8|ROM" is uninferred due to inappropriate RAM size
+Info: Registers with preset signals will power-up high
+Info: DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
+Warning: Output pins are stuck at VCC or GND
+    Warning (13410): Pin "VGA_BLANK" is stuck at VCC
+    Warning (13410): Pin "HEX1[6]" is stuck at VCC
+    Warning (13410): Pin "HEX1[5]" is stuck at VCC
+    Warning (13410): Pin "HEX1[4]" is stuck at VCC
+    Warning (13410): Pin "HEX1[3]" is stuck at VCC
+    Warning (13410): Pin "HEX1[2]" is stuck at VCC
+    Warning (13410): Pin "HEX1[1]" is stuck at VCC
+    Warning (13410): Pin "HEX1[0]" is stuck at VCC
+    Warning (13410): Pin "HEX3[6]" is stuck at VCC
+    Warning (13410): Pin "HEX3[5]" is stuck at VCC
+    Warning (13410): Pin "HEX3[4]" is stuck at VCC
+    Warning (13410): Pin "HEX3[3]" is stuck at VCC
+    Warning (13410): Pin "HEX3[2]" is stuck at VCC
+    Warning (13410): Pin "HEX3[1]" is stuck at VCC
+    Warning (13410): Pin "HEX3[0]" is stuck at VCC
+    Warning (13410): Pin "HEX4[6]" is stuck at VCC
+    Warning (13410): Pin "HEX4[5]" is stuck at VCC
+    Warning (13410): Pin "HEX4[4]" is stuck at VCC
+    Warning (13410): Pin "HEX4[3]" is stuck at VCC
+    Warning (13410): Pin "HEX4[2]" is stuck at VCC
+    Warning (13410): Pin "HEX4[1]" is stuck at VCC
+    Warning (13410): Pin "HEX4[0]" is stuck at VCC
+    Warning (13410): Pin "HEX5[6]" is stuck at VCC
+    Warning (13410): Pin "HEX5[5]" is stuck at VCC
+    Warning (13410): Pin "HEX5[4]" is stuck at VCC
+    Warning (13410): Pin "HEX5[3]" is stuck at VCC
+    Warning (13410): Pin "HEX5[2]" is stuck at VCC
+    Warning (13410): Pin "HEX5[1]" is stuck at VCC
+    Warning (13410): Pin "HEX5[0]" is stuck at VCC
+    Warning (13410): Pin "HEX6[6]" is stuck at VCC
+    Warning (13410): Pin "HEX6[5]" is stuck at VCC
+    Warning (13410): Pin "HEX6[4]" is stuck at VCC
+    Warning (13410): Pin "HEX6[3]" is stuck at VCC
+    Warning (13410): Pin "HEX6[2]" is stuck at VCC
+    Warning (13410): Pin "HEX6[1]" is stuck at VCC
+    Warning (13410): Pin "HEX6[0]" is stuck at VCC
+    Warning (13410): Pin "HEX7[6]" is stuck at VCC
+    Warning (13410): Pin "HEX7[5]" is stuck at VCC
+    Warning (13410): Pin "HEX7[4]" is stuck at VCC
+    Warning (13410): Pin "HEX7[3]" is stuck at VCC
+    Warning (13410): Pin "HEX7[2]" is stuck at VCC
+    Warning (13410): Pin "HEX7[1]" is stuck at VCC
+    Warning (13410): Pin "HEX7[0]" is stuck at VCC
+Critical Warning: Ignored Power-Up Level option on the following registers
+    Critical Warning (18010): Register sim_logica_game:inst|Boards_Memory:inst8|col_2[0] will power up to Low
+    Critical Warning (18010): Register sim_logica_game:inst|Boards_Memory:inst8|row_2[0] will power up to Low
+    Critical Warning (18010): Register sim_logica_game:inst|Boards_Memory:inst8|row_2[31] will power up to Low
+Warning: Ignored assignments for entity "Memory_game" -- entity does not exist in design
+    Warning: Assignment for entity set_global_assignment -name LL_ROOT_REGION ON -entity Memory_game -section_id "Root Region" was ignored
+    Warning: Assignment for entity set_global_assignment -name LL_MEMBER_STATE LOCKED -entity Memory_game -section_id "Root Region" was ignored
+Info: Implemented 1764 device resources after synthesis - the final resource count might be different
+    Info: Implemented 7 input pins
+    Info: Implemented 101 output pins
+    Info: Implemented 1623 logic cells
+    Info: Implemented 32 RAM segments
+Info: Quartus II Analysis & Synthesis was successful. 0 errors, 62 warnings
+    Info: Peak virtual memory: 261 megabytes
+    Info: Processing ended: Wed May 17 15:00:08 2023
+    Info: Elapsed time: 00:00:08
+    Info: Total CPU time (on all processors): 00:00:08
+
+

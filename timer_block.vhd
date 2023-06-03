@@ -1,0 +1,55 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+use ieee.numeric_std.ALL;
+
+entity timer_block is
+    port (
+        clk: in std_logic;
+        nrst: in std_logic;
+        stop_timer_player: in std_logic;
+        init_game: in std_logic;
+        stop_timer: out std_logic
+    );
+end entity;
+
+architecture Behavioral of timer_block is
+
+    --constant TIMER_VALUE : integer := 4500000000; -- 90 seconds with 50MHz clock
+    --constant TIMER_VALUE : integer := 10; -- sim purposes
+    --constant TIMER_VALUE : integer :=   50000; -- 0.5ms with 50MHz clock
+    constant TIMER_VALUE : integer :=   1000000000; -- 20 seconds with 50MHz clock
+    signal counter : unsigned(31 downto 0) := (others => '0');
+    type state_type is (init, s_active);
+	signal current_state : state_type := init;
+begin
+
+    process (clk, nrst)
+    begin
+        if nrst = '0' then
+            counter <= (others => '0');
+            stop_timer <= '0';
+            current_state <= init ; 
+            
+        elsif clk'event and clk = '1' then
+            case current_state is
+                when init => -- idle state
+					stop_timer <= '0';
+                    if init_game = '1' then
+                        counter <= (others => '0');
+                        
+                        current_state <= s_active; -- transition to active state
+                    end if;
+                when s_active => -- active state
+                    counter <= counter + 1;
+                    if counter = TIMER_VALUE or stop_timer_player = '1' then
+                        stop_timer <= '1';
+                        current_state <= init; -- transition to idle state
+                    else
+                        stop_timer <= '0';
+                    end if;
+            end case;
+        end if;
+    end process;
+
+end architecture;
